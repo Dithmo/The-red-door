@@ -1,0 +1,1713 @@
+{
+  "source": "RED-DOOR.TAP",
+  "publisher": "Tartan Software, Montrose, Angus - from the 6-in-1 compilation",
+  "memory_map": {
+    "code_block_base": 58424,
+    "flags_array": 64280,
+    "object_locations": 64379,
+    "verb_result": 64114,
+    "noun_result": 64115,
+    "exit_table": 62529,
+    "noun_table": 62751,
+    "verb_table": 63680,
+    "message_table": 59560,
+    "object_description_table": 60852,
+    "init_routine": 65058,
+    "carried_marker": 99,
+    "unknown_verb_marker": 200,
+    "unknown_noun_marker": 201,
+    "direction_noun_base": 35
+  },
+  "constants": {
+    "f": 64280,
+    "o": 64379,
+    "ss": 64440,
+    "max": 6,
+    "mob": 35,
+    "save": 59214,
+    "len": 6154,
+    "dmov": 62529,
+    "prin": 62509,
+    "trno": 62509,
+    "prhy": 62358,
+    "prms": 59419,
+    "sa": 59324,
+    "prcar": 62266,
+    "sys": 62485,
+    "lo": 59219,
+    "quit": 59527,
+    "vb": 200,
+    "no": 201,
+    "in": 7,
+    "lb": 62417,
+    "hx": 205,
+    "hy": 118,
+    "hz": 237,
+    "pbs": 65223,
+    "bl": 62320,
+    "pro": 60790,
+    "de": 8309,
+    "y": 0,
+    "r": 12,
+    "n": 0,
+    "j": 1,
+    "a": 2,
+    "b": 3,
+    "d": 50,
+    "t": 20,
+    "k": 30,
+    "m": 99,
+    "h": 100,
+    "c": 4,
+    "e": 5,
+    "g": 6,
+    "i": 7,
+    "l": 8,
+    "p": 9,
+    "q": 10,
+    "s": 11,
+    "u": 12,
+    "pr": 7800,
+    "w": 16,
+    "dr": 8800,
+    "pi": 8805,
+    "v": 13,
+    "z": 14,
+    "aa": 15,
+    "ab": 17,
+    "ac": 18,
+    "ad": 19,
+    "af": 31
+  },
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Egyptian Tomb (east end)",
+      "basic_line": 7010,
+      "text": [
+        "* You are in an EGYPTIAN TOMB. *",
+        "* It is the burial place of    *",
+        "* some bygone ruler or GOD.    *",
+        "* There is a long dark corridor*",
+        "* stretching to the west as far*",
+        "* as the eye can see. You can  *",
+        "* see two dimly lit alcoves to *",
+        "* the north and south..........*",
+        "*      THERE IS NO WAY OUT     *"
+      ],
+      "exits": {
+        "north": 2,
+        "south": 3,
+        "west": 4
+      }
+    },
+    {
+      "id": 2,
+      "name": "Burial chamber - male MUMMY",
+      "basic_line": 7021,
+      "text": [
+        "* In this burial chamber there *",
+        "* is a male MUMMY--he is lying *",
+        "* on a marble slab, and he is  *",
+        "*      COMPLETELY NAKED        *"
+      ],
+      "exits": {
+        "south": 1
+      }
+    },
+    {
+      "id": 3,
+      "name": "Burial chamber - female MUMMY",
+      "basic_line": 7031,
+      "text": [
+        "* In this burial chamber there *",
+        "* is a female MUMMY--she is    *",
+        "* lying on a marble slab, and  *",
+        "* she is COMPLETELY NAKED!     *"
+      ],
+      "exits": {
+        "north": 1
+      }
+    },
+    {
+      "id": 4,
+      "name": "Long corridor, east end",
+      "basic_line": 7040,
+      "text": [
+        "* This is the east end of a    *",
+        "* long corridor with flickering*",
+        "* lights from unseen torches.  *"
+      ],
+      "exits": {
+        "north": 5,
+        "south": 6,
+        "east": 1,
+        "west": 7
+      }
+    },
+    {
+      "id": 5,
+      "name": "Dusky alcove (bat and spider)",
+      "basic_line": 7050,
+      "text": [
+        "* You are in a dusky alcove. A *",
+        "* bat is hovering about"
+      ],
+      "exits": {
+        "south": 4
+      }
+    },
+    {
+      "id": 6,
+      "name": "Five-sided room (Soothsayer)",
+      "basic_line": 7060,
+      "text": [
+        "* You enter a five-sided room. *",
+        "* There is a mysterious fire   *",
+        "* burning inside a pentacle of *",
+        "* stones. The signs of the     *",
+        "* Zodiac adorn the walls.      *",
+        "* There is a distinct air of   *",
+        "* magic about this place.      *"
+      ],
+      "exits": {
+        "north": 4
+      }
+    },
+    {
+      "id": 7,
+      "name": "Narrow corridor, towards east end",
+      "basic_line": 7070,
+      "text": [
+        "* You are part-way along a dark*",
+        "* narrow corridor, towards the *",
+        "* east end. It is quiet here!  *"
+      ],
+      "exits": {
+        "north": 8,
+        "south": 10,
+        "east": 4,
+        "west": 11
+      }
+    },
+    {
+      "id": 8,
+      "name": "Temple (sacred cow)",
+      "basic_line": 7080,
+      "text": [
+        "*  You have entered a TEMPLE.  *"
+      ],
+      "exits": {
+        "north": 9,
+        "south": 7
+      }
+    },
+    {
+      "id": 9,
+      "name": "The byre (haystack)",
+      "basic_line": 7090,
+      "text": [
+        "* You have entered the byre.   *",
+        "* This is obviously where the  *",
+        "* sacred cow sleeps. There is  *",
+        "* a scent of sweet hay in here *"
+      ],
+      "exits": {
+        "south": 8
+      }
+    },
+    {
+      "id": 10,
+      "name": "The SCARLET ROOM (plinth and box)",
+      "basic_line": 7100,
+      "text": [
+        "* This is the SCARLET ROOM It  *",
+        "* is completely painted in RED *",
+        "* On a plinth in the middle of *",
+        "* the room stands a carved box *"
+      ],
+      "exits": {
+        "north": 7
+      }
+    },
+    {
+      "id": 11,
+      "name": "Dark corridor, near west end",
+      "basic_line": 7110,
+      "text": [
+        "* You are part-way along a dark*",
+        "* corridor, near the west end. *",
+        "* The silence here is deafening*"
+      ],
+      "exits": {
+        "north": 12,
+        "south": 14,
+        "east": 7,
+        "west": 15
+      }
+    },
+    {
+      "id": 12,
+      "name": "Plain burial chamber (MUMMY CASE)",
+      "basic_line": 7120,
+      "text": [
+        "* You are in a small, extremely*",
+        "* plain burial chamber. Lying  *",
+        "* on the floor is an apparently*",
+        "* forgotten MUMMY CASE.        *"
+      ],
+      "exits": {
+        "south": 11
+      }
+    },
+    {
+      "id": 13,
+      "name": "Patio and ornamental pool",
+      "basic_line": 7130,
+      "text": [
+        "* You are on the patio outside *",
+        "* the Concubine's Apartments.  *",
+        "* Here there is an ornamental  *",
+        "* pool which is gleaming with  *",
+        "* a strange green glow. To the *",
+        "* north lies an exotic garden. *"
+      ],
+      "exits": {
+        "north": 24,
+        "west": 19
+      }
+    },
+    {
+      "id": 14,
+      "name": "Above the snake-pit",
+      "basic_line": 7140,
+      "text": [
+        "* You are standing above the   *",
+        "* snake-pit. Below, snakes of  *",
+        "* all shapes and sizes writhe  *",
+        "* and intertwine. A winding,   *",
+        "* slimy ramp leads up from the *",
+        "* pit to your feet. Several    *",
+        "* snakes are slithering up it. *"
+      ],
+      "exits": {
+        "north": 11,
+        "down": 31
+      }
+    },
+    {
+      "id": 15,
+      "name": "Long corridor, west end (stairs down)",
+      "basic_line": 7150,
+      "text": [
+        "*   This is the west end of    *",
+        "*    a long dark corridor.     *",
+        "*   A flight of stairs leads   *",
+        "*       down from here.        *"
+      ],
+      "exits": {
+        "south": 17,
+        "east": 11,
+        "west": 20,
+        "down": 16
+      }
+    },
+    {
+      "id": 16,
+      "name": "The room full of DOWN",
+      "basic_line": 7160,
+      "text": [
+        "*   You have come down, down,  *",
+        "*   down, into a room full of  *",
+        "*           DOWN!              *"
+      ],
+      "exits": {
+        "up": 15
+      }
+    },
+    {
+      "id": 17,
+      "name": "The BLACK room",
+      "basic_line": 7170,
+      "text": [
+        "* You are now in the BLACK room*",
+        "* where the walls are hung with*",
+        "* black velvet, and magical    *",
+        "* symbols have been etched out *",
+        "* in gold on the ceiling. The  *",
+        "* whole room is illuminated    *",
+        "* with an EERIE, EERIE GLOW.   *"
+      ],
+      "exits": {
+        "north": 15
+      }
+    },
+    {
+      "id": 18,
+      "name": "The Treasure Room",
+      "basic_line": 7180,
+      "text": [
+        "* This is the Treasure Room. In*",
+        "* glass cases there is on show *",
+        "* the most wonderful jewellery.*",
+        "* One case is open and seems   *",
+        "* to be empty--it does look as *",
+        "* though it was the work of    *",
+        "* vandals. Also, there is a    *",
+        "* skeleton lying on the floor. *"
+      ],
+      "exits": {
+        "north": 19,
+        "south": 20
+      }
+    },
+    {
+      "id": 19,
+      "name": "The Concubine's Apartments",
+      "basic_line": 7190,
+      "text": [
+        "* You are in the Concubine's   *",
+        "* Apartments. The decorations  *",
+        "* consist of rich hangings in  *",
+        "* peacock blue and acid yellow.*",
+        "* A faint smell of perfume is  *",
+        "* in the air. There is a patio *",
+        "* to the east."
+      ],
+      "exits": {
+        "south": 18,
+        "east": 13
+      }
+    },
+    {
+      "id": 20,
+      "name": "Entrance hall (Anubis, silver doors)",
+      "basic_line": 7200,
+      "text": [
+        "* A tall anubis stands in the  *",
+        "* entrance hall in front of a  *",
+        "* pair of closed, silver doors.*"
+      ],
+      "exits": {
+        "north": 18,
+        "south": 21,
+        "east": 15
+      }
+    },
+    {
+      "id": 21,
+      "name": "Sandstone cave (the SPHINX)",
+      "basic_line": 7210,
+      "text": [
+        "* This is much more like a     *",
+        "* cave than a room. The most   *",
+        "* prominent feature here is a  *",
+        "* SPHINX, carved from sandstone*"
+      ],
+      "exits": {
+        "north": 20,
+        "south": 22
+      }
+    },
+    {
+      "id": 22,
+      "name": "The Funeral Parlour",
+      "basic_line": 7220,
+      "text": [
+        "* This is the very depressing  *",
+        "* Funeral Parlour. The faint   *",
+        "* strains of solemn music can  *",
+        "* be heard in here.            *"
+      ],
+      "exits": {
+        "north": 21,
+        "east": 23
+      }
+    },
+    {
+      "id": 23,
+      "name": "The Ante-Chamber",
+      "basic_line": 7230,
+      "text": [
+        "* This appears to be an Ante-  *",
+        "* Chamber attached to the      *",
+        "* Funeral Parlour. It has the  *",
+        "* uncared-for appearance of    *",
+        "* not having been used for a   *",
+        "* very long time.              *"
+      ],
+      "exits": {
+        "west": 22
+      }
+    },
+    {
+      "id": 24,
+      "name": "Ornamental garden (maze)",
+      "basic_line": 7280,
+      "text": [
+        "    You are in the exotic     ",
+        "     ornamental garden.       "
+      ],
+      "exits": {
+        "north": 24,
+        "south": 13,
+        "east": 26,
+        "west": 24
+      }
+    },
+    {
+      "id": 25,
+      "name": "Ornamental garden (maze)",
+      "basic_line": 7280,
+      "text": [
+        "    You are in the exotic     ",
+        "     ornamental garden.       "
+      ],
+      "exits": {
+        "north": 25,
+        "south": 25,
+        "east": 28,
+        "west": 24
+      }
+    },
+    {
+      "id": 26,
+      "name": "Ornamental garden (maze)",
+      "basic_line": 7280,
+      "text": [
+        "    You are in the exotic     ",
+        "     ornamental garden.       "
+      ],
+      "exits": {
+        "north": 25,
+        "south": 13,
+        "east": 27,
+        "west": 24
+      }
+    },
+    {
+      "id": 27,
+      "name": "Ornamental garden (maze)",
+      "basic_line": 7280,
+      "text": [
+        "    You are in the exotic     ",
+        "     ornamental garden.       "
+      ],
+      "exits": {
+        "north": 25,
+        "south": 27,
+        "east": 27,
+        "west": 26
+      }
+    },
+    {
+      "id": 28,
+      "name": "Ornamental garden (mulberry / silkworms)",
+      "basic_line": 7280,
+      "text": [
+        "    You are in the exotic     ",
+        "     ornamental garden.       "
+      ],
+      "exits": {
+        "north": 28,
+        "south": 27,
+        "east": 28,
+        "west": 28
+      }
+    },
+    {
+      "id": 29,
+      "name": "THOTH's high chamber",
+      "basic_line": 7290,
+      "text": [
+        "* You are in a high chamber,   *",
+        "* decorated with beautiful     *",
+        "* paintings of Egyptian figures*",
+        "* At the far end of the room,  *",
+        "* on a large golden Throne sits*",
+        "* THOTH THE EGYPTIAN SUN GOD.  *"
+      ],
+      "exits": {}
+    },
+    {
+      "id": 30,
+      "name": "Inside the MUMMY CASE",
+      "basic_line": 7300,
+      "text": [
+        "* You are now inside the MUMMY *",
+        "* CASE with the MUMMY! It is   *",
+        "* quite dim in here but you    *",
+        "* can just see a CATCH with a  *",
+        "* gold slot in it. You can also*",
+        "* feel the MUMMY'S breath on   *",
+        "* your cheek!                  *"
+      ],
+      "exits": {}
+    },
+    {
+      "id": 31,
+      "name": "The snake pit (unreachable)",
+      "basic_line": 7310,
+      "text": [
+        "* You're in the SNAKE PIT with *",
+        "* these poisonous snakes.....  *"
+      ],
+      "exits": {}
+    }
+  ],
+  "objects": {
+    "1": "*  A wicker BASKET             *",
+    "2": "*  Cleopatra's NEEDLE          *",
+    "3": "*  CLOTH of gold               *",
+    "4": "*  A bronze-coloured TOKEN     *",
+    "5": "*  A JUG of embalming fluid    *",
+    "6": "*  A quantity of BANDAGES      *",
+    "7": "*  Some funeral FOOD           *",
+    "8": "*  A snake-shaped CHARM        *",
+    "9": "*  A BRACELET of red gold      *",
+    "10": "*  An ornate NECKLACE          *",
+    "11": "*  Some exotic PERFUME         *",
+    "12": "*  Some adorning KOHL          *",
+    "13": "*  A short golden ROD          *",
+    "14": "*  A pair of gold SCISSORS     *",
+    "15": "*  A dead, dead FLY            *",
+    "16": "*  An old scroll of RUNES      *",
+    "17": "*  A small golden KEY          *",
+    "18": "*  A handful of HAY            *",
+    "19": "*  A shiny, gold COIN          *",
+    "20": "*  A piece of FLUFF            *",
+    "21": "*  A musical PIPE              *",
+    "22": "*  An old white SHROUD         *",
+    "23": "*  A gorgeous RAIMENT          *",
+    "24": "*  A rather funny JOKE         *",
+    "25": "*  Some very fine THREAD       *",
+    "26": "*  A nasty-looking SNAKE       *",
+    "27": "*  A navel-shaped RUBY         *",
+    "28": "*  no28                         ",
+    "29": "*  no29                         ",
+    "30": "*   no30                        ",
+    "31": "*  A BASKET with a snake in it *",
+    "32": "*  A threaded NEEDLE           *",
+    "33": "*  Shaped pieces of gold CLOTH *",
+    "34": "*  A gold TOKEN                *",
+    "35": "*  A silver JUG                *",
+    "36": "&*  You ha"
+  },
+  "messages": {
+    "1": "Do you want to try again? (Y/N)",
+    "2": "For SAVE to bank press B or any \nother key for SAVE to Tape.",
+    "3": "For LOAD from bank press B or   \nany other key for LOAD from Tape",
+    "4": "  No SAVE has been performed so \n    there is no DATA to LOAD!",
+    "5": "You can't carry any more!",
+    "6": "Start tape, then press any key.",
+    "7": "  Insert DATA tape, press PLAY  \n    then press any key....",
+    "8": "OK.......position SAVED",
+    "9": "What to do now?",
+    "10": "You notice a NECKLACE which must\nhave been missed by the vandals,\nso you pick it up.",
+    "11": "But you drop it!",
+    "12": "OK........",
+    "13": "Try something else............",
+    "14": "That won't do any good!",
+    "15": "Sorry! No can do!",
+    "16": "Check your Inventory!",
+    "17": "Nothing happens!",
+    "18": "You must be seeing things!",
+    "19": "As you reach out for it you are \nbitten on the wrist!  Byeeeeee! ",
+    "20": "   There is a MUMMY inside it!  \n    He pulls you in`with him!",
+    "21": "  AND TIGHTLY CLOSES THE CASE!  ",
+    "22": "You've already done that!",
+    "23": "    THAT is embalming fluid!",
+    "24": "You have just been MUMMIFIED so \nare unable to pursue your task!",
+    "25": "Your imagination must be working\novertime!",
+    "26": "NOT a pretty sight!",
+    "27": "There's a naked MUMMY on it!",
+    "28": "Pure white!",
+    "29": "Looks quite contented now."
+  },
+  "nouns": [
+    {
+      "word": "BASKE",
+      "code": 1,
+      "addr": 62751
+    },
+    {
+      "word": "NEEDL",
+      "code": 2,
+      "addr": 62757
+    },
+    {
+      "word": "CLOTH",
+      "code": 3,
+      "addr": 62763
+    },
+    {
+      "word": "TOKEN",
+      "code": 4,
+      "addr": 62769
+    },
+    {
+      "word": "JUG",
+      "code": 5,
+      "addr": 62775
+    },
+    {
+      "word": "BANDA",
+      "code": 6,
+      "addr": 62781
+    },
+    {
+      "word": "FOOD",
+      "code": 7,
+      "addr": 62787
+    },
+    {
+      "word": "CHARM",
+      "code": 8,
+      "addr": 62793
+    },
+    {
+      "word": "BRACE",
+      "code": 9,
+      "addr": 62799
+    },
+    {
+      "word": "NECKL",
+      "code": 10,
+      "addr": 62805
+    },
+    {
+      "word": "PERFU",
+      "code": 11,
+      "addr": 62811
+    },
+    {
+      "word": "KOHL",
+      "code": 12,
+      "addr": 62817
+    },
+    {
+      "word": "ROD",
+      "code": 13,
+      "addr": 62823
+    },
+    {
+      "word": "SCISS",
+      "code": 14,
+      "addr": 62829
+    },
+    {
+      "word": "FLY",
+      "code": 15,
+      "addr": 62835
+    },
+    {
+      "word": "RUNES",
+      "code": 16,
+      "addr": 62841
+    },
+    {
+      "word": "KEY",
+      "code": 17,
+      "addr": 62847
+    },
+    {
+      "word": "HAY",
+      "code": 18,
+      "addr": 62853
+    },
+    {
+      "word": "COIN",
+      "code": 19,
+      "addr": 62859
+    },
+    {
+      "word": "FLUFF",
+      "code": 20,
+      "addr": 62865
+    },
+    {
+      "word": "PIPE",
+      "code": 21,
+      "addr": 62871
+    },
+    {
+      "word": "SHROU",
+      "code": 22,
+      "addr": 62877
+    },
+    {
+      "word": "RAIME",
+      "code": 23,
+      "addr": 62883
+    },
+    {
+      "word": "JOKE",
+      "code": 24,
+      "addr": 62889
+    },
+    {
+      "word": "THREA",
+      "code": 25,
+      "addr": 62895
+    },
+    {
+      "word": "SNAKE",
+      "code": 26,
+      "addr": 62901
+    },
+    {
+      "word": "RUBY",
+      "code": 27,
+      "addr": 62907
+    },
+    {
+      "word": "*NO28",
+      "code": 28,
+      "addr": 62913
+    },
+    {
+      "word": "NO29",
+      "code": 29,
+      "addr": 62919
+    },
+    {
+      "word": "NO30",
+      "code": 30,
+      "addr": 62925
+    },
+    {
+      "word": "BASKE",
+      "code": 1,
+      "addr": 62931
+    },
+    {
+      "word": "NEEDL",
+      "code": 2,
+      "addr": 62937
+    },
+    {
+      "word": "CLOTH",
+      "code": 3,
+      "addr": 62943
+    },
+    {
+      "word": "TOKEN",
+      "code": 4,
+      "addr": 62949
+    },
+    {
+      "word": "JUG",
+      "code": 5,
+      "addr": 62955
+    },
+    {
+      "word": "NORTH",
+      "code": 36,
+      "addr": 62961
+    },
+    {
+      "word": "SOUTH",
+      "code": 37,
+      "addr": 62967
+    },
+    {
+      "word": "EAST",
+      "code": 38,
+      "addr": 62973
+    },
+    {
+      "word": "WEST",
+      "code": 39,
+      "addr": 62979
+    },
+    {
+      "word": "UP",
+      "code": 40,
+      "addr": 62985
+    },
+    {
+      "word": "DOWN",
+      "code": 41,
+      "addr": 62991
+    },
+    {
+      "word": "N",
+      "code": 36,
+      "addr": 62997
+    },
+    {
+      "word": "S",
+      "code": 37,
+      "addr": 63003
+    },
+    {
+      "word": "E",
+      "code": 38,
+      "addr": 63009
+    },
+    {
+      "word": "W",
+      "code": 39,
+      "addr": 63015
+    },
+    {
+      "word": "U",
+      "code": 40,
+      "addr": 63021
+    },
+    {
+      "word": "D",
+      "code": 41,
+      "addr": 63027
+    },
+    {
+      "word": "LOOK",
+      "code": 190,
+      "addr": 63033
+    },
+    {
+      "word": "L",
+      "code": 190,
+      "addr": 63039
+    },
+    {
+      "word": "R",
+      "code": 190,
+      "addr": 63045
+    },
+    {
+      "word": "LIST",
+      "code": 189,
+      "addr": 63051
+    },
+    {
+      "word": "I",
+      "code": 189,
+      "addr": 63057
+    },
+    {
+      "word": "INVEN",
+      "code": 189,
+      "addr": 63063
+    },
+    {
+      "word": "QUIT",
+      "code": 188,
+      "addr": 63069
+    },
+    {
+      "word": "STOP",
+      "code": 188,
+      "addr": 63075
+    },
+    {
+      "word": "SAVE",
+      "code": 187,
+      "addr": 63081
+    },
+    {
+      "word": "LOAD",
+      "code": 186,
+      "addr": 63087
+    },
+    {
+      "word": "CORRI",
+      "code": 43,
+      "addr": 63093
+    },
+    {
+      "word": "ALCOV",
+      "code": 44,
+      "addr": 63099
+    },
+    {
+      "word": "MUMMY",
+      "code": 45,
+      "addr": 63105
+    },
+    {
+      "word": "MALE",
+      "code": 46,
+      "addr": 63111
+    },
+    {
+      "word": "FEMAL",
+      "code": 47,
+      "addr": 63117
+    },
+    {
+      "word": "SLAB",
+      "code": 48,
+      "addr": 63123
+    },
+    {
+      "word": "TOMB",
+      "code": 49,
+      "addr": 63129
+    },
+    {
+      "word": "CHAMB",
+      "code": 50,
+      "addr": 63135
+    },
+    {
+      "word": "MARBL",
+      "code": 51,
+      "addr": 63141
+    },
+    {
+      "word": "BAT",
+      "code": 52,
+      "addr": 63147
+    },
+    {
+      "word": "SPIDE",
+      "code": 53,
+      "addr": 63153
+    },
+    {
+      "word": "WEB",
+      "code": 54,
+      "addr": 63159
+    },
+    {
+      "word": "CORNE",
+      "code": 55,
+      "addr": 63165
+    },
+    {
+      "word": "PENTA",
+      "code": 56,
+      "addr": 63171
+    },
+    {
+      "word": "STONE",
+      "code": 56,
+      "addr": 63177
+    },
+    {
+      "word": "SOOTH",
+      "code": 57,
+      "addr": 63183
+    },
+    {
+      "word": "ROOM",
+      "code": 58,
+      "addr": 63189
+    },
+    {
+      "word": "FIRE",
+      "code": 59,
+      "addr": 63195
+    },
+    {
+      "word": "SIGNS",
+      "code": 60,
+      "addr": 63201
+    },
+    {
+      "word": "WALLS",
+      "code": 61,
+      "addr": 63207
+    },
+    {
+      "word": "WALL",
+      "code": 61,
+      "addr": 63213
+    },
+    {
+      "word": "COW",
+      "code": 62,
+      "addr": 63219
+    },
+    {
+      "word": "CARPE",
+      "code": 63,
+      "addr": 63225
+    },
+    {
+      "word": "TEMPL",
+      "code": 64,
+      "addr": 63231
+    },
+    {
+      "word": "HAYST",
+      "code": 65,
+      "addr": 63237
+    },
+    {
+      "word": "PILE",
+      "code": 66,
+      "addr": 63243
+    },
+    {
+      "word": "BYRE",
+      "code": 67,
+      "addr": 63249
+    },
+    {
+      "word": "PLINT",
+      "code": 68,
+      "addr": 63255
+    },
+    {
+      "word": "BOX",
+      "code": 69,
+      "addr": 63261
+    },
+    {
+      "word": "CASE",
+      "code": 70,
+      "addr": 63267
+    },
+    {
+      "word": "CASES",
+      "code": 71,
+      "addr": 63273
+    },
+    {
+      "word": "PATIO",
+      "code": 72,
+      "addr": 63279
+    },
+    {
+      "word": "POOL",
+      "code": 73,
+      "addr": 63285
+    },
+    {
+      "word": "GARDE",
+      "code": 74,
+      "addr": 63291
+    },
+    {
+      "word": "GLOW",
+      "code": 75,
+      "addr": 63297
+    },
+    {
+      "word": "PIT",
+      "code": 76,
+      "addr": 63303
+    },
+    {
+      "word": "RAMP",
+      "code": 77,
+      "addr": 63309
+    },
+    {
+      "word": "STAIR",
+      "code": 78,
+      "addr": 63315
+    },
+    {
+      "word": "IN",
+      "code": 79,
+      "addr": 63321
+    },
+    {
+      "word": "VELVE",
+      "code": 80,
+      "addr": 63327
+    },
+    {
+      "word": "SYMBO",
+      "code": 81,
+      "addr": 63333
+    },
+    {
+      "word": "GOLD",
+      "code": 82,
+      "addr": 63339
+    },
+    {
+      "word": "CEILI",
+      "code": 83,
+      "addr": 63345
+    },
+    {
+      "word": "JEWEL",
+      "code": 84,
+      "addr": 63351
+    },
+    {
+      "word": "SKELE",
+      "code": 85,
+      "addr": 63357
+    },
+    {
+      "word": "HANGI",
+      "code": 86,
+      "addr": 63363
+    },
+    {
+      "word": "CONCU",
+      "code": 87,
+      "addr": 63369
+    },
+    {
+      "word": "APART",
+      "code": 88,
+      "addr": 63375
+    },
+    {
+      "word": "TABLE",
+      "code": 89,
+      "addr": 63381
+    },
+    {
+      "word": "DRESS",
+      "code": 89,
+      "addr": 63387
+    },
+    {
+      "word": "ANUBI",
+      "code": 90,
+      "addr": 63393
+    },
+    {
+      "word": "HALL",
+      "code": 91,
+      "addr": 63399
+    },
+    {
+      "word": "DOORS",
+      "code": 92,
+      "addr": 63405
+    },
+    {
+      "word": "DOOR",
+      "code": 92,
+      "addr": 63411
+    },
+    {
+      "word": "SPHIN",
+      "code": 93,
+      "addr": 63417
+    },
+    {
+      "word": "CAVE",
+      "code": 94,
+      "addr": 63423
+    },
+    {
+      "word": "PARLO",
+      "code": 95,
+      "addr": 63429
+    },
+    {
+      "word": "MULBE",
+      "code": 96,
+      "addr": 63435
+    },
+    {
+      "word": "LEAVE",
+      "code": 97,
+      "addr": 63441
+    },
+    {
+      "word": "SILKW",
+      "code": 98,
+      "addr": 63447
+    },
+    {
+      "word": "WORMS",
+      "code": 98,
+      "addr": 63453
+    },
+    {
+      "word": "CATCH",
+      "code": 100,
+      "addr": 63459
+    },
+    {
+      "word": "FLOWE",
+      "code": 101,
+      "addr": 63465
+    },
+    {
+      "word": "PLANT",
+      "code": 102,
+      "addr": 63471
+    },
+    {
+      "word": "GARME",
+      "code": 23,
+      "addr": 63477
+    },
+    {
+      "word": "CLOAK",
+      "code": 23,
+      "addr": 63483
+    },
+    {
+      "word": "SLOT",
+      "code": 103,
+      "addr": 63489
+    },
+    {
+      "word": "EYES",
+      "code": 104,
+      "addr": 63495
+    },
+    {
+      "word": "TREAS",
+      "code": 105,
+      "addr": 63501
+    },
+    {
+      "word": "ABRAC",
+      "code": 106,
+      "addr": 63507
+    },
+    {
+      "word": "GLASS",
+      "code": 107,
+      "addr": 63513
+    },
+    {
+      "word": "HELP",
+      "code": 185,
+      "addr": 63519
+    },
+    {
+      "word": "JUMP",
+      "code": 184,
+      "addr": 63525
+    },
+    {
+      "word": "CLIMB",
+      "code": 183,
+      "addr": 63531
+    },
+    {
+      "word": "DESCE",
+      "code": 182,
+      "addr": 63537
+    },
+    {
+      "word": "DIVE",
+      "code": 181,
+      "addr": 63543
+    },
+    {
+      "word": "SWIM",
+      "code": 180,
+      "addr": 63549
+    },
+    {
+      "word": "WAIT",
+      "code": 179,
+      "addr": 63555
+    },
+    {
+      "word": "REST",
+      "code": 179,
+      "addr": 63561
+    },
+    {
+      "word": "SCROL",
+      "code": 16,
+      "addr": 63567
+    },
+    {
+      "word": "NOSE",
+      "code": 108,
+      "addr": 63573
+    },
+    {
+      "word": "LISTE",
+      "code": 178,
+      "addr": 63579
+    },
+    {
+      "word": "ETCHI",
+      "code": 109,
+      "addr": 63585
+    },
+    {
+      "word": "LIQUI",
+      "code": 110,
+      "addr": 63591
+    },
+    {
+      "word": "FLUID",
+      "code": 110,
+      "addr": 63597
+    },
+    {
+      "word": "HELLO",
+      "code": 111,
+      "addr": 63603
+    },
+    {
+      "word": "ERNIE",
+      "code": 112,
+      "addr": 63609
+    },
+    {
+      "word": "BUSH",
+      "code": 113,
+      "addr": 63615
+    },
+    {
+      "word": "O",
+      "code": 78,
+      "addr": 63627
+    },
+    {
+      "word": "P",
+      "code": 68,
+      "addr": 63663
+    },
+    {
+      "word": "ET",
+      "code": 84,
+      "addr": 63675
+    }
+  ],
+  "verbs": [
+    {
+      "word": "TAKE",
+      "code": 1,
+      "addr": 63680
+    },
+    {
+      "word": "DROP",
+      "code": 2,
+      "addr": 63686
+    },
+    {
+      "word": "EXAMI",
+      "code": 3,
+      "addr": 63692
+    },
+    {
+      "word": "LOOK",
+      "code": 4,
+      "addr": 63698
+    },
+    {
+      "word": "L",
+      "code": 4,
+      "addr": 63704
+    },
+    {
+      "word": "R",
+      "code": 4,
+      "addr": 63710
+    },
+    {
+      "word": "INVEN",
+      "code": 5,
+      "addr": 63716
+    },
+    {
+      "word": "I",
+      "code": 5,
+      "addr": 63722
+    },
+    {
+      "word": "LIST",
+      "code": 5,
+      "addr": 63728
+    },
+    {
+      "word": "QUIT",
+      "code": 6,
+      "addr": 63734
+    },
+    {
+      "word": "STOP",
+      "code": 6,
+      "addr": 63740
+    },
+    {
+      "word": "SAVE",
+      "code": 7,
+      "addr": 63746
+    },
+    {
+      "word": "LOAD",
+      "code": 8,
+      "addr": 63752
+    },
+    {
+      "word": "HELP",
+      "code": 9,
+      "addr": 63758
+    },
+    {
+      "word": "SEARC",
+      "code": 10,
+      "addr": 63764
+    },
+    {
+      "word": "OPEN",
+      "code": 11,
+      "addr": 63770
+    },
+    {
+      "word": "CUT",
+      "code": 12,
+      "addr": 63776
+    },
+    {
+      "word": "GIVE",
+      "code": 13,
+      "addr": 63782
+    },
+    {
+      "word": "OFFER",
+      "code": 13,
+      "addr": 63788
+    },
+    {
+      "word": "SEW",
+      "code": 14,
+      "addr": 63794
+    },
+    {
+      "word": "THREA",
+      "code": 15,
+      "addr": 63800
+    },
+    {
+      "word": "TOUCH",
+      "code": 16,
+      "addr": 63806
+    },
+    {
+      "word": "DRINK",
+      "code": 17,
+      "addr": 63812
+    },
+    {
+      "word": "FILL",
+      "code": 18,
+      "addr": 63818
+    },
+    {
+      "word": "EAT",
+      "code": 19,
+      "addr": 63824
+    },
+    {
+      "word": "MAKE",
+      "code": 20,
+      "addr": 63830
+    },
+    {
+      "word": "WEAR",
+      "code": 21,
+      "addr": 63836
+    },
+    {
+      "word": "SMELL",
+      "code": 22,
+      "addr": 63842
+    },
+    {
+      "word": "SNIFF",
+      "code": 22,
+      "addr": 63848
+    },
+    {
+      "word": "READ",
+      "code": 23,
+      "addr": 63854
+    },
+    {
+      "word": "UNLOC",
+      "code": 24,
+      "addr": 63860
+    },
+    {
+      "word": "PLAY",
+      "code": 25,
+      "addr": 63866
+    },
+    {
+      "word": "BLOW",
+      "code": 26,
+      "addr": 63872
+    },
+    {
+      "word": "TELL",
+      "code": 27,
+      "addr": 63878
+    },
+    {
+      "word": "KILL",
+      "code": 28,
+      "addr": 63884
+    },
+    {
+      "word": "CATCH",
+      "code": 29,
+      "addr": 63890
+    },
+    {
+      "word": "MILK",
+      "code": 30,
+      "addr": 63896
+    },
+    {
+      "word": "MOVE",
+      "code": 31,
+      "addr": 63902
+    },
+    {
+      "word": "JUMP",
+      "code": 32,
+      "addr": 63908
+    },
+    {
+      "word": "DIVE",
+      "code": 33,
+      "addr": 63914
+    },
+    {
+      "word": "SWIM",
+      "code": 34,
+      "addr": 63920
+    },
+    {
+      "word": "CLIMB",
+      "code": 35,
+      "addr": 63926
+    },
+    {
+      "word": "DESCE",
+      "code": 36,
+      "addr": 63932
+    },
+    {
+      "word": "PULL",
+      "code": 37,
+      "addr": 63938
+    },
+    {
+      "word": "PUSH",
+      "code": 38,
+      "addr": 63944
+    },
+    {
+      "word": "KISS",
+      "code": 39,
+      "addr": 63950
+    },
+    {
+      "word": "FEEL",
+      "code": 40,
+      "addr": 63956
+    },
+    {
+      "word": "INSER",
+      "code": 41,
+      "addr": 63962
+    },
+    {
+      "word": "USE",
+      "code": 42,
+      "addr": 63968
+    },
+    {
+      "word": "TICKL",
+      "code": 43,
+      "addr": 63974
+    },
+    {
+      "word": "FEED",
+      "code": 44,
+      "addr": 63980
+    },
+    {
+      "word": "LIFT",
+      "code": 45,
+      "addr": 63986
+    },
+    {
+      "word": "WAIT",
+      "code": 46,
+      "addr": 63992
+    },
+    {
+      "word": "REST",
+      "code": 46,
+      "addr": 63998
+    },
+    {
+      "word": "BREAK",
+      "code": 47,
+      "addr": 64004
+    },
+    {
+      "word": "SMASH",
+      "code": 47,
+      "addr": 64010
+    },
+    {
+      "word": "LISTE",
+      "code": 48,
+      "addr": 64016
+    },
+    {
+      "word": "SAY",
+      "code": 49,
+      "addr": 64022
+    },
+    {
+      "word": "RUB",
+      "code": 50,
+      "addr": 64028
+    },
+    {
+      "word": "WAVE",
+      "code": 51,
+      "addr": 64034
+    }
+  ],
+  "initial_object_locations": {
+    "1": 15,
+    "2": 0,
+    "3": 0,
+    "4": 30,
+    "5": 0,
+    "6": 0,
+    "7": 22,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 99,
+    "14": 0,
+    "15": 0,
+    "16": 17,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 23,
+    "22": 30,
+    "23": 0,
+    "24": 0,
+    "25": 0,
+    "26": 0,
+    "27": 0,
+    "28": 0,
+    "29": 0,
+    "30": 0,
+    "31": 0,
+    "32": 0,
+    "33": 0,
+    "34": 0,
+    "35": 0
+  },
+  "verb_dispatch": "GO TO 1000 + verb*100  (verb 0 = movement)",
+  "scenery_dispatch": {
+    "TAKE": "GO TO 8000 + 10*room  (noun > 35)",
+    "EXAMINE": "GO TO 8400 + 10*room  (noun > 35)"
+  }
+}
