@@ -1,0 +1,573 @@
+[
+  {
+    "id": "examine-snake-out-of-reach",
+    "verb": "examine",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      },
+      {
+        "flag": "snakeInBasket",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "They appear somewhat dangerous!"
+    ],
+    "origin": "red.bas:1312"
+  },
+  {
+    "id": "examine-snake-in-basket",
+    "verb": "examine",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "flag": "snakeInBasket",
+        "eq": 1
+      },
+      {
+        "present": "basket-with-snake"
+      }
+    ],
+    "say": [
+      "It's in the basket."
+    ],
+    "origin": "red.bas:1313"
+  },
+  {
+    "id": "examine-snake-still-dangerous",
+    "verb": "examine",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "not": {
+          "present": "snake"
+        }
+      }
+    ],
+    "say": [
+      "Still dangerous!"
+    ],
+    "origin": "red.bas:1314"
+  },
+  {
+    "id": "examine-fly-alive",
+    "verb": "examine",
+    "target": {
+      "object": "fly"
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "flag": "flyDead",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Looks like a FLY-BY-NIGHT!"
+    ],
+    "origin": "red.bas:1316"
+  },
+  {
+    "id": "examine-hay",
+    "verb": "examine",
+    "target": {
+      "object": "hay"
+    },
+    "say": [
+      "Good quality animal feedstuff."
+    ],
+    "origin": "red.bas:1350"
+  },
+  {
+    "id": "examine-snake",
+    "verb": "examine",
+    "target": {
+      "object": "snake"
+    },
+    "say": [
+      "Looks rather unfriendly!"
+    ],
+    "origin": "red.bas:1351"
+  },
+  {
+    "id": "examine-basket",
+    "verb": "examine",
+    "target": {
+      "object": "basket"
+    },
+    "say": [
+      "Like that used by Snakecharmers."
+    ],
+    "origin": "red.bas:1352"
+  },
+  {
+    "id": "examine-needle",
+    "verb": "examine",
+    "target": {
+      "object": "needle"
+    },
+    "say": [
+      "It is smaller than the one on the Embankment! SEW what!"
+    ],
+    "origin": "red.bas:1353"
+  },
+  {
+    "id": "examine-cloth",
+    "verb": "examine",
+    "target": {
+      "object": "cloth"
+    },
+    "say": [
+      "It is NEARLY fit for a GOD!"
+    ],
+    "origin": "red.bas:1354"
+  },
+  {
+    "id": "examine-token-bronze",
+    "verb": "examine",
+    "target": {
+      "object": "token-bronze"
+    },
+    "say": [
+      "It looks just like a TOKEN! I don't see any CATCH in that!"
+    ],
+    "origin": "red.bas:1355"
+  },
+  {
+    "id": "examine-jug-full",
+    "verb": "examine",
+    "target": {
+      "object": "jug-full"
+    },
+    "say": [
+      "You filled it!"
+    ],
+    "origin": "red.bas:1356"
+  },
+  {
+    "id": "examine-bandages",
+    "verb": "examine",
+    "target": {
+      "object": "bandages"
+    },
+    "say": [
+      "Don't think there is a pop group called BAND AGES!"
+    ],
+    "origin": "red.bas:1357"
+  },
+  {
+    "id": "examine-food",
+    "verb": "examine",
+    "target": {
+      "object": "food"
+    },
+    "say": [
+      "Doesn't look very appetising."
+    ],
+    "origin": "red.bas:1358"
+  },
+  {
+    "id": "examine-charm",
+    "verb": "examine",
+    "target": {
+      "object": "charm"
+    },
+    "say": [
+      "It's charming!"
+    ],
+    "origin": "red.bas:1359"
+  },
+  {
+    "id": "examine-adornments",
+    "verb": "examine",
+    "target": {
+      "object": [
+        "bracelet",
+        "necklace",
+        "perfume",
+        "kohl"
+      ]
+    },
+    "say": [
+      "It makes a lovely adornment."
+    ],
+    "origin": "red.bas:1360"
+  },
+  {
+    "id": "examine-rod",
+    "verb": "examine",
+    "target": {
+      "object": "rod"
+    },
+    "say": [
+      "Looks as though it may have magic powers! There's the RUB!"
+    ],
+    "origin": "red.bas:1361"
+  },
+  {
+    "id": "examine-fly",
+    "verb": "examine",
+    "target": {
+      "object": "fly"
+    },
+    "say": [
+      "It would grace any parlour."
+    ],
+    "origin": "red.bas:1362"
+  },
+  {
+    "id": "examine-runes",
+    "verb": "examine",
+    "target": {
+      "object": "runes"
+    },
+    "say": [
+      {
+        "message": 12
+      },
+      "But you can't understand them!"
+    ],
+    "origin": "red.bas:1363"
+  },
+  {
+    "id": "examine-fluff-first-time",
+    "verb": "examine",
+    "target": {
+      "object": "fluff"
+    },
+    "when": [
+      {
+        "flag": "fluffExamined",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "fluffExamined",
+        "set": 1
+      },
+      {
+        "moveTo": "ruby",
+        "room": "here"
+      }
+    ],
+    "say": [
+      "A navel-shaped RUBY falls out!"
+    ],
+    "origin": "red.bas:1364"
+  },
+  {
+    "id": "examine-fluff",
+    "verb": "examine",
+    "target": {
+      "object": "fluff"
+    },
+    "say": [
+      "Just fluffy FLUFF!"
+    ],
+    "origin": "red.bas:1365"
+  },
+  {
+    "id": "examine-pipe-hint",
+    "verb": "examine",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Perhaps a good BLOW in the right place may help."
+    ],
+    "origin": "red.bas:1366"
+  },
+  {
+    "id": "examine-shroud",
+    "verb": "examine",
+    "target": {
+      "object": "shroud"
+    },
+    "say": [
+      "It's shrouded in mystery!"
+    ],
+    "origin": "red.bas:1367"
+  },
+  {
+    "id": "examine-raiment",
+    "verb": "examine",
+    "target": {
+      "object": "raiment"
+    },
+    "say": [
+      "Fit for a GOD."
+    ],
+    "origin": "red.bas:1368"
+  },
+  {
+    "id": "examine-joke",
+    "verb": "examine",
+    "target": {
+      "object": "joke"
+    },
+    "say": [
+      "It's not for your ears!"
+    ],
+    "origin": "red.bas:1369"
+  },
+  {
+    "id": "examine-ruby",
+    "verb": "examine",
+    "target": {
+      "object": "ruby"
+    },
+    "say": [
+      "What navel did that fall out of?"
+    ],
+    "origin": "red.bas:1370"
+  },
+  {
+    "id": "examine-basket-with-snake",
+    "verb": "examine",
+    "target": {
+      "object": "basket-with-snake"
+    },
+    "say": [
+      "There's a SNAKE in it!"
+    ],
+    "origin": "red.bas:1371"
+  },
+  {
+    "id": "examine-cloth-shaped",
+    "verb": "examine",
+    "target": {
+      "object": "cloth-shaped"
+    },
+    "say": [
+      "Those could be made into something quite interesting!"
+    ],
+    "origin": "red.bas:1372"
+  },
+  {
+    "id": "examine-jug-silver",
+    "verb": "examine",
+    "target": {
+      "object": "jug-silver"
+    },
+    "say": [
+      "It's very elegant and would not be used for anything as common-place as water."
+    ],
+    "origin": "red.bas:1373"
+  },
+  {
+    "id": "examine-token-gold",
+    "verb": "examine",
+    "target": {
+      "object": "token-gold"
+    },
+    "say": [
+      "I think the CATCH is now over"
+    ],
+    "origin": "red.bas:1374"
+  },
+  {
+    "id": "examine-anything-else",
+    "verb": "examine",
+    "target": {
+      "anyObject": true
+    },
+    "say": [
+      "Just what you would expect!"
+    ],
+    "origin": "red.bas:1398"
+  },
+  {
+    "id": "drop-refused-by-mummy",
+    "verb": "drop",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      "The MUMMY shouts \"That is not allowed in my presence!\""
+    ],
+    "origin": "red.bas:1204"
+  },
+  {
+    "id": "drop-refused-by-mummy-female",
+    "verb": "drop",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      "The MUMMY shouts \"That is not allowed in my presence!\""
+    ],
+    "origin": "red.bas:1204"
+  },
+  {
+    "id": "take-hay-first-time",
+    "verb": "take",
+    "target": {
+      "object": "hay"
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 0
+      },
+      {
+        "flag": "hayTaken",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "hayTaken",
+        "set": 1
+      },
+      {
+        "take": "hay"
+      },
+      {
+        "moveTo": "needle",
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "set": 1
+      }
+    ],
+    "say": [
+      "OK. You take a handful of HAY and the haystack collapses with something falling at your feet"
+    ],
+    "origin": "red.bas:1106"
+  },
+  {
+    "id": "take-hay-from-pile",
+    "verb": "take",
+    "target": {
+      "object": "hay"
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 1
+      },
+      {
+        "flag": "hayTaken",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "hayTaken",
+        "set": 1
+      },
+      {
+        "take": "hay"
+      }
+    ],
+    "say": [
+      "You collect a handful of HAY."
+    ],
+    "origin": "red.bas:1108"
+  },
+  {
+    "id": "take-hay-rations",
+    "verb": "take",
+    "target": {
+      "object": "hay"
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "hayTaken",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "You've had your rations!"
+    ],
+    "origin": "red.bas:1110"
+  },
+  {
+    "id": "take-fly-alive",
+    "verb": "take",
+    "target": {
+      "object": "fly"
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "flag": "flyDead",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "As you reach out it flits about but returns to the nose position"
+    ],
+    "origin": "red.bas:1120"
+  },
+  {
+    "id": "take-snake-already-caught",
+    "verb": "take",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "present": "basket-with-snake"
+      }
+    ],
+    "say": [
+      "Let's leave it in the basket!"
+    ],
+    "origin": "red.bas:1114"
+  }
+]

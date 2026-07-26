@@ -186,6 +186,10 @@ export class Game {
       firedRule = rule.id;
       applyEffects(world, rule.then);
       lines = renderSay(rule.say);
+      if (rule.sayRandom && rule.sayRandom.length > 0) {
+        const pick = rule.sayRandom[randomInt(world, rule.sayRandom.length)]!;
+        lines = [...lines, ...renderSay(pick)];
+      }
     } else {
       lines = this.builtin(command);
     }
@@ -276,8 +280,24 @@ export class Game {
       case "drop":
         return this.defaultDrop(command);
       default:
-        return [say(this.fallbackMessage())];
+        return this.unhandled(command);
     }
+  }
+
+  /**
+   * No rule claimed the command. If it named something that is not here, say so
+   * -- the original answered message 18 ("You must be seeing things!") or one of
+   * its three brush-offs, none of which told the player the thing was absent.
+   */
+  private unhandled(command: Command): OutputLine[] {
+    if (command.target.kind === "object") {
+      const key = command.target.key;
+      if (!isPresent(contextOf(this.world), key)) {
+        const obj = objectByKey.get(key);
+        return [say(`You can't see any ${obj ? obj.noun : key} here.`)];
+      }
+    }
+    return [say(this.fallbackMessage())];
   }
 
   private move(command: Command): OutputLine[] {
@@ -295,13 +315,13 @@ export class Game {
 
   private defaultTake(command: Command): OutputLine[] {
     if (command.target.kind !== "object") {
-      return [say(this.fallbackMessage())];
+      return this.unhandled(command);
     }
     const key = command.target.key;
     const ctx = contextOf(this.world);
 
     if (isCarried(ctx, key)) return [say(messages["22"] ?? "You've already done that!")];
-    if (!isPresent(ctx, key)) return [say(messages["18"] ?? "You must be seeing things!")];
+    if (!isPresent(ctx, key)) return this.unhandled(command);
     if (isFull(this.world)) return [say(messages["5"] ?? "You can't carry any more!")];
 
     this.world.objects[key] = CARRIED;
@@ -310,7 +330,7 @@ export class Game {
 
   private defaultDrop(command: Command): OutputLine[] {
     if (command.target.kind !== "object") {
-      return [say(this.fallbackMessage())];
+      return this.unhandled(command);
     }
     const key = command.target.key;
     if (!isCarried(contextOf(this.world), key)) {

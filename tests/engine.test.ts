@@ -396,8 +396,10 @@ describe("carrying", () => {
   });
 
   it("will not take what is not here", () => {
+    // The original answered message 18, "You must be seeing things!", to this.
+    // Naming what is missing is more use.
     expect(text(game.execute(obj("take", "pipe")))).toContain(
-      "You must be seeing things!",
+      "You can't see any pipe here.",
     );
   });
 });

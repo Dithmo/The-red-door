@@ -119,10 +119,6 @@ function findVerb(words: string[]): VerbHit | undefined {
 
 /* --------------------------------------------------------------- messages -- */
 
-function article(phrase: string): string {
-  return /^[aeiou]/.test(phrase) ? "an" : "a";
-}
-
 function listOptions(options: string[]): string {
   if (options.length <= 1) return options[0] ?? "";
   return `${options.slice(0, -1).join(", ")} or ${options[options.length - 1]}`;
@@ -336,9 +332,7 @@ function failureFor(
       return {
         kind: "failure",
         reason: "not-here",
-        message: `You can't see ${article(resolution.phrase.text)} ${
-          resolution.phrase.text
-        } here.`,
+        message: `You can't see any ${resolution.phrase.text} here.`,
       };
     case "no-such-variant": {
       const options = resolution.candidates.map((obj) =>
@@ -348,7 +342,7 @@ function failureFor(
         kind: "failure",
         reason: "no-such-variant",
         message:
-          `You can't see ${article(resolution.phrase.text)} ${resolution.phrase.text} here` +
+          `You can't see any ${resolution.phrase.text} here` +
           (options.length ? `, only the ${listOptions(options)}.` : "."),
       };
     }

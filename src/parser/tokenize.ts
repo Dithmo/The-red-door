@@ -85,10 +85,22 @@ export function toleranceFor(word: string): number {
   return 2;
 }
 
+/** How many leading characters two words share. */
+function commonPrefix(a: string, b: string): number {
+  const limit = Math.min(a.length, b.length);
+  let i = 0;
+  while (i < limit && a[i] === b[i]) i += 1;
+  return i;
+}
+
 /**
  * The closest vocabulary word to `word`, if one is close enough to be worth
- * suggesting. Ties are broken by the shorter candidate, then alphabetically, so
- * suggestions are stable rather than dependent on insertion order.
+ * suggesting.
+ *
+ * Ties on edit distance are broken by the longest shared prefix, then the
+ * shorter candidate, then alphabetically. The prefix rule matters: "baskte" and
+ * "taste" are both two edits from "basket", but a transposition in a word that
+ * starts the same way is the far likelier typo, and length alone picked "taste".
  */
 export function closestWord(
   word: string,
@@ -99,23 +111,31 @@ export function closestWord(
 
   let best: string | undefined;
   let bestDistance = tolerance + 1;
+  let bestPrefix = -1;
 
   for (const candidate of vocabulary) {
     // Multi-word phrases are not typo-corrected; they are matched exactly.
     if (candidate.includes(" ")) continue;
     // Never suggest the word the player already typed.
     if (candidate === word) continue;
+
     const distance = editDistance(word, candidate, tolerance);
     if (distance > tolerance) continue;
-    if (
+
+    const prefix = commonPrefix(word, candidate);
+    const better =
+      best === undefined ||
       distance < bestDistance ||
       (distance === bestDistance &&
-        best !== undefined &&
-        (candidate.length < best.length ||
-          (candidate.length === best.length && candidate < best)))
-    ) {
+        (prefix > bestPrefix ||
+          (prefix === bestPrefix &&
+            (candidate.length < best.length ||
+              (candidate.length === best.length && candidate < best)))));
+
+    if (better) {
       best = candidate;
       bestDistance = distance;
+      bestPrefix = prefix;
     }
   }
 

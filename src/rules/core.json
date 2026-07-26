@@ -56,52 +56,6 @@
     "origin": "red.bas:1006"
   },
   {
-    "id": "visit-north-alcove",
-    "verb": "@enter",
-    "when": [
-      {
-        "room": 2
-      },
-      {
-        "flag": "visitedNorthAlcove",
-        "eq": 0
-      }
-    ],
-    "then": [
-      {
-        "flag": "visitedNorthAlcove",
-        "set": 1
-      }
-    ],
-    "say": [
-      "He says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my lost garment and possessions.\""
-    ],
-    "origin": "red.bas:7022"
-  },
-  {
-    "id": "visit-south-alcove",
-    "verb": "@enter",
-    "when": [
-      {
-        "room": 3
-      },
-      {
-        "flag": "visitedSouthAlcove",
-        "eq": 0
-      }
-    ],
-    "then": [
-      {
-        "flag": "visitedSouthAlcove",
-        "set": 1
-      }
-    ],
-    "say": [
-      "She says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my adornments.\""
-    ],
-    "origin": "red.bas:7032"
-  },
-  {
     "id": "examine-case-shut",
     "verb": "examine",
     "target": {
@@ -667,7 +621,7 @@
     "origin": "red.bas:1180"
   },
   {
-    "id": "catch-snake-in-basket",
+    "id": "take-snake-into-basket",
     "verb": "take",
     "target": {
       "object": "snake"
@@ -705,5 +659,221 @@
       "As you catch the snake in the basket, you notice it had a CHARM which drops at your feet."
     ],
     "origin": "red.bas:1182"
+  },
+  {
+    "id": "catch-snake-out-of-reach",
+    "verb": "catch",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You can't quite reach them."
+    ],
+    "origin": "red.bas:3900"
+  },
+  {
+    "id": "catch-snake-already-caught",
+    "verb": "catch",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "present": "basket-with-snake"
+      }
+    ],
+    "say": [
+      "Let's leave it in the basket!"
+    ],
+    "origin": "red.bas:3900"
+  },
+  {
+    "id": "catch-snake-bare-handed",
+    "verb": "catch",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "not": {
+          "carrying": "basket"
+        }
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 19
+      }
+    ],
+    "origin": "red.bas:3900"
+  },
+  {
+    "id": "catch-snake-in-basket",
+    "verb": "catch",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "carrying": "basket"
+      }
+    ],
+    "then": [
+      {
+        "flag": "snakeInBasket",
+        "set": 1
+      },
+      {
+        "transform": "basket",
+        "into": "basket-with-snake"
+      },
+      {
+        "destroy": "snake"
+      },
+      {
+        "moveTo": "charm",
+        "room": 14
+      }
+    ],
+    "say": [
+      "As you catch the snake in the basket, you notice it had a CHARM which drops at your feet."
+    ],
+    "origin": "red.bas:3900"
+  },
+  {
+    "id": "lift-snake-out-of-reach",
+    "verb": "lift",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You can't quite reach them."
+    ],
+    "origin": "red.bas:5500"
+  },
+  {
+    "id": "lift-snake-already-caught",
+    "verb": "lift",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "present": "basket-with-snake"
+      }
+    ],
+    "say": [
+      "Let's leave it in the basket!"
+    ],
+    "origin": "red.bas:5500"
+  },
+  {
+    "id": "lift-snake-bare-handed",
+    "verb": "lift",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "not": {
+          "carrying": "basket"
+        }
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 19
+      }
+    ],
+    "origin": "red.bas:5500"
+  },
+  {
+    "id": "lift-snake-in-basket",
+    "verb": "lift",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "carrying": "basket"
+      }
+    ],
+    "then": [
+      {
+        "flag": "snakeInBasket",
+        "set": 1
+      },
+      {
+        "transform": "basket",
+        "into": "basket-with-snake"
+      },
+      {
+        "destroy": "snake"
+      },
+      {
+        "moveTo": "charm",
+        "room": 14
+      }
+    ],
+    "say": [
+      "As you catch the snake in the basket, you notice it had a CHARM which drops at your feet."
+    ],
+    "origin": "red.bas:5500"
   }
 ]

@@ -7,7 +7,7 @@
  * docs/GAME-DATA.md §6 for the flag meanings.
  */
 
-import type { Condition } from "../data/types";
+import type { CommandTarget, Condition } from "../data/types";
 import { CARRIED } from "../data/types";
 
 /** The slice of world state a condition can see. */
@@ -16,6 +16,8 @@ export interface ConditionContext {
   flags: Readonly<Record<string, number>>;
   /** object key -> room id, or CARRIED, or NOWHERE */
   objects: Readonly<Record<string, number>>;
+  /** What the current command was aimed at, if a command is being evaluated. */
+  target?: CommandTarget;
 }
 
 export function flagValue(ctx: ConditionContext, name: string): number {
@@ -50,6 +52,12 @@ export function evaluate(ctx: ConditionContext, condition: Condition): boolean {
     if ("lt" in condition) return value < condition.lt;
     if ("gte" in condition) return value >= condition.gte;
     return false;
+  }
+  if ("targetCarried" in condition) {
+    return ctx.target?.kind === "object" && isCarried(ctx, ctx.target.key);
+  }
+  if ("targetPresent" in condition) {
+    return ctx.target?.kind === "object" && isPresent(ctx, ctx.target.key);
   }
   if ("carrying" in condition) return isCarried(ctx, condition.carrying);
   if ("present" in condition) return isPresent(ctx, condition.present);

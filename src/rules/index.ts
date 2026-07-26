@@ -1,26 +1,43 @@
 /**
  * The rule table.
  *
- * Unlike everything under src/data/, this file is hand-authored -- the original
+ * Unlike everything under src/data/, these files are hand-authored: the original
  * encodes its puzzle logic in control flow, not in a table, so it has to be
  * transcribed rather than extracted. Every rule carries an `origin` naming the
  * BASIC line it came from, and `validateRules` checks those references, so the
  * transcription is auditable rather than trusted.
  *
- * Transcription is incomplete: this is the vertical slice from phase 2 (movement
- * guards, the mummy-case sequence, the snake and basket). Phase 4 fills in the
- * remaining ~310 clauses.
+ * ORDER MATTERS. Rules are matched first-match-wins, reproducing BASIC's line
+ * fall-through, which the original relies on. Within a file, specific cases come
+ * before general ones; across files the order below mirrors the original's own
+ * dispatch order. `findShadowedRules` catches rules a broader earlier one has
+ * made unreachable.
  */
 
-import rulesJson from "./rules.json";
+import arrivalsJson from "./arrivals.json";
+import coreJson from "./core.json";
+import puzzlesJson from "./puzzles.json";
+import responsesJson from "./responses.json";
+import sceneryJson from "./scenery.json";
 
 import { flagNames, lexicon, messages, objectByKey, roomById } from "../data/index";
-import type { Condition, Effect, Rule } from "../data/types";
+import type { Condition, Effect, Rule, RuleTarget } from "../data/types";
 import { effectTargets } from "../engine/effects";
 import { ARRIVAL_VERB } from "../engine/game";
 import { candidatesFor } from "../engine/rules";
 
-export const rules = rulesJson as unknown as Rule[];
+/**
+ * `core` first: it holds the guards the original checks before anything else
+ * (movement blocks, the mummy case). `scenery` last: its per-room responses are
+ * the original's fall-through, reached only when nothing more specific matched.
+ */
+export const rules: Rule[] = [
+  ...(coreJson as unknown as Rule[]),
+  ...(puzzlesJson as unknown as Rule[]),
+  ...(responsesJson as unknown as Rule[]),
+  ...(sceneryJson as unknown as Rule[]),
+  ...(arrivalsJson as unknown as Rule[]),
+];
 
 /** Object keys a condition list mentions. */
 function conditionObjects(conditions: readonly Condition[] | undefined): string[] {
@@ -95,11 +112,10 @@ export function validateRules(ruleset: readonly Rule[] = rules): string[] {
     if (rule.verb !== "*" && rule.verb !== ARRIVAL_VERB && !knownVerbs.has(rule.verb)) {
       problems.push(`${at}: unknown verb "${rule.verb}"`);
     }
-    if (!rule.then && !rule.say) {
+    if (!rule.then && !rule.say && !rule.sayRandom) {
       problems.push(`${at}: does nothing -- no effects and nothing to say`);
     }
 
-    // targets
     const target = rule.target;
     if (target && "object" in target) {
       const keys = Array.isArray(target.object) ? target.object : [target.object];
@@ -120,7 +136,6 @@ export function validateRules(ruleset: readonly Rule[] = rules): string[] {
       }
     }
 
-    // referenced objects, flags, rooms, messages
     for (const key of [
       ...conditionObjects(rule.when),
       ...effectTargets(rule.then),
@@ -139,7 +154,10 @@ export function validateRules(ruleset: readonly Rule[] = rules): string[] {
         problems.push(`${at}: references unknown room ${room}`);
       }
     }
-    for (const entry of rule.say ?? []) {
+    for (const entry of [
+      ...(rule.say ?? []),
+      ...(rule.sayRandom ?? []).flat(),
+    ]) {
       if (typeof entry !== "string" && !(String(entry.message) in messages)) {
         problems.push(`${at}: references unknown message ${entry.message}`);
       }
@@ -166,16 +184,15 @@ export function findShadowedRules(ruleset: readonly Rule[]): string[] {
     for (let j = 0; j < i; j += 1) {
       const earlier = ruleset[j]!;
       if (earlier.verb !== later.verb && earlier.verb !== "*") continue;
+      // Coverage, not mere overlap: the earlier rule only makes the later one
+      // dead if it catches *everything* the later one would. Partial overlap just
+      // means some commands go to the earlier rule -- which the original does too
+      // (EXAMINE BUSH reaches the mulberry line before the silkworm line, exactly
+      // as it does on the tape).
+      if (!targetCovers(earlier.target, later.target)) continue;
 
-      // Do they compete for the same commands?
-      const overlaps = targetsOverlap(earlier, later);
-      if (!overlaps) continue;
-
-      // If everything the earlier rule requires is also required by the later
-      // one, the earlier always wins and the later is dead.
       const earlierConds = (earlier.when ?? []).map((c) => JSON.stringify(c));
-      const weaker = earlierConds.every((c) => laterConds.has(c));
-      if (weaker) {
+      if (earlierConds.every((c) => laterConds.has(c))) {
         problems.push(
           `rule ${later.id} is unreachable: ${earlier.id} (${earlier.origin}) ` +
             `matches the same commands with weaker conditions`,
@@ -186,29 +203,46 @@ export function findShadowedRules(ruleset: readonly Rule[]): string[] {
   return problems;
 }
 
-function targetsOverlap(a: Rule, b: Rule): boolean {
-  const at = a.target;
-  const bt = b.target;
-  if (!at || !bt) return true;
-  if ("any" in at || "any" in bt) return true;
-  if ("none" in at) return "none" in bt;
-  if ("object" in at && "object" in bt) {
-    const as = new Set(Array.isArray(at.object) ? at.object : [at.object]);
-    const bs = Array.isArray(bt.object) ? bt.object : [bt.object];
-    return bs.some((k) => as.has(k));
+/** True when everything `later` would match, `earlier` matches too. */
+export function targetCovers(
+  earlier: RuleTarget | undefined,
+  later: RuleTarget | undefined,
+): boolean {
+  // No target clause accepts anything, so it covers everything.
+  if (!earlier) return true;
+  if ("any" in earlier) return true;
+  if (!later) return false; // later accepts more than earlier can
+  if ("any" in later) return false;
+
+  if ("anyObject" in earlier) return "anyObject" in later || "object" in later;
+  if ("anyScenery" in earlier) return "anyScenery" in later || "scenery" in later;
+  if ("none" in earlier) return "none" in later;
+
+  if ("object" in earlier) {
+    if (!("object" in later)) return false;
+    const wide = new Set(
+      Array.isArray(earlier.object) ? earlier.object : [earlier.object],
+    );
+    const narrow = Array.isArray(later.object) ? later.object : [later.object];
+    return narrow.every((k) => wide.has(k));
   }
-  if ("scenery" in at && "scenery" in bt) {
-    const as = new Set(Array.isArray(at.scenery) ? at.scenery : [at.scenery]);
-    const bs = Array.isArray(bt.scenery) ? bt.scenery : [bt.scenery];
-    return bs.some((c) => as.has(c));
+  if ("scenery" in earlier) {
+    if (!("scenery" in later)) return false;
+    const wide = new Set(
+      Array.isArray(earlier.scenery) ? earlier.scenery : [earlier.scenery],
+    );
+    const narrow = Array.isArray(later.scenery)
+      ? later.scenery
+      : [later.scenery];
+    return narrow.every((c) => wide.has(c));
   }
-  if ("direction" in at && "direction" in bt) {
-    return at.direction === bt.direction;
+  if ("direction" in earlier) {
+    return "direction" in later && earlier.direction === later.direction;
   }
   return false;
 }
 
-/** Which BASIC lines have been transcribed so far -- phase 4 progress. */
+/** Which BASIC lines have been transcribed so far. */
 export function transcribedLines(ruleset: readonly Rule[] = rules): number[] {
   const lines = new Set<number>();
   for (const rule of ruleset) {
@@ -218,5 +252,4 @@ export function transcribedLines(ruleset: readonly Rule[] = rules): number[] {
   return [...lines].sort((a, b) => a - b);
 }
 
-/** Sanity: no rule should be aimed at a verb/target the parser can't produce. */
 export { candidatesFor };

@@ -32,6 +32,8 @@ export function targetMatches(
 
   if ("any" in target) return true;
   if ("none" in target) return actual.kind === "none";
+  if ("anyObject" in target) return actual.kind === "object";
+  if ("anyScenery" in target) return actual.kind === "scenery";
   if ("object" in target) {
     return (
       actual.kind === "object" && asArray(target.object).includes(actual.key)
@@ -58,7 +60,8 @@ export function ruleApplies(
 ): boolean {
   if (rule.verb !== "*" && rule.verb !== command.verb) return false;
   if (!targetMatches(rule.target, command.target)) return false;
-  return evaluateAll(ctx, rule.when);
+  // `targetCarried` / `targetPresent` need to know what the command named.
+  return evaluateAll({ ...ctx, target: command.target }, rule.when);
 }
 
 /** The first rule that applies, or undefined to fall through to a default. */

@@ -311,15 +311,33 @@ describe("ALL", () => {
 /* ---------------------------------------------------------------- failures -- */
 
 describe("failure messages", () => {
-  it("distinguishes an unknown word from an absent object", () => {
-    // The original answered "Apologies from authors!" to both.
+  it("reports a word it does not know", () => {
+    // The original answered "Apologies from authors!" to this.
     expect(message("take flurble")).toMatch(/don't know the word "flurble"/);
-    expect(message("take basket")).toMatch(/can't see a basket here/);
+  });
+
+  it("still resolves a known noun that is not here", () => {
+    // The original has no scope check: it dispatches on the noun code and lets
+    // the handler decide, and TAKE HAY is what *creates* the hay. So an absent
+    // object must still produce a command -- the engine reports the absence.
+    // See tests/session.test.ts for the message the player actually gets.
+    expect(one("take basket").target).toEqual({
+      kind: "object",
+      key: "basket",
+    });
   });
 
   it("suggests a correction for a near miss", () => {
     expect(message("exemine rod")).toMatch(/Did you mean "examine"\?/);
-    expect(message("take baskett")).toMatch(/basket/);
+    expect(message("take baskte")).toMatch(/Did you mean "basket"\?/);
+  });
+
+  it("accepts a word longer than the tape's truncated entry", () => {
+    // The vocabulary stores five letters, so ANUBIS must find ANUBI. Without
+    // this, TICKLE ANUBIS -- the only way past the Anubis -- is unsayable.
+    expect(one("tickle anubis").target).toMatchObject({ kind: "scenery" });
+    expect(one("examine silkworms").target).toMatchObject({ kind: "scenery" });
+    expect(one("say abracadabra").target).toMatchObject({ kind: "scenery" });
   });
 
   it("does not guess at short words, where a typo is unclear", () => {

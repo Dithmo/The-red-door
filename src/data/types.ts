@@ -28,6 +28,14 @@ export type Condition =
   | { present: string }
   | { objectAt: string; room: number }
   /**
+   * "the object the player named is being carried" -- the original's
+   * `PEEK (o+no)=m`, which guards nearly every verb handler. Needed because a
+   * rule targeting several objects cannot name which one the command referred to.
+   */
+  | { targetCarried: true }
+  /** As above, but held or lying in this room. */
+  | { targetPresent: true }
+  /**
    * Negation. The original is full of `<>` tests -- `PEEK (o+no)<>m` ("you
    * haven't got it") is the single most common guard in the listing -- so
    * transcribing them directly beats contorting rule order to fake it.
@@ -104,6 +112,14 @@ export type RuleTarget =
   | { direction: Direction }
   /** The verb was used bare, with no noun. */
   | { none: true }
+  /**
+   * Any real object (1-35). The original tests `IF no>35` to split objects from
+   * scenery, so a catch-all in a verb handler applies to one group or the other,
+   * never both.
+   */
+  | { anyObject: true }
+  /** Any scenery noun (>35). */
+  | { anyScenery: true }
   /** Any noun, or none. */
   | { any: true };
 
@@ -139,6 +155,11 @@ export interface Rule {
   when?: Condition[];
   then?: Effect[];
   say?: Say[];
+  /**
+   * Pick one group at random and say it. The original does this for the mummy's
+   * chatter inside the case (line 8702) and for its three-way brush-off.
+   */
+  sayRandom?: Say[][];
   /**
    * A kindness the original lacks: ask before an irreversible mistake. The first
    * attempt prints this and does nothing; repeating the command goes through.

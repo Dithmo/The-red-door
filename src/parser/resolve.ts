@@ -110,14 +110,32 @@ export function resolve(
   const nounMatch = lookup(objectNounIndex, phrase.head);
   if (nounMatch.how !== "none") {
     const named = nounMatch.values;
-    const here = named.filter((obj) =>
+    const inScope = named.filter((obj) =>
       scope.present.some((p) => p.key === obj.key),
     );
 
-    if (here.length === 0) return { kind: "not-here", phrase };
+    /*
+     * Resolve against what is here when possible, but fall back to the object the
+     * word names even when it is absent.
+     *
+     * The original has no scope check at all: it dispatches on the noun code and
+     * lets the handler decide. Several puzzles depend on that -- TAKE HAY is what
+     * *creates* the hay (line 1106), and the haystack, snake and fly all answer
+     * to their names before they exist as objects. Refusing the command in the
+     * parser made those puzzles unreachable.
+     *
+     * Absence is still reported, just later: the engine says "You can't see any X
+     * here" when no rule claimed the command.
+     */
+    const here = inScope.length > 0 ? inScope : named;
 
     if (phrase.adjectives.length === 0) {
       if (here.length === 1) return { kind: "object", object: here[0]! };
+      // Only ask when the things being confused are actually here. Asking
+      // "the wicker basket or the one with a snake in it?" about two baskets
+      // neither of which is present is no help; resolve to the first and let the
+      // engine say it cannot be seen.
+      if (inScope.length === 0) return { kind: "object", object: here[0]! };
       return { kind: "ambiguous", candidates: here, phrase };
     }
 

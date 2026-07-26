@@ -1,0 +1,148 @@
+[
+  {
+    "id": "male-mummy-plea",
+    "verb": "@enter",
+    "when": [{ "room": 2 }, { "flag": "visitedNorthAlcove", "eq": 0 }],
+    "then": [{ "flag": "visitedNorthAlcove", "set": 1 }],
+    "say": [
+      "He says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my lost garment and possessions.\""
+    ],
+    "origin": "red.bas:7022"
+  },
+  {
+    "id": "male-mummy-rewarded",
+    "verb": "@enter",
+    "when": [
+      { "room": 2 },
+      { "flag": "maleMummyDone", "eq": 0 },
+      { "carrying": "jug-full" },
+      { "carrying": "bandages" },
+      { "carrying": "food" },
+      { "carrying": "charm" }
+    ],
+    "then": [
+      { "destroy": "jug-full" },
+      { "destroy": "bandages" },
+      { "destroy": "food" },
+      { "destroy": "charm" },
+      { "moveTo": "cloth", "room": 2 },
+      { "flag": "maleMummyDone", "set": 4 }
+    ],
+    "say": [
+      "The MUMMY takes from you: the JUG of embalming fluid, the funeral FOOD, the snake-shaped CHARM and the BANDAGES.",
+      "He thanks you profusely and runs off. You now notice the CLOTH of gold which falls off the slab as he disappears."
+    ],
+    "origin": "red.bas:7027"
+  },
+
+  {
+    "id": "female-mummy-plea",
+    "verb": "@enter",
+    "when": [{ "room": 3 }, { "flag": "visitedSouthAlcove", "eq": 0 }],
+    "then": [{ "flag": "visitedSouthAlcove", "set": 1 }],
+    "say": [
+      "She says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my adornments.\""
+    ],
+    "origin": "red.bas:7032"
+  },
+  {
+    "id": "female-mummy-rewarded",
+    "verb": "@enter",
+    "when": [
+      { "room": 3 },
+      { "flag": "femaleMummyDone", "eq": 0 },
+      { "carrying": "bracelet" },
+      { "carrying": "necklace" },
+      { "carrying": "perfume" },
+      { "carrying": "kohl" }
+    ],
+    "then": [
+      { "destroy": "bracelet" },
+      { "destroy": "necklace" },
+      { "destroy": "perfume" },
+      { "destroy": "kohl" },
+      { "take": "joke" },
+      { "flag": "femaleMummyDone", "set": 4 }
+    ],
+    "say": [
+      "The MUMMY takes from you: the BRACELET of red gold, the ornate NECKLACE, the exotic PERFUME and the adorning KOHL.",
+      "She thanks you profusely and before she runs off she tells you a rather funny JOKE!"
+    ],
+    "origin": "red.bas:7037"
+  },
+
+  {
+    "id": "soothsayer-revealed",
+    "verb": "@enter",
+    "when": [{ "room": 6 }, { "flag": "metSoothsayer", "eq": 0 }],
+    "then": [{ "flag": "metSoothsayer", "set": 1 }],
+    "say": [
+      "As your eyes become accustomed to the fire light, you see a Soothsayer sitting at the far end of the room. He is swaying gently from side to side as he chants strange words and music."
+    ],
+    "origin": "red.bas:7061"
+  },
+
+  {
+    "id": "concubine-present",
+    "verb": "@enter",
+    "when": [{ "room": 19 }, { "flag": "concubineGifts", "lt": 2 }],
+    "then": [{ "flag": "concubinePresent", "set": 1 }],
+    "origin": "red.bas:7191"
+  },
+  {
+    "id": "concubine-gone",
+    "verb": "@enter",
+    "when": [{ "room": 19 }, { "flag": "concubineGifts", "gte": 2 }],
+    "then": [{ "flag": "concubinePresent", "set": 0 }],
+    "origin": "red.bas:7199"
+  },
+
+  {
+    "id": "thoth-gift-accepted",
+    "verb": "@enter",
+    "when": [{ "room": 29 }, { "carrying": "raiment" }],
+    "then": [{ "destroy": "raiment" }, { "end": "win" }],
+    "say": [
+      "THOTH takes the GIFT and smiles!",
+      "Your head is spinning around",
+      "You find yourself on the floor in your own home!",
+      "You turn off the computer and go to bed",
+      "HAPPY DREAMS"
+    ],
+    "origin": "red.bas:7294"
+  },
+  {
+    "id": "thoth-first-audience",
+    "verb": "@enter",
+    "when": [{ "room": 29 }, { "flag": "thothAudiences", "eq": 0 }],
+    "then": [
+      { "flag": "thothAudiences", "set": 1 },
+      { "take": "scissors" },
+      { "teleport": 22 }
+    ],
+    "say": [
+      "\"Welcome to my tomb\", says THOTH, \"I suppose you'd like to go home! Well if you bring me a gift worthy of a GOD, I may let you escape. To show you that I am not completely heartless, here is a pair of golden SCISSORS which you may find useful. NOW GO! This audience is at an end.\""
+    ],
+    "origin": "red.bas:7291"
+  },
+  {
+    "id": "thoth-second-audience",
+    "verb": "@enter",
+    "when": [{ "room": 29 }, { "flag": "thothAudiences", "eq": 1 }],
+    "then": [{ "flag": "thothAudiences", "set": 2 }, { "teleport": 22 }],
+    "say": [
+      "\"Now, where's my gift\" shouts THOTH. \"I'm getting rather impatient! Do not return again without my gift or you may regret it!\""
+    ],
+    "origin": "red.bas:7292"
+  },
+  {
+    "id": "thoth-banishes-you",
+    "verb": "@enter",
+    "when": [{ "room": 29 }, { "flag": "thothAudiences", "gte": 2 }],
+    "then": [{ "end": "lose" }],
+    "say": [
+      "\"YOU AGAIN! And no gift!\" thunders THOTH. \"Well that's your last chance. There's no escape now. I banish you to wander these corridors for ever and a day and longer!\""
+    ],
+    "origin": "red.bas:7293"
+  }
+]

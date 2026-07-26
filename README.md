@@ -40,13 +40,17 @@ a picture for every location and a parser that actually understands English.
 | `tests/engine.test.ts` | engine behaviour and a rule-table audit |
 | `tests/parser.test.ts` | input → command table, including every original command |
 | `tests/session.test.ts` | playing through in typed English |
+| `tests/walkthrough.test.ts` | the winning route, every death, and the unwinnable trap |
 
-`src/rules/rules.json` is the one hand-authored data file: the original encodes
-its puzzle logic in control flow rather than a table, so it has to be transcribed.
-Every rule carries an `origin` naming the BASIC line it came from, and the test
-suite checks those references and flags rules that can never fire. Transcription
-is in progress — currently the movement guards, the mummy-case sequence and the
-snake-pit.
+`src/rules/*.json` are the hand-authored data files: the original encodes its
+puzzle logic in control flow rather than a table, so it had to be transcribed.
+**334 rules**, each carrying an `origin` naming the BASIC line it came from. The
+test suite checks every one of those references, and flags any rule an earlier,
+broader one has made unreachable.
+
+The game is **completable**: `tests/walkthrough.test.ts` plays a 160-command
+winning route and asserts it reaches *HAPPY DREAMS*, passing through all 28
+puzzle beats without once hitting a parser failure or an unhandled command.
 
 Nothing under `src/data/` is hand-edited — it is all generated. `npm run data`
 rebuilds it. Real artwork replaces the placeholder of the same filename;

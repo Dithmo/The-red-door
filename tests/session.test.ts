@@ -121,7 +121,7 @@ describe("playing in typed English", () => {
     // The original said "Apologies from authors!" to every one of these.
     expect(say("xyzzy")).toMatch(/don't know the word "xyzzy"/);
     expect(say("take lamp")).toMatch(/don't know the word "lamp"/);
-    expect(say("take basket")).toMatch(/can't see a basket here/);
+    expect(say("take basket")).toMatch(/can't see any basket here/);
     expect(say("unlock")).toMatch(/What do you want to unlock\?/);
   });
 

@@ -676,6 +676,7 @@ Movement subtracts `mob` (35) to get 1–6 and indexes the exit row.
 | 17 | a snake has come up the ramp |
 | 18 | the spider has gone |
 | 19 | Soothsayer has given you the key and the hint |
+| 20 | the carved BOX in the Scarlet Room has been unlocked |
 | 21 | the mummy case has been opened |
 | 22 | navel fluff has been found in room 16 |
 | 23 | empty glass case has been searched |
@@ -921,6 +922,117 @@ cutting anything without scissors: *"Even you will need some SCISSORS / to be ab
 > *"You find yourself on the floor in your own home!"* →
 > *"You turn off the computer and go to bed"* → **HAPPY DREAMS**
 
+### A verified walkthrough
+
+Machine-checked: `tests/walkthrough.test.ts` plays exactly this and asserts it
+reaches *HAPPY DREAMS*. It has to manage inventory, because the carrying limit is
+six and both mummies want four items at once — so things are stashed in room 1
+(next door to both mummies) and at the western hub, and collected again.
+
+**Both alcoves must be visited before the corridor west opens (line 1004)**
+
+`n` · `s` · `s` · `n`
+
+**West along the long corridor**
+
+`w` · `w` · `w` · `w`
+
+**The BASKET, then the RUNES in the BLACK room**
+
+`take basket` · `s` · `take runes` · `examine symbols` · `n`
+
+**The RUNES buy a KEY and the "TICKLE ANUBIS" hint**
+
+`e` · `e` · `e` · `s` · `give runes to soothsayer` · `n`
+
+**The SCARLET ROOM box holds a BRACELET; the KEY drops**
+
+`w` · `s` · `unlock box with key` · `n`
+
+**A NEEDLE falls out of the haystack; the fed cow reveals a COIN**
+
+`n` · `n` · `take hay` · `take needle` · `s` · `feed cow` · `take coin` · `s`
+
+**Stash what is not needed yet in room 1, next door to both mummies**
+
+`e` · `e` · `drop rod` · `drop needle` · `drop basket`
+
+**Tickling the ANUBIS earns THOTH's golden SCISSORS**
+
+`w` · `w` · `w` · `w` · `w` · `tickle anubis`
+
+**FOOD and PIPE, left at the western hub**
+
+`take food` · `e` · `take pipe` · `w` · `n` · `n` · `drop food` · `drop pipe`
+
+**The Treasure Room's empty case still holds a NECKLACE**
+
+`n` · `examine case` · `take necklace` · `s`
+
+**The room full of DOWN yields FLUFF, and the FLUFF a RUBY**
+
+`e` · `descend stairs` · `examine down` · `take fluff` · `examine fluff` · `take ruby` · `drop fluff` · `climb stairs`
+
+**The Concubine trades KOHL for the COIN and PERFUME for the RUBY**
+
+`w` · `n` · `n` · `give coin to concubine` · `give ruby to concubine`
+
+**Four adornments delivered: the female mummy tells you the JOKE**
+
+`s` · `s` · `e` · `e` · `e` · `e` · `e` · `s` · `n`
+
+**Collect the stash on the way through**
+
+`take basket` · `take rod`
+
+**The JOKE kills the fly on the SPHINX's nose**
+
+`w` · `w` · `w` · `w` · `w` · `s` · `tell joke` · `take fly` · `n` · `take pipe`
+
+**The dead FLY buys the silver JUG from the spider**
+
+`e` · `e` · `e` · `e` · `n` · `give fly to spider` · `take jug` · `s`
+
+**The PIPE charms a snake up the ramp; the BASKET catches it, dropping the CHARM**
+
+`w` · `w` · `s` · `play pipe` · `catch snake` · `take charm` · `n`
+
+**Fill the JUG from the pool of embalming fluid**
+
+`w` · `w` · `n` · `n` · `e` · `fill jug`
+
+**Into the MUMMY CASE**
+
+`w` · `s` · `s` · `e` · `e` · `n` · `drop pipe` · `drop basket` · `open case`
+
+**The SHROUD becomes BANDAGES, the TOKEN turns gold, and the gold TOKEN buys your way out**
+
+`take shroud` · `cut shroud` · `wave rod` · `take gold token` · `insert gold token`
+
+**Retrieve the FOOD**
+
+`w` · `w` · `take food`
+
+**Four possessions delivered: the male mummy leaves the CLOTH of gold**
+
+`e` · `e` · `e` · `e` · `e` · `n` · `take cloth` · `s` · `take needle`
+
+**Through the garden maze: N, E, N, E from the patio**
+
+`w` · `w` · `w` · `w` · `w` · `n` · `n` · `e` · `n` · `e` · `n` · `e`
+
+**The silkworms' THREAD**
+
+`examine garden` · `examine mulberry` · `take thread`
+
+**Make the gift**
+
+`cut cloth` · `thread needle` · `sew cloth`
+
+**Back out of the maze and through the ANUBIS to THOTH**
+
+`s` · `w` · `s` · `w` · `s` · `s` · `tickle anubis`
+
 ### Deaths and losses
 
 | Cause | Result |
@@ -934,6 +1046,30 @@ cutting anything without scissors: *"Even you will need some SCISSORS / to be ab
 
 `EAT FOOD` gives message 12 then *"Do you think that was wise?"* — it is the one
 irrecoverable non-death mistake in the game.
+
+### Bugs in the original
+
+Three found while transcribing the logic. All are typing slips rather than design,
+so the remake implements the evident intent and notes the difference here.
+
+* **Line 2700 (`DRINK`).** Written `PEEK (o+5=99)`, which Sinclair BASIC parses as
+  `PEEK (o + (5=99))` — that is, `PEEK (o+0)`, the *carried-item count* — instead
+  of the intended `PEEK (o+5)=99` ("the jug is carried"). Since the count is
+  almost always non-zero, `(PEEK f=13 OR <count>)` is nearly always true, so on
+  the tape `DRINK LIQUID` is fatal **anywhere in the game**, holding a jug or not.
+  Line 2600 (`TOUCH`) has the same test written correctly, which is what gives the
+  intent away.
+* **Line 5808 (`LISTEN` in the byre).** Written `PEEK (o+11)=1`, "object 11 (the
+  PERFUME) is in room 1" — a condition with no bearing on anything. Plainly meant
+  `PEEK (f+11)`, the cow-fed flag: the response is *"Munch, munch, munch!"*
+* **Message 20** contains byte `0x60`, which is `£` on the Spectrum, so the game
+  printed *"He pulls you in£with him!"* — a mis-key for a space.
+
+One quirk that is **not** a bug, and is preserved: line 8682 (`EXAMINE LEAVES` /
+`BUSH`) is tested before line 8683 (`EXAMINE MULBERRY` / `BUSH`), so on the tape
+`EXAMINE BUSH` always gives the mulberry-variety line and never the silkworms.
+You have to type `EXAMINE MULBERRY` to get the THREAD. The remake keeps that
+ordering.
 
 ### Red herrings and gags
 
