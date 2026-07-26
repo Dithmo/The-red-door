@@ -417,6 +417,61 @@ describe("the snake pit", () => {
   });
 });
 
+/* -------------------------------------------------------- THOTH's chamber -- */
+
+describe("THOTH's audiences", () => {
+  /** Get into the high chamber the way the game does: TICKLE ANUBIS. */
+  function seekAudience() {
+    game.world.room = 20;
+    game.world.flags["soothsayerHelped"] = 1;
+    return game.execute(scen("tickle", 90, "anubis"));
+  }
+
+  it("shows you out to the Funeral Parlour, and describes it", () => {
+    const result = seekAudience();
+    expect(text(result)).toContain("Welcome to my tomb");
+    expect(game.world.objects["scissors"]).toBe(CARRIED);
+    expect(game.world.room).toBe(22);
+    // Being shown out has to say where you have been shown out *to*.
+    expect(text(result)).toContain("the very depressing Funeral Parlour");
+    expect(text(result)).toContain(exitsSentence(roomById.get(22)!));
+    // Only one clause of the original's THOTH routine ever runs.
+    expect(text(result)).not.toContain("where's my gift");
+  });
+
+  it("runs exactly one clause on the second empty-handed visit", () => {
+    seekAudience();
+    const result = seekAudience();
+    expect(text(result)).toContain("where's my gift");
+    expect(text(result)).not.toContain("Welcome to my tomb");
+    expect(text(result)).not.toContain("YOU AGAIN");
+    expect(game.world.room).toBe(22);
+    expect(result.ended).toBeUndefined();
+  });
+
+  it("banishes you on the third empty-handed visit", () => {
+    seekAudience();
+    seekAudience();
+    const result = seekAudience();
+    expect(text(result)).toContain("YOU AGAIN");
+    expect(result.ended?.outcome).toBe("lose");
+  });
+
+  it("ends the game on the gift, with no further demand for one", () => {
+    seekAudience();
+    game.world.objects["raiment"] = CARRIED;
+    const result = seekAudience();
+
+    expect(text(result)).toContain("HAPPY DREAMS");
+    expect(result.ended?.outcome).toBe("win");
+    // The bug this pins: winning also printed the second-audience demand,
+    // because arrival rules carried on firing after `end`.
+    expect(text(result)).not.toContain("where's my gift");
+    expect(text(result)).not.toContain("Welcome to my tomb");
+    expect(game.world.room).toBe(29);
+  });
+});
+
 /* ----------------------------------------------------------------- undo -- */
 
 describe("undo", () => {

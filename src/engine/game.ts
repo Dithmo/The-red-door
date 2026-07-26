@@ -55,6 +55,13 @@ export interface TurnResult {
 const MAX_UNDO = 64;
 
 /**
+ * How many times an arrival event may move the player on before we stop
+ * following. Only THOTH does it, and only once, so this is a guard against a
+ * future rule looping rather than a real limit.
+ */
+const MAX_ARRIVAL_CHAIN = 4;
+
+/**
  * Reserved verb for arrival events -- things the original does in a room's
  * description routine rather than in a verb handler. No command ever carries it,
  * so these never match a player action.
@@ -239,7 +246,7 @@ export class Game {
    * Room 31 (the snake pit) kills on entry -- its description routine ends in
    * GO TO 1602 rather than returning.
    */
-  private onArrival(): TurnResult {
+  private onArrival(depth = 0): TurnResult {
     const world = this.world;
     const room = currentRoom(world);
 
@@ -251,6 +258,16 @@ export class Game {
       if (!evaluateAll(contextOf(world), rule.when)) continue;
       applyEffects(world, rule.then);
       extra.push(...renderSay(rule.say));
+
+      /*
+       * Sequential arrival events are cumulative, but only up to the point where
+       * one of them *leaves*. Every clause in the original's THOTH routine ends
+       * in `GO TO` -- 7298 to be shown out, or 1602 to end the game -- so
+       * exactly one of them ever runs. Without these two breaks, turning up with
+       * the gift printed the winning ending and then had THOTH demand a gift.
+       */
+      if (world.ended) break;
+      if (world.room !== room.id) break;
     }
 
     const lines = [...described.lines, ...extra];
@@ -264,8 +281,23 @@ export class Game {
       };
     }
 
+    // An arrival event may have moved the player on -- THOTH shows you out to
+    // the Funeral Parlour. Describe where they have actually ended up, which is
+    // what the original does by falling through to its redescribe routine.
+    if (world.room !== room.id && !world.ended && depth < MAX_ARRIVAL_CHAIN) {
+      const onward = this.onArrival(depth + 1);
+      return {
+        lines: [...lines, ...onward.lines],
+        ...(onward.image ? { image: onward.image } : {}),
+        ...(world.ended ? { ended: world.ended } : {}),
+      };
+    }
+
     // An arrival event may have changed what the room looks like.
-    return { lines, image: resolveImage(room, contextOf(world)).src };
+    return {
+      lines,
+      image: resolveImage(currentRoom(world), contextOf(world)).src,
+    };
   }
 
   /** Apply arrival events for the starting room, before the first prompt. */

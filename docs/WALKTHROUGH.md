@@ -325,8 +325,8 @@ come before anything on the male mummy's list.
 - `w` → **The Concubine's Apartments**
 - `s` → **The Treasure Room**
 - `s` → **Entrance hall (Anubis, silver doors)**
-- `tickle anubis` → **The Funeral Parlour**
-  > The ANUBIS rolls about on the floor and you are able to dodge through the silver doors! THOTH takes the GIFT and smiles! Your head is spinning around You find yourself on the floor in your own home! You turn off the computer and go to bed HAPPY DREAMS "Now, where's my gift" shouts THOTH. "I'm getting rather impatient! Do not return again without my gift or you may regret it!"
+- `tickle anubis` → **THOTH's high chamber**
+  > The ANUBIS rolls about on the floor and you are able to dodge through the silver doors! THOTH takes the GIFT and smiles! Your head is spinning around You find yourself on the floor in your own home! You turn off the computer and go to bed HAPPY DREAMS
 
 ---
 
