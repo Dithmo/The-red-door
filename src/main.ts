@@ -1,236 +1,247 @@
 /**
- * Data-review harness.
+ * The game.
  *
- * NOT the game -- that arrives with the parser and rule engine. This exists to
- * verify the port end to end: every room's text, every conditional variant, and
- * every image slot, with the flags that gate them toggleable so each state can
- * actually be looked at. It is also how artwork gets reviewed as it lands.
+ * Everything below the surface is in src/session.ts: this file only turns typed
+ * strings into turns and turns into DOM. It deliberately knows nothing about
+ * rules, the parser or the world model.
  */
 
-import { flagNames, lexicon, objects, rooms, validate } from "./data/index";
-import type { Condition, Room } from "./data/types";
-import { CARRIED, NOWHERE } from "./data/types";
-import type { ConditionContext } from "./engine/conditions";
+import { roomById } from "./data/index";
+import { inkColour } from "./engine/describe";
+import { carriedCount, createWorld } from "./engine/world";
 import {
-  availableExits,
-  describeRoom,
-  inkColour,
-  resolveImage,
-} from "./engine/describe";
+  listSaves,
+  load,
+  localStorageStore,
+  save,
+  type SaveStore,
+} from "./engine/save";
+import type { OutputLine } from "./engine/game";
+import { Session, type SessionTurn } from "./session";
+import { CARRY_LIMIT } from "./data/types";
 
-const app = document.getElementById("app")!;
-
-/** Flags that gate any visible text or picture, so the harness can toggle them. */
-function gatingConditions(room: Room): Condition[] {
-  return [
-    ...(room.descriptionVariants ?? []).flatMap((v) => v.when),
-    ...(room.descriptionFragments ?? []).flatMap((f) => f.when),
-    ...room.images.flatMap((i) => i.when ?? []),
-  ];
-}
-
-function gatingFlags(room: Room): { flag: string; values: number[] }[] {
-  const found = new Map<string, Set<number>>();
-  for (const cond of gatingConditions(room)) {
-    if (!("flag" in cond)) continue;
-    const value = "eq" in cond ? cond.eq : "lt" in cond ? cond.lt : cond.gte;
-    const set = found.get(cond.flag) ?? new Set<number>();
-    set.add(value);
-    found.set(cond.flag, set);
-  }
-  return [...found].map(([flag, values]) => ({
-    flag,
-    values: [...values].sort((a, b) => a - b),
-  }));
-}
-
-const state = {
-  roomId: 1,
-  flags: {} as Record<string, number>,
+const el = <T extends HTMLElement>(id: string): T => {
+  const node = document.getElementById(id);
+  if (!node) throw new Error(`missing element #${id}`);
+  return node as T;
 };
 
-function context(room: Room): ConditionContext {
-  // Objects sit wherever they start; enough for reviewing text and pictures.
-  const objectLocations: Record<string, number> = {};
-  for (const obj of objects) objectLocations[obj.key] = obj.startsAt;
-  return { room: room.id, flags: state.flags, objects: objectLocations };
+const transcriptEl = el<HTMLDivElement>("transcript");
+const turnsEl = el<HTMLDivElement>("turns");
+const inputEl = el<HTMLInputElement>("input");
+const formEl = el<HTMLFormElement>("prompt");
+const pictureEl = el<HTMLImageElement>("picture");
+const placeEl = el<HTMLElement>("place");
+const undoEl = el<HTMLButtonElement>("undo");
+const carryEl = el<HTMLElement>("status-carry");
+const turnEl = el<HTMLElement>("status-turn");
+
+const AUTOSAVE = "autosave";
+const store: SaveStore = localStorageStore();
+
+let session = new Session(createWorld());
+/** Commands the player has typed, for the up/down arrows. */
+let history: string[] = [];
+let historyIndex = 0;
+let currentImage = "";
+
+/* --------------------------------------------------------------- rendering -- */
+
+function lineElement(line: OutputLine, previous?: OutputLine): HTMLElement {
+  const p = document.createElement("p");
+  p.className = `line ${line.kind}`;
+  // "Here you can see:" heads the object list; the items under it are indented.
+  if (line.kind === "objects" && previous?.kind !== "objects") {
+    p.classList.add("heading");
+  }
+  p.textContent = line.text;
+  return p;
 }
 
-function el(html: string): string {
-  return html;
+function appendTurn(echo: string | undefined, result: SessionTurn): void {
+  const turn = document.createElement("div");
+  turn.className = "turn";
+
+  if (echo !== undefined) {
+    const said = document.createElement("p");
+    said.className = "echo";
+    said.textContent = echo;
+    turn.append(said);
+  }
+
+  result.lines.forEach((line, i) => {
+    turn.append(lineElement(line, result.lines[i - 1]));
+  });
+
+  if (result.ended) turn.append(endingElement(result.ended.outcome));
+
+  turnsEl.append(turn);
+  // Put the newest turn at the top of the view rather than the bottom, so a long
+  // room description is read from its first line.
+  turn.scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
-function escape(text: string): string {
-  return text.replace(
-    /[&<>"]/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!,
+function endingElement(outcome: "win" | "lose"): HTMLElement {
+  const box = document.createElement("div");
+  box.className = "ending";
+
+  const heading = document.createElement("h2");
+  heading.textContent = outcome === "win" ? "You escaped." : "That is the end.";
+
+  const note = document.createElement("p");
+  note.textContent =
+    outcome === "win"
+      ? "Thoth was satisfied, and you woke up at home."
+      : "Take back the last move, or begin again.";
+
+  const undo = document.createElement("button");
+  undo.type = "button";
+  undo.textContent = "Undo";
+  undo.addEventListener("click", doUndo);
+
+  const restart = document.createElement("button");
+  restart.type = "button";
+  restart.textContent = "Start again";
+  restart.addEventListener("click", () => restartGame());
+
+  box.append(heading, note, undo, restart);
+  return box;
+}
+
+function applyTurn(echo: string | undefined, result: SessionTurn): void {
+  const room = roomById.get(session.world.room);
+  if (room) {
+    const accent = inkColour(room.ink);
+    document.documentElement.style.setProperty("--accent", accent);
+    placeEl.textContent = room.name;
+  }
+
+  if (result.image && result.image !== currentImage) {
+    currentImage = result.image;
+    pictureEl.classList.add("changing");
+    const next = new Image();
+    next.onload = () => {
+      pictureEl.src = next.src;
+      pictureEl.alt = room?.name ?? "";
+      pictureEl.classList.remove("changing");
+    };
+    next.onerror = () => pictureEl.classList.remove("changing");
+    next.src = `./images/${result.image}`;
+  }
+
+  appendTurn(echo, result);
+  refreshStatus();
+  autosave();
+}
+
+function refreshStatus(): void {
+  const carried = carriedCount(session.world);
+  carryEl.textContent = `carrying ${carried}/${CARRY_LIMIT}`;
+  turnEl.textContent = `turn ${session.world.turn}`;
+  undoEl.disabled = !session.game.canUndo;
+}
+
+/* ----------------------------------------------------------------- actions -- */
+
+function submit(raw: string): void {
+  const text = raw.trim();
+  if (!text) return;
+
+  if (history[history.length - 1] !== text) history.push(text);
+  historyIndex = history.length;
+
+  applyTurn(text, session.send(text));
+  inputEl.value = "";
+  inputEl.focus();
+}
+
+function doUndo(): void {
+  applyTurn("undo", session.send("undo"));
+  inputEl.focus();
+}
+
+function restartGame(): void {
+  session = new Session(createWorld());
+  history = [];
+  historyIndex = 0;
+  currentImage = "";
+  turnsEl.replaceChildren();
+  applyTurn(undefined, session.begin());
+  inputEl.focus();
+}
+
+/* -------------------------------------------------------------- persistence -- */
+
+/**
+ * Autosave every turn so closing the tab does not lose the game. This is
+ * separate from the SAVE/LOAD verbs, which the original has and which write
+ * named slots the player chooses.
+ */
+function autosave(): void {
+  try {
+    save(store, AUTOSAVE, session.world);
+  } catch {
+    // A full or blocked localStorage must not stop play.
+  }
+}
+
+function resume(): boolean {
+  try {
+    if (!listSaves(store).some((slot) => slot.name === AUTOSAVE)) return false;
+    const result = load(store, AUTOSAVE);
+    if (!result.ok) return false;
+    session = new Session(result.world);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/* ---------------------------------------------------------------- wiring -- */
+
+formEl.addEventListener("submit", (event) => {
+  event.preventDefault();
+  submit(inputEl.value);
+});
+
+undoEl.addEventListener("click", doUndo);
+
+inputEl.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowUp") {
+    if (historyIndex > 0) {
+      historyIndex -= 1;
+      inputEl.value = history[historyIndex] ?? "";
+      // Put the caret at the end rather than wherever it was.
+      requestAnimationFrame(() => inputEl.setSelectionRange(999, 999));
+    }
+    event.preventDefault();
+  } else if (event.key === "ArrowDown") {
+    if (historyIndex < history.length) {
+      historyIndex += 1;
+      inputEl.value = history[historyIndex] ?? "";
+    }
+    event.preventDefault();
+  } else if (event.key === "z" && (event.ctrlKey || event.metaKey)) {
+    event.preventDefault();
+    doUndo();
+  }
+});
+
+// Typing anywhere on the page goes to the prompt.
+document.addEventListener("keydown", (event) => {
+  if (event.target === inputEl) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.key.length === 1) inputEl.focus();
+});
+
+const resumed = resume();
+applyTurn(undefined, resumed ? session.describe() : session.begin());
+if (resumed) {
+  turnsEl.prepend(
+    Object.assign(document.createElement("p"), {
+      className: "line system",
+      textContent: "Resumed where you left off.",
+    }),
   );
 }
-
-function renderNav(): string {
-  const items = rooms
-    .map((room) => {
-      const current = room.id === state.roomId;
-      return el(`
-        <button data-room="${room.id}" aria-current="${current}"
-                style="--swatch:${inkColour(room.ink)}">
-          <span class="dot" style="background:${inkColour(room.ink)}"></span>
-          <span class="id">${room.id}</span>${escape(room.name)}
-        </button>`);
-    })
-    .join("");
-  return `<nav><h1>Rooms (${rooms.length})</h1>${items}</nav>`;
-}
-
-function renderRoom(): string {
-  const room = rooms.find((r) => r.id === state.roomId)!;
-  const ctx = context(room);
-  const image = resolveImage(room, ctx);
-  const swatch = inkColour(room.ink);
-  const flags = gatingFlags(room);
-
-  const toggles = flags.length
-    ? el(`
-      <section>
-        <h3>Flags affecting this room</h3>
-        <div class="state">
-          ${flags
-            .flatMap(({ flag, values }) =>
-              values.map(
-                (v) => el(`
-              <label>
-                <input type="checkbox" data-flag="${flag}" data-value="${v}"
-                  ${state.flags[flag] === v ? "checked" : ""} />
-                ${flag} = ${v}
-              </label>`),
-              ),
-            )
-            .join("")}
-        </div>
-      </section>`)
-    : "";
-
-  const exits = availableExits(room);
-  const exitRows = exits.length
-    ? exits
-        .map(
-          (dir) =>
-            el(`<tr><th>${dir}</th><td>${
-              rooms.find((r) => r.id === room.exits[dir as keyof typeof room.exits])
-                ?.name ?? "?"
-            } <code>#${room.exits[dir as keyof typeof room.exits]}</code></td></tr>`),
-        )
-        .join("")
-    : `<tr><td colspan="2" style="color:var(--dim)">none — left by a scripted event, or fatal</td></tr>`;
-
-  const here = objects.filter((o) => o.startsAt === room.id);
-  const hereRows = here.length
-    ? here
-        .map(
-          (o) =>
-            el(`<tr><th>${escape(o.noun)}</th><td>${escape(o.description)} <code>#${o.id} ${o.key}</code></td></tr>`),
-        )
-        .join("")
-    : `<tr><td colspan="2" style="color:var(--dim)">nothing here at the start</td></tr>`;
-
-  const fatal = room.fatal
-    ? el(`<section><h3>Fatal on entry</h3>
-        <div class="fatal">${escape(room.fatal.text)}
-        <br /><code>${room.fatal.origin}</code></div></section>`)
-    : "";
-
-  return el(`
-    <main style="--swatch:${swatch}">
-      <div class="head">
-        <h2>${escape(room.name)}</h2>
-        <span class="meta">#${room.id} · ${room.key} · ink ${room.ink} · ${room.origin}</span>
-      </div>
-
-      <div class="panes">
-        <figure class="picture" style="margin:0">
-          <img src="./images/${image.src}" alt="${escape(room.name)}" />
-          <figcaption>${image.src}${
-            image.when ? ` — when ${escape(JSON.stringify(image.when))}` : " — default"
-          }</figcaption>
-        </figure>
-        <div>
-          <p class="prose">${escape(describeRoom(room, ctx))}</p>
-          ${toggles}
-        </div>
-      </div>
-
-      ${fatal}
-
-      <section>
-        <h3>Exits</h3>
-        <table>${exitRows}</table>
-      </section>
-
-      <section>
-        <h3>Objects starting here</h3>
-        <table>${hereRows}</table>
-      </section>
-
-      <section>
-        <h3>Image slots (${room.images.length})</h3>
-        <table>${room.images
-          .map(
-            (slot) =>
-              el(`<tr><th>${slot.src}</th><td><code>${
-                slot.when ? escape(JSON.stringify(slot.when)) : "default"
-              }</code></td></tr>`),
-          )
-          .join("")}</table>
-      </section>
-    </main>`);
-}
-
-function render(): void {
-  const problems = validate();
-  const banner = problems.length
-    ? el(`<div class="problems"><strong>${problems.length} data problem(s)</strong>
-        <ul>${problems.map((p) => `<li>${escape(p)}</li>`).join("")}</ul></div>`)
-    : "";
-
-  app.innerHTML = renderNav() + renderRoom();
-  if (banner) {
-    app.querySelector("main")!.insertAdjacentHTML("afterbegin", banner);
-  }
-}
-
-app.addEventListener("click", (event) => {
-  const target = event.target as HTMLElement;
-  const button = target.closest<HTMLElement>("button[data-room]");
-  if (button) {
-    state.roomId = Number(button.dataset.room);
-    render();
-  }
-});
-
-app.addEventListener("change", (event) => {
-  const input = event.target as HTMLInputElement;
-  const flag = input.dataset.flag;
-  if (!flag) return;
-  const value = Number(input.dataset.value);
-  if (input.checked) {
-    state.flags[flag] = value;
-  } else {
-    delete state.flags[flag];
-  }
-  render();
-});
-
-render();
-
-// Surface the port's shape in the console for a quick sanity read.
-const placed = objects.filter(
-  (o) => o.startsAt !== NOWHERE && o.startsAt !== CARRIED,
-).length;
-console.info(
-  `The Red Door — data review\n` +
-    `${rooms.length} rooms · ${objects.length} objects (${placed} placed, ` +
-    `1 carried) · ${lexicon.verbs.length} verbs · ` +
-    `${lexicon.scenery.length} scenery nouns · ` +
-    `${Object.keys(flagNames).length} flags\n` +
-    `${validate().length} data problems`,
-);
+inputEl.focus();

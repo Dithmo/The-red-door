@@ -44,6 +44,11 @@ export class Session {
     return this.wrap(this.game.begin());
   }
 
+  /** The current room as it reads now, without taking a turn. */
+  describe(): SessionTurn {
+    return this.wrap(this.game.describe());
+  }
+
   send(input: string): SessionTurn {
     const outcome = parse(input, this.game.world, this.parserState);
 

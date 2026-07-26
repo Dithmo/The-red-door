@@ -32,7 +32,9 @@ a picture for every location and a parser that actually understands English.
 | `src/rules/` | the rule table — **hand-authored**, transcribed from the BASIC |
 | `src/parser/` | tokenising, vocabulary lookup, grammar patterns, reference resolution |
 | `src/session.ts` | typed English in, lines of output out — the seam the UI sits on |
-| `src/main.ts` | data-review harness — browse every room, toggle its flags, see each picture |
+| `src/main.ts` | the playable game — two panes, transcript, command history, undo |
+| `src/ui/` | game and review-harness styling |
+| `src/review.ts` | data-review harness — browse every room, toggle its flags, see each picture |
 | `assets/images/` | one placeholder per image slot, tinted with that room's original ink |
 | `tools/build_gamedata.py` | turns `data/reddoor.json` into `src/data/*.json` |
 | `tools/make_placeholders.py` | generates placeholder artwork for every image slot |
@@ -41,6 +43,7 @@ a picture for every location and a parser that actually understands English.
 | `tests/parser.test.ts` | input → command table, including every original command |
 | `tests/session.test.ts` | playing through in typed English |
 | `tests/walkthrough.test.ts` | the winning route, every death, and the unwinnable trap |
+| `tests/ui.test.ts` | the page boots, plays, undoes, restarts and resumes |
 
 `src/rules/*.json` are the hand-authored data files: the original encodes its
 puzzle logic in control flow rather than a table, so it had to be transcribed.
@@ -60,11 +63,20 @@ rebuilds it. Real artwork replaces the placeholder of the same filename;
 
 ```
 npm install
-npm run data      # regenerate game data + placeholder art (needs python3)
-npm run dev       # data-review harness at localhost:5173
-npm test          # data consistency checks
-npm run typecheck
+npm run dev       # play it at localhost:5173
+npm test          # 155 tests
+npm run build     # static site in dist/
 ```
+
+`npm run dev` serves two pages:
+
+* **`/`** — the game.
+* **`/review.html`** — the data-review harness: every room, the flags that gate
+  its text and pictures, its exits and its image slots. This is also how artwork
+  gets checked as it arrives.
+
+`npm run data` regenerates `src/data/*.json` and the placeholder art from the tape
+(needs `python3`; no other dependencies).
 
 The extractor itself needs no dependencies beyond the Python standard library:
 
@@ -107,6 +119,17 @@ failure with *"Apologies from authors!"*. This one:
   but never guesses at words of three letters or fewer
 * distinguishes an unknown word from an absent object from a missing noun from a
   verb that cannot take one, instead of one catch-all apology
+
+## Playing it
+
+Two panes: a picture and a transcript. The accent colour is taken from each
+room's original ZX Spectrum ink, so moving between rooms shifts the palette the
+way the tape did — including the five garden rooms, whose different inks are the
+only thing distinguishing them.
+
+Type anywhere to focus the prompt. `↑`/`↓` walk back through your commands,
+`Ctrl-Z` or the Undo button takes back a move, and the game autosaves every turn,
+so closing the tab does not lose your place.
 
 ## Shape of the game
 
