@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "key": "basket",
+    "noun": "basket",
+    "adjectives": [
+      "wicker",
+      "empty"
+    ],
+    "description": "A wicker BASKET",
+    "startsAt": 15
+  },
+  {
+    "id": 2,
+    "key": "needle",
+    "noun": "needle",
+    "adjectives": [
+      "plain",
+      "bare",
+      "cleopatras"
+    ],
+    "description": "Cleopatra's NEEDLE",
+    "startsAt": 0
+  },
+  {
+    "id": 3,
+    "key": "cloth",
+    "noun": "cloth",
+    "adjectives": [
+      "whole",
+      "uncut"
+    ],
+    "description": "CLOTH of gold",
+    "startsAt": 0
+  },
+  {
+    "id": 4,
+    "key": "token-bronze",
+    "noun": "token",
+    "adjectives": [
+      "bronze",
+      "bronze-coloured"
+    ],
+    "description": "A bronze-coloured TOKEN",
+    "startsAt": 30
+  },
+  {
+    "id": 5,
+    "key": "jug-full",
+    "noun": "jug",
+    "adjectives": [
+      "full",
+      "embalming"
+    ],
+    "description": "A JUG of embalming fluid",
+    "startsAt": 0
+  },
+  {
+    "id": 6,
+    "key": "bandages",
+    "noun": "bandages",
+    "adjectives": [],
+    "description": "A quantity of BANDAGES",
+    "startsAt": 0
+  },
+  {
+    "id": 7,
+    "key": "food",
+    "noun": "food",
+    "adjectives": [],
+    "description": "Some funeral FOOD",
+    "startsAt": 22
+  },
+  {
+    "id": 8,
+    "key": "charm",
+    "noun": "charm",
+    "adjectives": [
+      "snake",
+      "snake-shaped"
+    ],
+    "description": "A snake-shaped CHARM",
+    "startsAt": 0
+  },
+  {
+    "id": 9,
+    "key": "bracelet",
+    "noun": "bracelet",
+    "adjectives": [
+      "red",
+      "red-gold"
+    ],
+    "description": "A BRACELET of red gold",
+    "startsAt": 0
+  },
+  {
+    "id": 10,
+    "key": "necklace",
+    "noun": "necklace",
+    "adjectives": [
+      "ornate"
+    ],
+    "description": "An ornate NECKLACE",
+    "startsAt": 0
+  },
+  {
+    "id": 11,
+    "key": "perfume",
+    "noun": "perfume",
+    "adjectives": [],
+    "description": "Some exotic PERFUME",
+    "startsAt": 0
+  },
+  {
+    "id": 12,
+    "key": "kohl",
+    "noun": "kohl",
+    "adjectives": [],
+    "description": "Some adorning KOHL",
+    "startsAt": 0
+  },
+  {
+    "id": 13,
+    "key": "rod",
+    "noun": "rod",
+    "adjectives": [
+      "short",
+      "golden",
+      "gold"
+    ],
+    "description": "A short golden ROD",
+    "startsAt": 99
+  },
+  {
+    "id": 14,
+    "key": "scissors",
+    "noun": "scissors",
+    "adjectives": [
+      "gold",
+      "golden"
+    ],
+    "description": "A pair of gold SCISSORS",
+    "startsAt": 0
+  },
+  {
+    "id": 15,
+    "key": "fly",
+    "noun": "fly",
+    "adjectives": [],
+    "description": "A dead, dead FLY",
+    "startsAt": 0
+  },
+  {
+    "id": 16,
+    "key": "runes",
+    "noun": "runes",
+    "adjectives": [],
+    "description": "An old scroll of RUNES",
+    "startsAt": 17
+  },
+  {
+    "id": 17,
+    "key": "key",
+    "noun": "key",
+    "adjectives": [
+      "small",
+      "gold",
+      "golden"
+    ],
+    "description": "A small golden KEY",
+    "startsAt": 0
+  },
+  {
+    "id": 18,
+    "key": "hay",
+    "noun": "hay",
+    "adjectives": [],
+    "description": "A handful of HAY",
+    "startsAt": 0
+  },
+  {
+    "id": 19,
+    "key": "coin",
+    "noun": "coin",
+    "adjectives": [
+      "shiny",
+      "gold",
+      "golden"
+    ],
+    "description": "A shiny, gold COIN",
+    "startsAt": 0
+  },
+  {
+    "id": 20,
+    "key": "fluff",
+    "noun": "fluff",
+    "adjectives": [
+      "navel"
+    ],
+    "description": "A piece of FLUFF",
+    "startsAt": 0
+  },
+  {
+    "id": 21,
+    "key": "pipe",
+    "noun": "pipe",
+    "adjectives": [],
+    "description": "A musical PIPE",
+    "startsAt": 23
+  },
+  {
+    "id": 22,
+    "key": "shroud",
+    "noun": "shroud",
+    "adjectives": [
+      "old",
+      "white"
+    ],
+    "description": "An old white SHROUD",
+    "startsAt": 30
+  },
+  {
+    "id": 23,
+    "key": "raiment",
+    "noun": "raiment",
+    "adjectives": [],
+    "description": "A gorgeous RAIMENT",
+    "startsAt": 0
+  },
+  {
+    "id": 24,
+    "key": "joke",
+    "noun": "joke",
+    "adjectives": [],
+    "description": "A rather funny JOKE",
+    "startsAt": 0
+  },
+  {
+    "id": 25,
+    "key": "thread",
+    "noun": "thread",
+    "adjectives": [],
+    "description": "Some very fine THREAD",
+    "startsAt": 0
+  },
+  {
+    "id": 26,
+    "key": "snake",
+    "noun": "snake",
+    "adjectives": [
+      "nasty",
+      "nasty-looking"
+    ],
+    "description": "A nasty-looking SNAKE",
+    "startsAt": 0
+  },
+  {
+    "id": 27,
+    "key": "ruby",
+    "noun": "ruby",
+    "adjectives": [
+      "navel",
+      "navel-shaped"
+    ],
+    "description": "A navel-shaped RUBY",
+    "startsAt": 0
+  },
+  {
+    "id": 31,
+    "key": "basket-with-snake",
+    "noun": "basket",
+    "adjectives": [
+      "snake",
+      "full"
+    ],
+    "description": "A BASKET with a snake in it",
+    "startsAt": 0
+  },
+  {
+    "id": 32,
+    "key": "needle-threaded",
+    "noun": "needle",
+    "adjectives": [
+      "threaded"
+    ],
+    "description": "A threaded NEEDLE",
+    "startsAt": 0
+  },
+  {
+    "id": 33,
+    "key": "cloth-shaped",
+    "noun": "cloth",
+    "adjectives": [
+      "shaped",
+      "cut"
+    ],
+    "description": "Shaped pieces of gold CLOTH",
+    "startsAt": 0
+  },
+  {
+    "id": 34,
+    "key": "token-gold",
+    "noun": "token",
+    "adjectives": [
+      "gold",
+      "golden"
+    ],
+    "description": "A gold TOKEN",
+    "startsAt": 0
+  },
+  {
+    "id": 35,
+    "key": "jug-silver",
+    "noun": "jug",
+    "adjectives": [
+      "silver",
+      "empty"
+    ],
+    "description": "A silver JUG",
+    "startsAt": 0
+  }
+]

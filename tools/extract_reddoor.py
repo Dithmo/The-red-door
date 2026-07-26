@@ -324,7 +324,7 @@ ROOM_NAMES = {
     25: "Ornamental garden (maze)", 26: "Ornamental garden (maze)",
     27: "Ornamental garden (maze)", 28: "Ornamental garden (mulberry / silkworms)",
     29: "THOTH's high chamber", 30: "Inside the MUMMY CASE",
-    31: "The snake pit (unreachable)",
+    31: "The snake pit (fatal)",
 }
 
 

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 512 384" role="img" aria-label="Narrow corridor, towards east end">
+  <defs>
+    <pattern id="scan" width="1" height="3" patternUnits="userSpaceOnUse">
+      <rect width="1" height="2" fill="#000"/>
+      <rect y="2" width="1" height="1" fill="#ff00ff" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="384" fill="#000"/>
+  <rect width="512" height="384" fill="url(#scan)"/>
+  <rect x="12" y="12" width="488" height="360" fill="none" stroke="#ff00ff" stroke-width="3"/>
+  <text x="256" y="184" fill="#ff00ff" font-family="monospace" font-size="26" text-anchor="middle" font-weight="bold">NARROW CORRIDOR, TOWARDS</text>
+  <text x="256" y="216" fill="#ff00ff" font-family="monospace" font-size="26" text-anchor="middle" font-weight="bold">EAST END</text>
+  <text x="256" y="350" fill="#ff00ff" font-family="monospace" font-size="15" text-anchor="middle" opacity="0.55">placeholder · ink 3</text>
+</svg>

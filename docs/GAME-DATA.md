@@ -83,7 +83,7 @@ Exit table at 62529: 31 rows of 7 bytes — `room, N, S, E, W, UP, DOWN` (0 = no
 | 11 | Dark corridor, near west end | 12 | 14 | 7 | 15 | – | – |
 | 12 | Plain burial chamber (MUMMY CASE) | – | 11 | – | – | – | – |
 | 13 | Patio and ornamental pool | 24 | – | – | 19 | – | – |
-| 14 | Above the snake-pit | 11 | – | – | – | – | – |
+| 14 | Above the snake-pit | 11 | – | – | – | – | **31** |
 | 15 | Long corridor, west end | – | 17 | 11 | 20 | – | 16 |
 | 16 | The room full of DOWN | – | – | – | – | 15 | – |
 | 17 | The BLACK room | 15 | – | – | – | – | – |
@@ -114,9 +114,10 @@ Exit table at 62529: 31 rows of 7 bytes — `room, N, S, E, W, UP, DOWN` (0 = no
 * **The garden (24–28) is the maze.** Only rooms 24 and 26 lead back out (S → 13).
   The route from the patio to the useful garden room 28 is `N, E, N, E`
   (13 → 24 → 26 → 25 → 28) — see §6.
-* **Room 31 is unreachable.** Nothing in the program ever sets the room to 31; the
-  snake-pit death text at line 7310 is dead code. The snake kills you through
-  message 19 instead.
+* **Room 31 is a death room.** It has no exits, and its description routine
+  (lines 7310–7311) ends in `GO TO 1602` — game over. It is reached only by going
+  **DOWN from room 14**, i.e. climbing into the snake-pit. That is a separate
+  death from the one you get by grabbing a snake bare-handed (message 19).
 
 ---
 
@@ -423,10 +424,17 @@ a different colour: 3, 4, 5, 6, 7)*
 * your cheek!                  *
 ```
 
-**31 — The snake pit** *(unreachable)*
+**31 — The snake pit** *(ink 7; reached by going DOWN from room 14 — instantly
+fatal, the routine ends in `GO TO 1602`)*
 ```
 * You're in the SNAKE PIT with *
 * these poisonous snakes.....  *
+```
+followed by, in yellow:
+```
+*  I'm afraid this is asp time  *
+*                               *
+*            BYEEee!            *
 ```
 
 ---
@@ -918,6 +926,7 @@ cutting anything without scissors: *"Even you will need some SCISSORS / to be ab
 | Cause | Result |
 |---|---|
 | `CATCH SNAKE` without the basket | message 19 — bitten, game over |
+| `DOWN` from room 14 (into the snake-pit) | *"I'm afraid this is asp time / BYEEee!"*, game over |
 | `DRINK`/`TOUCH` the pool liquid | messages 23 + 24 — mummified, game over |
 | `SWIM`/`DIVE`/`JUMP` in the pool | *"in no state to carry on with your quest"*, game over |
 | Third visit to THOTH with no gift | banished, game over |
@@ -999,9 +1008,10 @@ The loader also carries a generic seven-page "Adventure Guide" (see
 * **Carrying limit is 6** (`max`), enforced by the engine with message 5.
 * **SAVE/LOAD** exist to tape *and* to a memory "bank" (a temporary in-RAM save);
   a remake would map both onto ordinary save slots.
-* **Dead content to decide about:** room 31 (snake pit) is unreachable, objects
-  28–30 are placeholders, and line 4700 (`PULL`) doesn't exist so `PULL` silently
-  behaves as `PUSH`.
+* **Dead content to decide about:** objects 28–30 are placeholders (`no28`,
+  `no29`, `no30`) that still parse but do nothing, and line 4700 (`PULL`) doesn't
+  exist so `PULL` silently behaves as `PUSH`. Room 31 is *not* dead — it is the
+  snake-pit death, reached by going DOWN from room 14.
 * **The `f+15` Concubine coin-flip** re-rolls on every entry to room 19, so a
   player can simply walk in and out until she appears. Worth deciding whether to
   keep that or make her deterministic.

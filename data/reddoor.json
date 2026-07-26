@@ -546,7 +546,7 @@
     },
     {
       "id": 31,
-      "name": "The snake pit (unreachable)",
+      "name": "The snake pit (fatal)",
       "basic_line": 7310,
       "text": [
         "* You're in the SNAKE PIT with *",
