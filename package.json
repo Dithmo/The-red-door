@@ -1,0 +1,24 @@
+{
+  "name": "the-red-door",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Remake of The Red Door, a ZX Spectrum text adventure by Tartan Software",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "data": "python3 tools/build_gamedata.py && python3 tools/make_placeholders.py",
+    "standalone": "vite build --config vite.standalone.config.ts && node tools/build_standalone.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  }
+}

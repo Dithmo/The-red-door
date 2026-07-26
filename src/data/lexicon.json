@@ -1,0 +1,1193 @@
+{
+  "verbs": [
+    {
+      "name": "go",
+      "originalCode": 0,
+      "patterns": [
+        "V N",
+        "V to N"
+      ],
+      "words": [
+        "go",
+        "head",
+        "move to",
+        "travel",
+        "walk"
+      ]
+    },
+    {
+      "name": "take",
+      "originalCode": 1,
+      "patterns": [
+        "V N",
+        "V ALL",
+        "V N from N"
+      ],
+      "words": [
+        "collect",
+        "get",
+        "grab",
+        "pick up",
+        "pickup",
+        "take"
+      ]
+    },
+    {
+      "name": "drop",
+      "originalCode": 2,
+      "patterns": [
+        "V N",
+        "V ALL",
+        "V ALL but N"
+      ],
+      "words": [
+        "discard",
+        "drop",
+        "leave",
+        "put down",
+        "throw",
+        "toss"
+      ]
+    },
+    {
+      "name": "examine",
+      "originalCode": 3,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "check",
+        "exami",
+        "examine",
+        "inspect",
+        "look",
+        "look at",
+        "study",
+        "x"
+      ]
+    },
+    {
+      "name": "look",
+      "originalCode": 4,
+      "patterns": [
+        "V",
+        "V around"
+      ],
+      "words": [
+        "l",
+        "look",
+        "r",
+        "redescribe"
+      ]
+    },
+    {
+      "name": "inventory",
+      "originalCode": 5,
+      "patterns": [
+        "V"
+      ],
+      "words": [
+        "carrying",
+        "i",
+        "inv",
+        "inven",
+        "inventory",
+        "list"
+      ]
+    },
+    {
+      "name": "quit",
+      "originalCode": 6,
+      "patterns": [
+        "V"
+      ],
+      "words": [
+        "exit",
+        "quit",
+        "stop"
+      ]
+    },
+    {
+      "name": "save",
+      "originalCode": 7,
+      "patterns": [
+        "V",
+        "V N"
+      ],
+      "words": [
+        "save",
+        "store"
+      ]
+    },
+    {
+      "name": "load",
+      "originalCode": 8,
+      "patterns": [
+        "V",
+        "V N"
+      ],
+      "words": [
+        "load",
+        "recall",
+        "restore"
+      ]
+    },
+    {
+      "name": "help",
+      "originalCode": 9,
+      "patterns": [
+        "V"
+      ],
+      "words": [
+        "?",
+        "clue",
+        "help",
+        "hint"
+      ]
+    },
+    {
+      "name": "search",
+      "originalCode": 10,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "look in",
+        "look inside",
+        "rummage",
+        "searc",
+        "search"
+      ]
+    },
+    {
+      "name": "open",
+      "originalCode": 11,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "open",
+        "unseal"
+      ]
+    },
+    {
+      "name": "cut",
+      "originalCode": 12,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "cut",
+        "slice",
+        "snip",
+        "trim"
+      ]
+    },
+    {
+      "name": "give",
+      "originalCode": 13,
+      "patterns": [
+        "V N to N",
+        "V N"
+      ],
+      "words": [
+        "give",
+        "hand",
+        "offer",
+        "present"
+      ]
+    },
+    {
+      "name": "sew",
+      "originalCode": 14,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "sew",
+        "stitch",
+        "tailor"
+      ]
+    },
+    {
+      "name": "thread",
+      "originalCode": 15,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "threa",
+        "thread"
+      ]
+    },
+    {
+      "name": "touch",
+      "originalCode": 16,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "poke",
+        "prod",
+        "stroke",
+        "touch"
+      ]
+    },
+    {
+      "name": "drink",
+      "originalCode": 17,
+      "patterns": [
+        "V N",
+        "V"
+      ],
+      "words": [
+        "drink",
+        "sip",
+        "swallow",
+        "taste"
+      ]
+    },
+    {
+      "name": "fill",
+      "originalCode": 18,
+      "patterns": [
+        "V N",
+        "V N from N",
+        "V N with N"
+      ],
+      "words": [
+        "fill"
+      ]
+    },
+    {
+      "name": "eat",
+      "originalCode": 19,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "bite",
+        "consume",
+        "devour",
+        "eat"
+      ]
+    },
+    {
+      "name": "make",
+      "originalCode": 20,
+      "patterns": [
+        "V N",
+        "V N from N"
+      ],
+      "words": [
+        "craft",
+        "create",
+        "fashion",
+        "make"
+      ]
+    },
+    {
+      "name": "wear",
+      "originalCode": 21,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "don",
+        "dress in",
+        "put on",
+        "wear"
+      ]
+    },
+    {
+      "name": "smell",
+      "originalCode": 22,
+      "patterns": [
+        "V N",
+        "V"
+      ],
+      "words": [
+        "smell",
+        "sniff"
+      ]
+    },
+    {
+      "name": "read",
+      "originalCode": 23,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "peruse",
+        "read"
+      ]
+    },
+    {
+      "name": "unlock",
+      "originalCode": 24,
+      "patterns": [
+        "V N with N",
+        "V N"
+      ],
+      "words": [
+        "unloc",
+        "unlock"
+      ]
+    },
+    {
+      "name": "play",
+      "originalCode": 25,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "play"
+      ]
+    },
+    {
+      "name": "blow",
+      "originalCode": 26,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "blow"
+      ]
+    },
+    {
+      "name": "tell",
+      "originalCode": 27,
+      "patterns": [
+        "V N to N",
+        "V N"
+      ],
+      "words": [
+        "recount",
+        "say to",
+        "tell"
+      ]
+    },
+    {
+      "name": "kill",
+      "originalCode": 28,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "attack",
+        "fight",
+        "hit",
+        "kill",
+        "stab"
+      ]
+    },
+    {
+      "name": "catch",
+      "originalCode": 29,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "capture",
+        "catch",
+        "trap"
+      ]
+    },
+    {
+      "name": "milk",
+      "originalCode": 30,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "milk"
+      ]
+    },
+    {
+      "name": "move",
+      "originalCode": 31,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "move",
+        "shift",
+        "shove"
+      ]
+    },
+    {
+      "name": "jump",
+      "originalCode": 32,
+      "patterns": [
+        "V",
+        "V N",
+        "V in N",
+        "V into N"
+      ],
+      "words": [
+        "jump",
+        "leap"
+      ]
+    },
+    {
+      "name": "dive",
+      "originalCode": 33,
+      "patterns": [
+        "V",
+        "V in N",
+        "V into N"
+      ],
+      "words": [
+        "dive"
+      ]
+    },
+    {
+      "name": "swim",
+      "originalCode": 34,
+      "patterns": [
+        "V",
+        "V in N"
+      ],
+      "words": [
+        "swim"
+      ]
+    },
+    {
+      "name": "climb",
+      "originalCode": 35,
+      "patterns": [
+        "V N",
+        "V up N",
+        "V"
+      ],
+      "words": [
+        "ascend",
+        "climb",
+        "go up"
+      ]
+    },
+    {
+      "name": "descend",
+      "originalCode": 36,
+      "patterns": [
+        "V N",
+        "V down N",
+        "V"
+      ],
+      "words": [
+        "desce",
+        "descend",
+        "go down"
+      ]
+    },
+    {
+      "name": "pull",
+      "originalCode": 37,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "pull",
+        "tug",
+        "yank"
+      ]
+    },
+    {
+      "name": "push",
+      "originalCode": 38,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "press",
+        "push"
+      ]
+    },
+    {
+      "name": "kiss",
+      "originalCode": 39,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "embrace",
+        "hug",
+        "kiss"
+      ]
+    },
+    {
+      "name": "feel",
+      "originalCode": 40,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "feel",
+        "grope"
+      ]
+    },
+    {
+      "name": "insert",
+      "originalCode": 41,
+      "patterns": [
+        "V N in N",
+        "V N into N",
+        "V N"
+      ],
+      "words": [
+        "inser",
+        "insert",
+        "place",
+        "place in",
+        "put",
+        "put in",
+        "slot"
+      ]
+    },
+    {
+      "name": "use",
+      "originalCode": 42,
+      "patterns": [
+        "V N",
+        "V N on N"
+      ],
+      "words": [
+        "use"
+      ]
+    },
+    {
+      "name": "tickle",
+      "originalCode": 43,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "tickl",
+        "tickle"
+      ]
+    },
+    {
+      "name": "feed",
+      "originalCode": 44,
+      "patterns": [
+        "V N",
+        "V N to N",
+        "V N with N"
+      ],
+      "words": [
+        "feed"
+      ]
+    },
+    {
+      "name": "lift",
+      "originalCode": 45,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "heave",
+        "lift",
+        "raise"
+      ]
+    },
+    {
+      "name": "wait",
+      "originalCode": 46,
+      "patterns": [
+        "V"
+      ],
+      "words": [
+        "pause",
+        "rest",
+        "wait",
+        "z"
+      ]
+    },
+    {
+      "name": "break",
+      "originalCode": 47,
+      "patterns": [
+        "V N"
+      ],
+      "words": [
+        "break",
+        "shatter",
+        "smash"
+      ]
+    },
+    {
+      "name": "listen",
+      "originalCode": 48,
+      "patterns": [
+        "V",
+        "V to N"
+      ],
+      "words": [
+        "liste",
+        "listen"
+      ]
+    },
+    {
+      "name": "say",
+      "originalCode": 49,
+      "patterns": [
+        "V N",
+        "V N to N"
+      ],
+      "words": [
+        "say",
+        "shout",
+        "speak",
+        "utter"
+      ]
+    },
+    {
+      "name": "rub",
+      "originalCode": 50,
+      "patterns": [
+        "V N",
+        "V N with N"
+      ],
+      "words": [
+        "buff",
+        "polish",
+        "rub"
+      ]
+    },
+    {
+      "name": "wave",
+      "originalCode": 51,
+      "patterns": [
+        "V N",
+        "V"
+      ],
+      "words": [
+        "brandish",
+        "shake",
+        "wave"
+      ]
+    }
+  ],
+  "directions": [
+    {
+      "name": "north",
+      "words": [
+        "n",
+        "north"
+      ]
+    },
+    {
+      "name": "south",
+      "words": [
+        "s",
+        "south"
+      ]
+    },
+    {
+      "name": "east",
+      "words": [
+        "e",
+        "east"
+      ]
+    },
+    {
+      "name": "west",
+      "words": [
+        "w",
+        "west"
+      ]
+    },
+    {
+      "name": "up",
+      "words": [
+        "u",
+        "up",
+        "upward",
+        "upwards"
+      ]
+    },
+    {
+      "name": "down",
+      "words": [
+        "d",
+        "down",
+        "downward",
+        "downwards"
+      ]
+    }
+  ],
+  "scenery": [
+    {
+      "code": 43,
+      "words": [
+        "corri"
+      ]
+    },
+    {
+      "code": 44,
+      "words": [
+        "alcov"
+      ]
+    },
+    {
+      "code": 45,
+      "words": [
+        "mummy"
+      ]
+    },
+    {
+      "code": 46,
+      "words": [
+        "male"
+      ]
+    },
+    {
+      "code": 47,
+      "words": [
+        "femal"
+      ]
+    },
+    {
+      "code": 48,
+      "words": [
+        "slab"
+      ]
+    },
+    {
+      "code": 49,
+      "words": [
+        "tomb"
+      ]
+    },
+    {
+      "code": 50,
+      "words": [
+        "chamb"
+      ]
+    },
+    {
+      "code": 51,
+      "words": [
+        "marbl"
+      ]
+    },
+    {
+      "code": 52,
+      "words": [
+        "bat"
+      ]
+    },
+    {
+      "code": 53,
+      "words": [
+        "spide"
+      ]
+    },
+    {
+      "code": 54,
+      "words": [
+        "web"
+      ]
+    },
+    {
+      "code": 55,
+      "words": [
+        "corne"
+      ]
+    },
+    {
+      "code": 56,
+      "words": [
+        "penta",
+        "stone"
+      ]
+    },
+    {
+      "code": 57,
+      "words": [
+        "sooth"
+      ]
+    },
+    {
+      "code": 58,
+      "words": [
+        "room"
+      ]
+    },
+    {
+      "code": 59,
+      "words": [
+        "fire"
+      ]
+    },
+    {
+      "code": 60,
+      "words": [
+        "signs"
+      ]
+    },
+    {
+      "code": 61,
+      "words": [
+        "wall",
+        "walls"
+      ]
+    },
+    {
+      "code": 62,
+      "words": [
+        "cow"
+      ]
+    },
+    {
+      "code": 63,
+      "words": [
+        "carpe"
+      ]
+    },
+    {
+      "code": 64,
+      "words": [
+        "templ"
+      ]
+    },
+    {
+      "code": 65,
+      "words": [
+        "hayst"
+      ]
+    },
+    {
+      "code": 66,
+      "words": [
+        "pile"
+      ]
+    },
+    {
+      "code": 67,
+      "words": [
+        "byre"
+      ]
+    },
+    {
+      "code": 68,
+      "words": [
+        "p",
+        "plint"
+      ]
+    },
+    {
+      "code": 69,
+      "words": [
+        "box"
+      ]
+    },
+    {
+      "code": 70,
+      "words": [
+        "case"
+      ]
+    },
+    {
+      "code": 71,
+      "words": [
+        "cases"
+      ]
+    },
+    {
+      "code": 72,
+      "words": [
+        "patio"
+      ]
+    },
+    {
+      "code": 73,
+      "words": [
+        "pool"
+      ]
+    },
+    {
+      "code": 74,
+      "words": [
+        "garde"
+      ]
+    },
+    {
+      "code": 75,
+      "words": [
+        "glow"
+      ]
+    },
+    {
+      "code": 76,
+      "words": [
+        "pit"
+      ]
+    },
+    {
+      "code": 77,
+      "words": [
+        "ramp"
+      ]
+    },
+    {
+      "code": 78,
+      "words": [
+        "o",
+        "stair"
+      ]
+    },
+    {
+      "code": 79,
+      "words": [
+        "in"
+      ]
+    },
+    {
+      "code": 80,
+      "words": [
+        "velve"
+      ]
+    },
+    {
+      "code": 81,
+      "words": [
+        "symbo"
+      ]
+    },
+    {
+      "code": 82,
+      "words": [
+        "gold"
+      ]
+    },
+    {
+      "code": 83,
+      "words": [
+        "ceili"
+      ]
+    },
+    {
+      "code": 84,
+      "words": [
+        "et",
+        "jewel"
+      ]
+    },
+    {
+      "code": 85,
+      "words": [
+        "skele"
+      ]
+    },
+    {
+      "code": 86,
+      "words": [
+        "hangi"
+      ]
+    },
+    {
+      "code": 87,
+      "words": [
+        "concu"
+      ]
+    },
+    {
+      "code": 88,
+      "words": [
+        "apart"
+      ]
+    },
+    {
+      "code": 89,
+      "words": [
+        "dress",
+        "table"
+      ]
+    },
+    {
+      "code": 90,
+      "words": [
+        "anubi"
+      ]
+    },
+    {
+      "code": 91,
+      "words": [
+        "hall"
+      ]
+    },
+    {
+      "code": 92,
+      "words": [
+        "door",
+        "doors"
+      ]
+    },
+    {
+      "code": 93,
+      "words": [
+        "sphin"
+      ]
+    },
+    {
+      "code": 94,
+      "words": [
+        "cave"
+      ]
+    },
+    {
+      "code": 95,
+      "words": [
+        "parlo"
+      ]
+    },
+    {
+      "code": 96,
+      "words": [
+        "mulbe"
+      ]
+    },
+    {
+      "code": 97,
+      "words": [
+        "leave"
+      ]
+    },
+    {
+      "code": 98,
+      "words": [
+        "silkw",
+        "worms"
+      ]
+    },
+    {
+      "code": 100,
+      "words": [
+        "catch"
+      ]
+    },
+    {
+      "code": 101,
+      "words": [
+        "flowe"
+      ]
+    },
+    {
+      "code": 102,
+      "words": [
+        "plant"
+      ]
+    },
+    {
+      "code": 103,
+      "words": [
+        "slot"
+      ]
+    },
+    {
+      "code": 104,
+      "words": [
+        "eyes"
+      ]
+    },
+    {
+      "code": 105,
+      "words": [
+        "treas"
+      ]
+    },
+    {
+      "code": 106,
+      "words": [
+        "abrac"
+      ]
+    },
+    {
+      "code": 107,
+      "words": [
+        "glass"
+      ]
+    },
+    {
+      "code": 108,
+      "words": [
+        "nose"
+      ]
+    },
+    {
+      "code": 109,
+      "words": [
+        "etchi"
+      ]
+    },
+    {
+      "code": 110,
+      "words": [
+        "fluid",
+        "liqui"
+      ]
+    },
+    {
+      "code": 111,
+      "words": [
+        "hello"
+      ]
+    },
+    {
+      "code": 112,
+      "words": [
+        "ernie"
+      ]
+    },
+    {
+      "code": 113,
+      "words": [
+        "bush"
+      ]
+    }
+  ],
+  "noiseWords": [
+    "the",
+    "a",
+    "an",
+    "my",
+    "some",
+    "of",
+    "please",
+    "at",
+    "then"
+  ],
+  "prepositions": [
+    "in",
+    "into",
+    "on",
+    "onto",
+    "with",
+    "to",
+    "from",
+    "at",
+    "under",
+    "behind",
+    "up",
+    "down",
+    "out",
+    "off",
+    "around",
+    "but",
+    "except"
+  ],
+  "pronouns": {
+    "it": null,
+    "them": null,
+    "him": null,
+    "her": null
+  },
+  "note": "Original words are 5-letter truncations; the parser matches exact, then >=3-char prefix, then fuzzy. See docs/GAME-DATA.md \u00a75."
+}

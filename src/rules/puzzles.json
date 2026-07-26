@@ -1,0 +1,2400 @@
+[
+  {
+    "id": "help-thoth-wants-gift",
+    "verb": "help",
+    "when": [
+      {
+        "flag": "raimentMade",
+        "eq": 0
+      },
+      {
+        "not": {
+          "flag": "thothAudiences",
+          "eq": 0
+        }
+      }
+    ],
+    "say": [
+      "THOTH would like a GOLD garment!"
+    ],
+    "origin": "red.bas:1900"
+  },
+  {
+    "id": "help-default",
+    "verb": "help",
+    "say": [
+      "Not behind the RED DOOR"
+    ],
+    "origin": "red.bas:1902"
+  },
+  {
+    "id": "search-haystack",
+    "verb": "search",
+    "target": {
+      "scenery": [
+        65,
+        66
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "haystackCollapsed",
+        "set": 1
+      },
+      {
+        "moveTo": "needle",
+        "room": 9
+      }
+    ],
+    "say": [
+      "You disturb the haystack and a needle falls out as the haystack collapses into an untidy pile."
+    ],
+    "origin": "red.bas:8490"
+  },
+  {
+    "id": "search-haystack-collapsed",
+    "verb": "search",
+    "target": {
+      "scenery": [
+        65,
+        66
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      }
+    ],
+    "say": [
+      "It's just an untidy pile now!"
+    ],
+    "origin": "red.bas:8491"
+  },
+  {
+    "id": "search-glass-case",
+    "verb": "search",
+    "target": {
+      "scenery": [
+        70,
+        71,
+        107
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      },
+      {
+        "flag": "glassCaseSearched",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "glassCaseSearched",
+        "set": 1
+      },
+      {
+        "moveTo": "necklace",
+        "room": 18
+      }
+    ],
+    "say": [
+      {
+        "message": 10
+      },
+      {
+        "message": 11
+      }
+    ],
+    "origin": "red.bas:8580"
+  },
+  {
+    "id": "search-glass-case-empty",
+    "verb": "search",
+    "target": {
+      "scenery": [
+        70,
+        71,
+        107
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "Empty, plain empty!"
+    ],
+    "origin": "red.bas:8581"
+  },
+  {
+    "id": "open-box-in-scarlet-room",
+    "verb": "open",
+    "target": {
+      "scenery": 69
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "It's beautifully carved and it is securely locked!"
+    ],
+    "origin": "red.bas:2104"
+  },
+  {
+    "id": "open-inside-case",
+    "verb": "open",
+    "target": {
+      "any": true
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "say": [
+      "It's not as easy as that!"
+    ],
+    "origin": "red.bas:2106"
+  },
+  {
+    "id": "open-silver-doors",
+    "verb": "open",
+    "target": {
+      "scenery": 92
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "The ANUBIS won't permit that!"
+    ],
+    "origin": "red.bas:2108"
+  },
+  {
+    "id": "open-basket",
+    "verb": "open",
+    "target": {
+      "object": "basket"
+    },
+    "when": [
+      {
+        "present": "basket"
+      }
+    ],
+    "say": [
+      "It's open."
+    ],
+    "origin": "red.bas:2110"
+  },
+  {
+    "id": "open-basket-with-snake",
+    "verb": "open",
+    "target": {
+      "object": "basket-with-snake"
+    },
+    "when": [
+      {
+        "present": "basket-with-snake"
+      }
+    ],
+    "say": [
+      "Now, now! Don't be silly! There is a snake in it!"
+    ],
+    "origin": "red.bas:2112"
+  },
+  {
+    "id": "cut-not-carried",
+    "verb": "cut",
+    "target": {
+      "anyObject": true
+    },
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2202",
+    "when": [
+      {
+        "not": {
+          "targetCarried": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "cut-without-scissors",
+    "verb": "cut",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "targetCarried": true
+      },
+      {
+        "not": {
+          "carrying": "scissors"
+        }
+      }
+    ],
+    "say": [
+      "Even you will need some SCISSORS to be able to do that!"
+    ],
+    "origin": "red.bas:2204"
+  },
+  {
+    "id": "cut-shroud",
+    "verb": "cut",
+    "target": {
+      "object": "shroud"
+    },
+    "when": [
+      {
+        "carrying": "shroud"
+      },
+      {
+        "carrying": "scissors"
+      }
+    ],
+    "then": [
+      {
+        "transform": "shroud",
+        "into": "bandages"
+      }
+    ],
+    "say": [
+      "OK..You now have some bandages!"
+    ],
+    "origin": "red.bas:2206"
+  },
+  {
+    "id": "cut-cloth",
+    "verb": "cut",
+    "target": {
+      "object": "cloth"
+    },
+    "when": [
+      {
+        "carrying": "cloth"
+      },
+      {
+        "carrying": "scissors"
+      }
+    ],
+    "then": [
+      {
+        "transform": "cloth",
+        "into": "cloth-shaped"
+      },
+      {
+        "flag": "clothCut",
+        "set": 1
+      }
+    ],
+    "say": [
+      "OK. That seamed like a good idea"
+    ],
+    "origin": "red.bas:2210"
+  },
+  {
+    "id": "give-not-carried",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "not": {
+          "targetCarried": true
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2302"
+  },
+  {
+    "id": "give-male-mummy-too-early",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "The MUMMY says \"Don't GIVE me anything! When you have ALL that I require I'll reward you well.\""
+    ],
+    "origin": "red.bas:2304"
+  },
+  {
+    "id": "give-female-mummy-too-early",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "The MUMMY says \"Don't GIVE me anything! When you have ALL that I require I'll reward you well.\""
+    ],
+    "origin": "red.bas:2304"
+  },
+  {
+    "id": "give-male-mummy-gone",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "eq": 4
+      }
+    ],
+    "say": [
+      "There's nobody here!"
+    ],
+    "origin": "red.bas:2306"
+  },
+  {
+    "id": "give-female-mummy-gone",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "eq": 4
+      }
+    ],
+    "say": [
+      "There's nobody here!"
+    ],
+    "origin": "red.bas:2306"
+  },
+  {
+    "id": "give-runes-to-soothsayer",
+    "verb": "give",
+    "target": {
+      "object": "runes"
+    },
+    "when": [
+      {
+        "room": 6
+      },
+      {
+        "carrying": "runes"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "runes"
+      },
+      {
+        "take": "key"
+      },
+      {
+        "flag": "soothsayerHelped",
+        "set": 1
+      }
+    ],
+    "say": [
+      "The soothsayer is overwhelmed by your generosity and gives you a KEY, chuckles and splutters \"TICKLE ANUBIS - he hates it!\""
+    ],
+    "origin": "red.bas:2310"
+  },
+  {
+    "id": "give-soothsayer-anything-else",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      {
+        "message": 14
+      }
+    ],
+    "origin": "red.bas:2312"
+  },
+  {
+    "id": "give-hay-to-cow",
+    "verb": "give",
+    "target": {
+      "object": "hay"
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "carrying": "hay"
+      }
+    ],
+    "then": [
+      {
+        "flag": "cowFed",
+        "set": 1
+      },
+      {
+        "destroy": "hay"
+      },
+      {
+        "moveTo": "coin",
+        "room": 8
+      }
+    ],
+    "say": [
+      "The cow rises to eat the HAY and you see a COIN on the carpet."
+    ],
+    "origin": "red.bas:2320"
+  },
+  {
+    "id": "give-coin-to-concubine",
+    "verb": "give",
+    "target": {
+      "object": "coin"
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      },
+      {
+        "carrying": "coin"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "coin"
+      },
+      {
+        "take": "kohl"
+      },
+      {
+        "flag": "concubineGifts",
+        "add": 1
+      }
+    ],
+    "say": [
+      "THAT coin gets you some KOHL from the grateful Concubine!"
+    ],
+    "origin": "red.bas:2330"
+  },
+  {
+    "id": "give-ruby-to-concubine",
+    "verb": "give",
+    "target": {
+      "object": "ruby"
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      },
+      {
+        "carrying": "ruby"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "ruby"
+      },
+      {
+        "take": "perfume"
+      },
+      {
+        "flag": "concubineGifts",
+        "add": 1
+      }
+    ],
+    "say": [
+      "The Concubine smiles at you and rewards you with some PERFUME."
+    ],
+    "origin": "red.bas:2332"
+  },
+  {
+    "id": "give-concubine-absent",
+    "verb": "give",
+    "target": {
+      "anyObject": true
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "But there's no-one here!"
+    ],
+    "origin": "red.bas:2334"
+  },
+  {
+    "id": "give-fly-to-spider",
+    "verb": "give",
+    "target": {
+      "object": "fly"
+    },
+    "when": [
+      {
+        "room": 5
+      },
+      {
+        "carrying": "fly"
+      }
+    ],
+    "then": [
+      {
+        "flag": "spiderGone",
+        "set": 1
+      },
+      {
+        "destroy": "fly"
+      },
+      {
+        "moveTo": "jug-silver",
+        "room": 5
+      }
+    ],
+    "say": [
+      "The spider takes the fly, and beetles off to enjoy the treat! When he has gone you notice a JUG in a dark corner."
+    ],
+    "origin": "red.bas:2340"
+  },
+  {
+    "id": "sew-needs-threading",
+    "verb": "sew",
+    "target": {
+      "object": "cloth-shaped"
+    },
+    "when": [
+      {
+        "carrying": "cloth-shaped"
+      },
+      {
+        "carrying": "needle"
+      }
+    ],
+    "say": [
+      "How about threading the needle?"
+    ],
+    "origin": "red.bas:2404"
+  },
+  {
+    "id": "sew-no-threaded-needle",
+    "verb": "sew",
+    "target": {
+      "object": "cloth-shaped"
+    },
+    "when": [
+      {
+        "carrying": "cloth-shaped"
+      },
+      {
+        "not": {
+          "carrying": "needle-threaded"
+        }
+      }
+    ],
+    "say": [
+      "Even you are not able to do that without a threaded needle!"
+    ],
+    "origin": "red.bas:2406"
+  },
+  {
+    "id": "sew-raiment",
+    "verb": "sew",
+    "target": {
+      "object": "cloth-shaped"
+    },
+    "when": [
+      {
+        "carrying": "cloth-shaped"
+      },
+      {
+        "carrying": "needle-threaded"
+      }
+    ],
+    "then": [
+      {
+        "transform": "cloth-shaped",
+        "into": "raiment"
+      },
+      {
+        "flag": "raimentMade",
+        "set": 1
+      }
+    ],
+    "say": [
+      "Well done! you have now made a raiment fit for a GOD."
+    ],
+    "origin": "red.bas:2408"
+  },
+  {
+    "id": "sew-uncut-cloth",
+    "verb": "sew",
+    "target": {
+      "object": "cloth"
+    },
+    "when": [
+      {
+        "carrying": "cloth"
+      }
+    ],
+    "say": [
+      "That cloth is not ready for sewing yet!"
+    ],
+    "origin": "red.bas:2450"
+  },
+  {
+    "id": "sew-cloth-not-held",
+    "verb": "sew",
+    "target": {
+      "object": "cloth"
+    },
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2452"
+  },
+  {
+    "id": "make-raiment",
+    "verb": "make",
+    "target": {
+      "object": "raiment"
+    },
+    "when": [
+      {
+        "flag": "raimentMade",
+        "eq": 0
+      },
+      {
+        "carrying": "cloth-shaped"
+      },
+      {
+        "carrying": "needle-threaded"
+      }
+    ],
+    "then": [
+      {
+        "transform": "cloth-shaped",
+        "into": "raiment"
+      },
+      {
+        "flag": "raimentMade",
+        "set": 1
+      }
+    ],
+    "say": [
+      "Well done! you have now made a raiment fit for a GOD."
+    ],
+    "origin": "red.bas:3000"
+  },
+  {
+    "id": "thread-needle-no-needle",
+    "verb": "thread",
+    "target": {
+      "object": "needle"
+    },
+    "when": [
+      {
+        "not": {
+          "carrying": "needle"
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2502"
+  },
+  {
+    "id": "thread-needle-no-thread",
+    "verb": "thread",
+    "target": {
+      "object": "needle"
+    },
+    "when": [
+      {
+        "not": {
+          "carrying": "thread"
+        }
+      }
+    ],
+    "say": [
+      "But you have NO thread!"
+    ],
+    "origin": "red.bas:2504"
+  },
+  {
+    "id": "thread-needle",
+    "verb": "thread",
+    "target": {
+      "object": "needle"
+    },
+    "when": [
+      {
+        "carrying": "needle"
+      },
+      {
+        "carrying": "thread"
+      }
+    ],
+    "then": [
+      {
+        "flag": "needleThreaded",
+        "set": 1
+      },
+      {
+        "transform": "needle",
+        "into": "needle-threaded"
+      },
+      {
+        "destroy": "thread"
+      }
+    ],
+    "say": [
+      "It wasn't easy! But it's done."
+    ],
+    "origin": "red.bas:2506"
+  },
+  {
+    "id": "thread-already-threaded",
+    "verb": "thread",
+    "target": {
+      "object": "needle-threaded"
+    },
+    "say": [
+      {
+        "message": 22
+      }
+    ],
+    "origin": "red.bas:2550"
+  },
+  {
+    "id": "touch-embalming-fluid",
+    "verb": "touch",
+    "target": {
+      "scenery": 110
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 23
+      },
+      {
+        "message": 24
+      }
+    ],
+    "origin": "red.bas:2600"
+  },
+  {
+    "id": "drink-embalming-fluid",
+    "verb": "drink",
+    "target": {
+      "scenery": 110
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 23
+      },
+      {
+        "message": 24
+      }
+    ],
+    "origin": "red.bas:2700"
+  },
+  {
+    "id": "drink-from-full-jug",
+    "verb": "drink",
+    "target": {
+      "scenery": 110
+    },
+    "when": [
+      {
+        "carrying": "jug-full"
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 23
+      },
+      {
+        "message": 24
+      }
+    ],
+    "origin": "red.bas:2600"
+  },
+  {
+    "id": "touch-anything-else",
+    "verb": "touch",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 14
+      }
+    ],
+    "origin": "red.bas:2610"
+  },
+  {
+    "id": "fill-jug-at-pool",
+    "verb": "fill",
+    "target": {
+      "object": "jug-silver"
+    },
+    "when": [
+      {
+        "room": 13
+      },
+      {
+        "carrying": "jug-silver"
+      }
+    ],
+    "then": [
+      {
+        "flag": "poolUndrawn",
+        "set": 0
+      },
+      {
+        "transform": "jug-silver",
+        "into": "jug-full"
+      }
+    ],
+    "say": [
+      "OK. That could be useful as the liquid is embalming fluid!"
+    ],
+    "origin": "red.bas:2805"
+  },
+  {
+    "id": "fill-jug-not-held",
+    "verb": "fill",
+    "target": {
+      "object": "jug-silver"
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2802"
+  },
+  {
+    "id": "fill-jug-already-full",
+    "verb": "fill",
+    "target": {
+      "object": "jug-full"
+    },
+    "when": [
+      {
+        "carrying": "jug-full"
+      }
+    ],
+    "say": [
+      {
+        "message": 22
+      }
+    ],
+    "origin": "red.bas:2855"
+  },
+  {
+    "id": "fill-something-not-held",
+    "verb": "fill",
+    "target": {
+      "anyObject": true
+    },
+    "say": [
+      {
+        "message": 25
+      }
+    ],
+    "origin": "red.bas:2852",
+    "when": [
+      {
+        "not": {
+          "targetCarried": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "eat-food-already",
+    "verb": "eat",
+    "target": {
+      "object": "food"
+    },
+    "when": [
+      {
+        "flag": "foodEaten",
+        "eq": 1
+      }
+    ],
+    "say": [
+      {
+        "message": 22
+      }
+    ],
+    "origin": "red.bas:2901"
+  },
+  {
+    "id": "eat-food-not-held",
+    "verb": "eat",
+    "target": {
+      "object": "food"
+    },
+    "when": [
+      {
+        "not": {
+          "carrying": "food"
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:2902"
+  },
+  {
+    "id": "eat-food",
+    "verb": "eat",
+    "target": {
+      "object": "food"
+    },
+    "when": [
+      {
+        "carrying": "food"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "food"
+      },
+      {
+        "flag": "foodEaten",
+        "set": 1
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      },
+      "Do you think that was wise?"
+    ],
+    "confirm": "The funeral FOOD is one of the four things the male MUMMY is waiting for, and there is only one of it. Eating it cannot be undone and the quest cannot then be finished. Repeat the command if you really mean it.",
+    "origin": "red.bas:2904"
+  },
+  {
+    "id": "wear-raiment",
+    "verb": "wear",
+    "target": {
+      "object": "raiment"
+    },
+    "when": [
+      {
+        "carrying": "raiment"
+      }
+    ],
+    "say": [
+      "That's not for you!"
+    ],
+    "origin": "red.bas:3100"
+  },
+  {
+    "id": "wear-necklace",
+    "verb": "wear",
+    "target": {
+      "object": "necklace"
+    },
+    "when": [
+      {
+        "carrying": "necklace"
+      }
+    ],
+    "say": [
+      "That's not for you!"
+    ],
+    "origin": "red.bas:3100"
+  },
+  {
+    "id": "wear-perfume",
+    "verb": "wear",
+    "target": {
+      "object": "perfume"
+    },
+    "when": [
+      {
+        "carrying": "perfume"
+      }
+    ],
+    "say": [
+      "That's not for you!"
+    ],
+    "origin": "red.bas:3100"
+  },
+  {
+    "id": "wear-shroud",
+    "verb": "wear",
+    "target": {
+      "object": "shroud"
+    },
+    "when": [
+      {
+        "carrying": "shroud"
+      }
+    ],
+    "say": [
+      "That's not for you!"
+    ],
+    "origin": "red.bas:3100"
+  },
+  {
+    "id": "smell-perfume-not-held",
+    "verb": "smell",
+    "target": {
+      "object": "perfume"
+    },
+    "when": [
+      {
+        "not": {
+          "carrying": "perfume"
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:3202"
+  },
+  {
+    "id": "smell-perfume",
+    "verb": "smell",
+    "target": {
+      "object": "perfume"
+    },
+    "say": [
+      "Heady but nice!"
+    ],
+    "origin": "red.bas:3204"
+  },
+  {
+    "id": "read-runes",
+    "verb": "read",
+    "target": {
+      "object": "runes"
+    },
+    "say": [
+      {
+        "message": 12
+      },
+      "But you can't understand them!"
+    ],
+    "origin": "red.bas:3300",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
+  },
+  {
+    "id": "read-symbols",
+    "verb": "read",
+    "target": {
+      "scenery": [
+        81,
+        109
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "then": [
+      {
+        "flag": "symbolsRead",
+        "set": 1
+      }
+    ],
+    "say": [
+      "Magical but not necessarily the ABRACADABRA type!"
+    ],
+    "origin": "red.bas:3302"
+  },
+  {
+    "id": "unlock-box",
+    "verb": "unlock",
+    "target": {
+      "scenery": 69
+    },
+    "when": [
+      {
+        "room": 10
+      },
+      {
+        "flag": "boxUnlocked",
+        "eq": 0
+      },
+      {
+        "carrying": "key"
+      }
+    ],
+    "then": [
+      {
+        "flag": "boxUnlocked",
+        "set": 1
+      },
+      {
+        "take": "bracelet"
+      },
+      {
+        "moveTo": "key",
+        "room": 10
+      }
+    ],
+    "say": [
+      "The BOX unlocks. Inside you see a BRACELET. As you hastily scoop it up you drop the KEY."
+    ],
+    "origin": "red.bas:3400"
+  },
+  {
+    "id": "unlock-box-no-key",
+    "verb": "unlock",
+    "target": {
+      "scenery": 69
+    },
+    "when": [
+      {
+        "room": 10
+      },
+      {
+        "flag": "boxUnlocked",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You have no KEY!"
+    ],
+    "origin": "red.bas:3402"
+  },
+  {
+    "id": "unlock-box-open",
+    "verb": "unlock",
+    "target": {
+      "scenery": 69
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "It's open!"
+    ],
+    "origin": "red.bas:3404"
+  },
+  {
+    "id": "unlock-silver-doors",
+    "verb": "unlock",
+    "target": {
+      "scenery": 92
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "They are not locked."
+    ],
+    "origin": "red.bas:3406"
+  },
+  {
+    "id": "blow-pipe",
+    "verb": "blow",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "carrying": "pipe"
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "snakeOnRamp",
+        "set": 1
+      },
+      {
+        "moveTo": "snake",
+        "room": 14
+      }
+    ],
+    "say": [
+      "One of the snakes slithers up the ramp to be at your feet!"
+    ],
+    "origin": "red.bas:3600"
+  },
+  {
+    "id": "blow-pipe-not-held",
+    "verb": "blow",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "not": {
+          "carrying": "pipe"
+        }
+      }
+    ],
+    "say": [
+      "You have no PIPE!"
+    ],
+    "origin": "red.bas:3502"
+  },
+  {
+    "id": "blow-pipe-elsewhere",
+    "verb": "blow",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "carrying": "pipe"
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      }
+    ],
+    "origin": "red.bas:3506"
+  },
+  {
+    "id": "blow-anything-else",
+    "verb": "blow",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 17
+      }
+    ],
+    "origin": "red.bas:3604"
+  },
+  {
+    "id": "tell-joke-to-sphinx",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "carrying": "joke"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "joke"
+      },
+      {
+        "flag": "flyDead",
+        "set": 1
+      },
+      {
+        "moveTo": "fly",
+        "room": 21
+      }
+    ],
+    "say": [
+      "The SPHINX smiles an inscrutable smile but the joke KILLS the fly"
+    ],
+    "origin": "red.bas:3702"
+  },
+  {
+    "id": "tell-joke-heard-it",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "flag": "flyDead",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "\"I've heard that one\" says the SPHINX."
+    ],
+    "origin": "red.bas:3703"
+  },
+  {
+    "id": "tell-joke-no-joke",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 21
+      }
+    ],
+    "say": [
+      "You try your best stories but you can't raise a smile."
+    ],
+    "origin": "red.bas:3704"
+  },
+  {
+    "id": "tell-joke-soothsayer",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "Not even the glimmer of a smile!"
+    ],
+    "origin": "red.bas:3710"
+  },
+  {
+    "id": "tell-joke-concubine",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "\"WE are not amused!\" is the response to that idea!"
+    ],
+    "origin": "red.bas:3712"
+  },
+  {
+    "id": "tell-joke-alone-in-apartments",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "Talking to yourself is the first signs of something............."
+    ],
+    "origin": "red.bas:3714"
+  },
+  {
+    "id": "tell-joke-to-mummy",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 12
+      }
+    ],
+    "say": [
+      "That could seriously damage a MUMMY'S health! (only joking!)"
+    ],
+    "origin": "red.bas:3716"
+  },
+  {
+    "id": "tell-joke-to-cow",
+    "verb": "tell",
+    "target": {
+      "object": "joke"
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "That's really milking it!"
+    ],
+    "origin": "red.bas:3718"
+  },
+  {
+    "id": "kill-anything",
+    "verb": "kill",
+    "target": {
+      "any": true
+    },
+    "say": [
+      "You have no weapon!"
+    ],
+    "origin": "red.bas:3800"
+  },
+  {
+    "id": "milk-cow",
+    "verb": "milk",
+    "target": {
+      "scenery": 62
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "Try an udder idea!"
+    ],
+    "origin": "red.bas:4000"
+  },
+  {
+    "id": "move-anything",
+    "verb": "move",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 13
+      }
+    ],
+    "origin": "red.bas:4100"
+  },
+  {
+    "id": "jump-into-pool",
+    "verb": "jump",
+    "target": {
+      "scenery": [
+        73,
+        79
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      "That pool is full of embalming fluid! You are now in no state to carry on with your quest."
+    ],
+    "origin": "red.bas:4202"
+  },
+  {
+    "id": "dive-into-pool",
+    "verb": "dive",
+    "target": {
+      "scenery": [
+        73,
+        79
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      "That pool is full of embalming fluid! You are now in no state to carry on with your quest."
+    ],
+    "origin": "red.bas:4300"
+  },
+  {
+    "id": "swim-in-pool",
+    "verb": "swim",
+    "target": {
+      "scenery": 73
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      "That pool is full of embalming fluid! You are now in no state to carry on with your quest."
+    ],
+    "origin": "red.bas:4400"
+  },
+  {
+    "id": "swim-bare-in-pool-room",
+    "verb": "swim",
+    "target": {
+      "none": true
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      "That pool is full of embalming fluid! You are now in no state to carry on with your quest."
+    ],
+    "origin": "red.bas:4400"
+  },
+  {
+    "id": "dive-bare-in-pool-room",
+    "verb": "dive",
+    "target": {
+      "none": true
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      "That pool is full of embalming fluid! You are now in no state to carry on with your quest."
+    ],
+    "origin": "red.bas:4300"
+  },
+  {
+    "id": "jump-on-the-spot",
+    "verb": "jump",
+    "target": {
+      "none": true
+    },
+    "say": [
+      {
+        "message": 12
+      },
+      "Hasn't done much good!"
+    ],
+    "origin": "red.bas:4200"
+  },
+  {
+    "id": "climb-stairs-up",
+    "verb": "climb",
+    "target": {
+      "scenery": 78
+    },
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "then": [
+      {
+        "teleport": 15
+      }
+    ],
+    "origin": "red.bas:4500"
+  },
+  {
+    "id": "climb-stairs-wrong-way",
+    "verb": "climb",
+    "target": {
+      "scenery": 78
+    },
+    "when": [
+      {
+        "room": 15
+      }
+    ],
+    "say": [
+      "They don't go up from here!"
+    ],
+    "origin": "red.bas:4502"
+  },
+  {
+    "id": "climb-no-stairs",
+    "verb": "climb",
+    "target": {
+      "scenery": 78
+    },
+    "say": [
+      "There are no stairs here!"
+    ],
+    "origin": "red.bas:4504"
+  },
+  {
+    "id": "descend-stairs-down",
+    "verb": "descend",
+    "target": {
+      "scenery": 78
+    },
+    "when": [
+      {
+        "room": 15
+      }
+    ],
+    "then": [
+      {
+        "teleport": 16
+      }
+    ],
+    "origin": "red.bas:4600"
+  },
+  {
+    "id": "descend-stairs-wrong-way",
+    "verb": "descend",
+    "target": {
+      "scenery": 78
+    },
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "say": [
+      "They don't go down from here!"
+    ],
+    "origin": "red.bas:4602"
+  },
+  {
+    "id": "descend-no-stairs",
+    "verb": "descend",
+    "target": {
+      "scenery": 78
+    },
+    "say": [
+      "There are no stairs here!"
+    ],
+    "origin": "red.bas:4604"
+  },
+  {
+    "id": "push-silver-doors",
+    "verb": "push",
+    "target": {
+      "scenery": 92
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "The ANUBIS won't permit that!"
+    ],
+    "origin": "red.bas:4800"
+  },
+  {
+    "id": "push-anything-else",
+    "verb": "push",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 14
+      }
+    ],
+    "origin": "red.bas:4810"
+  },
+  {
+    "id": "kiss-soothsayer",
+    "verb": "kiss",
+    "target": {
+      "scenery": 57
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "Your advances are rebuffed!"
+    ],
+    "origin": "red.bas:4900"
+  },
+  {
+    "id": "kiss-anubis",
+    "verb": "kiss",
+    "target": {
+      "scenery": 90
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "Your advances are rebuffed!"
+    ],
+    "origin": "red.bas:4900"
+  },
+  {
+    "id": "kiss-concubine",
+    "verb": "kiss",
+    "target": {
+      "scenery": 87
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "Your advances are rebuffed!"
+    ],
+    "origin": "red.bas:4900"
+  },
+  {
+    "id": "use-anything",
+    "verb": "use",
+    "target": {
+      "any": true
+    },
+    "say": [
+      "That's too general GENERAL!"
+    ],
+    "origin": "red.bas:5200"
+  },
+  {
+    "id": "tickle-anubis",
+    "verb": "tickle",
+    "target": {
+      "scenery": 90
+    },
+    "when": [
+      {
+        "room": 20
+      },
+      {
+        "flag": "soothsayerHelped",
+        "eq": 1
+      }
+    ],
+    "then": [
+      {
+        "teleport": 29
+      }
+    ],
+    "say": [
+      "The ANUBIS rolls about on the floor and you are able to dodge through the silver doors!"
+    ],
+    "origin": "red.bas:5300"
+  },
+  {
+    "id": "tickle-anubis-no-hint",
+    "verb": "tickle",
+    "target": {
+      "scenery": 90
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "The Anubis manages to avoid you!"
+    ],
+    "origin": "red.bas:5302"
+  },
+  {
+    "id": "tickle-anubis-absent",
+    "verb": "tickle",
+    "target": {
+      "scenery": 90
+    },
+    "say": [
+      {
+        "message": 18
+      }
+    ],
+    "origin": "red.bas:5304"
+  },
+  {
+    "id": "feed-cow-with-hay",
+    "verb": "feed",
+    "target": {
+      "scenery": 62
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "carrying": "hay"
+      }
+    ],
+    "then": [
+      {
+        "flag": "cowFed",
+        "set": 1
+      },
+      {
+        "destroy": "hay"
+      },
+      {
+        "moveTo": "coin",
+        "room": 8
+      }
+    ],
+    "say": [
+      "The cow rises to eat the HAY and you see a COIN on the carpet."
+    ],
+    "origin": "red.bas:5402"
+  },
+  {
+    "id": "feed-cow-already-fed",
+    "verb": "feed",
+    "target": {
+      "scenery": 62
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "flag": "cowFed",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "She's already been fed!"
+    ],
+    "origin": "red.bas:5406"
+  },
+  {
+    "id": "feed-cow-wrong-food",
+    "verb": "feed",
+    "target": {
+      "scenery": 62
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "carrying": "food"
+      }
+    ],
+    "say": [
+      "She doesn't fancy THAT food!"
+    ],
+    "origin": "red.bas:5408"
+  },
+  {
+    "id": "feed-cow-with-what",
+    "verb": "feed",
+    "target": {
+      "scenery": 62
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "With what?"
+    ],
+    "origin": "red.bas:5409"
+  },
+  {
+    "id": "feed-spider-with-fly",
+    "verb": "feed",
+    "target": {
+      "scenery": 53
+    },
+    "when": [
+      {
+        "room": 5
+      },
+      {
+        "carrying": "fly"
+      }
+    ],
+    "then": [
+      {
+        "flag": "spiderGone",
+        "set": 1
+      },
+      {
+        "destroy": "fly"
+      },
+      {
+        "moveTo": "jug-silver",
+        "room": 5
+      }
+    ],
+    "say": [
+      "The spider takes the fly, and beetles off to enjoy the treat! When he has gone you notice a JUG in a dark corner."
+    ],
+    "origin": "red.bas:5410"
+  },
+  {
+    "id": "feed-anything-else",
+    "verb": "feed",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 13
+      }
+    ],
+    "origin": "red.bas:5420"
+  },
+  {
+    "id": "wait",
+    "verb": "wait",
+    "say": [
+      {
+        "message": 12
+      },
+      "Hasn't done much good!"
+    ],
+    "origin": "red.bas:5600"
+  },
+  {
+    "id": "break-anything",
+    "verb": "break",
+    "target": {
+      "any": true
+    },
+    "say": [
+      "NO violence please!"
+    ],
+    "origin": "red.bas:5700"
+  },
+  {
+    "id": "listen-soothsayer-chanting",
+    "verb": "listen",
+    "when": [
+      {
+        "room": 6
+      },
+      {
+        "flag": "soothsayerHelped",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You hear the chanting of the soothsayer."
+    ],
+    "origin": "red.bas:5800"
+  },
+  {
+    "id": "listen-soothsayer-cheerful",
+    "verb": "listen",
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "The chanting is cheerful now!"
+    ],
+    "origin": "red.bas:5804"
+  },
+  {
+    "id": "listen-funeral-parlour",
+    "verb": "listen",
+    "when": [
+      {
+        "room": 22
+      }
+    ],
+    "say": [
+      "Waken up! Faint solemn music."
+    ],
+    "origin": "red.bas:5806"
+  },
+  {
+    "id": "listen-cow-munching",
+    "verb": "listen",
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "cowFed",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "Munch, munch , munch!"
+    ],
+    "origin": "red.bas:5808"
+  },
+  {
+    "id": "listen-nothing",
+    "verb": "listen",
+    "say": [
+      "Nothing special can be heard."
+    ],
+    "origin": "red.bas:5810"
+  },
+  {
+    "id": "say-abracadabra-after-reading",
+    "verb": "say",
+    "target": {
+      "scenery": 106
+    },
+    "when": [
+      {
+        "flag": "symbolsRead",
+        "eq": 1
+      }
+    ],
+    "then": [
+      {
+        "flag": "symbolsRead",
+        "set": 2
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      },
+      {
+        "message": 17
+      },
+      "But what prompted that?"
+    ],
+    "origin": "red.bas:5900"
+  },
+  {
+    "id": "say-abracadabra",
+    "verb": "say",
+    "target": {
+      "scenery": 106
+    },
+    "say": [
+      {
+        "message": 17
+      }
+    ],
+    "origin": "red.bas:5901"
+  },
+  {
+    "id": "say-hello-soothsayer",
+    "verb": "say",
+    "target": {
+      "scenery": 111
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "Hello to you!"
+    ],
+    "origin": "red.bas:5902"
+  },
+  {
+    "id": "say-hello-anubis",
+    "verb": "say",
+    "target": {
+      "scenery": 111
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "Hello to you!"
+    ],
+    "origin": "red.bas:5902"
+  },
+  {
+    "id": "say-hello-sphinx",
+    "verb": "say",
+    "target": {
+      "scenery": 111
+    },
+    "when": [
+      {
+        "room": 21
+      }
+    ],
+    "say": [
+      "Hello to you!"
+    ],
+    "origin": "red.bas:5902"
+  },
+  {
+    "id": "say-hello-concubine",
+    "verb": "say",
+    "target": {
+      "scenery": 111
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "Hello to you!"
+    ],
+    "origin": "red.bas:5902"
+  },
+  {
+    "id": "say-anything-to-male-mummy",
+    "verb": "say",
+    "target": {
+      "any": true
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You must not waste time talking. I would much prefer some action!"
+    ],
+    "origin": "red.bas:5904"
+  },
+  {
+    "id": "say-anything-to-female-mummy",
+    "verb": "say",
+    "target": {
+      "any": true
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You must not waste time talking. I would much prefer some action!"
+    ],
+    "origin": "red.bas:5904"
+  },
+  {
+    "id": "say-ernie-to-spider",
+    "verb": "say",
+    "target": {
+      "scenery": 112
+    },
+    "when": [
+      {
+        "room": 5
+      },
+      {
+        "flag": "spiderGone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "\"That's me!\" says the spider!"
+    ],
+    "origin": "red.bas:5906"
+  },
+  {
+    "id": "say-ernie-elsewhere",
+    "verb": "say",
+    "target": {
+      "scenery": 112
+    },
+    "say": [
+      "No-one here by that name!"
+    ],
+    "origin": "red.bas:5908"
+  },
+  {
+    "id": "say-anything-else",
+    "verb": "say",
+    "target": {
+      "any": true
+    },
+    "say": [
+      "Talking to yourself is a sure sign of something.............."
+    ],
+    "origin": "red.bas:5910"
+  },
+  {
+    "id": "rub-coin",
+    "verb": "rub",
+    "target": {
+      "object": "coin"
+    },
+    "when": [
+      {
+        "carrying": "coin"
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      },
+      {
+        "message": 17
+      }
+    ],
+    "origin": "red.bas:6010"
+  },
+  {
+    "id": "rub-anything-else",
+    "verb": "rub",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 13
+      }
+    ],
+    "origin": "red.bas:6090"
+  },
+  {
+    "id": "wave-anything-else",
+    "verb": "wave",
+    "target": {
+      "any": true
+    },
+    "say": [
+      {
+        "message": 13
+      }
+    ],
+    "origin": "red.bas:6100"
+  }
+]

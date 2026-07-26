@@ -1,0 +1,759 @@
+[
+  {
+    "id": 1,
+    "key": "tomb-east",
+    "name": "Egyptian Tomb (east end)",
+    "ink": 1,
+    "description": "You are in an EGYPTIAN TOMB. It is the burial place of some bygone ruler or GOD. There is a long dark corridor stretching to the west as far as the eye can see. You can see two dimly lit alcoves to the north and south.......... THERE IS NO WAY OUT",
+    "exits": {
+      "north": 2,
+      "south": 3,
+      "west": 4
+    },
+    "images": [
+      {
+        "src": "tomb-east.svg"
+      }
+    ],
+    "origin": "red.bas:7010"
+  },
+  {
+    "id": 2,
+    "key": "chamber-male",
+    "name": "Burial chamber - male MUMMY",
+    "ink": 3,
+    "description": "In this burial chamber there is a male MUMMY--he is lying on a marble slab, and he is COMPLETELY NAKED",
+    "exits": {
+      "south": 1
+    },
+    "images": [
+      {
+        "src": "chamber-male--maleMummyDone4.svg",
+        "when": [
+          {
+            "flag": "maleMummyDone",
+            "eq": 4
+          }
+        ]
+      },
+      {
+        "src": "chamber-male.svg"
+      }
+    ],
+    "origin": "red.bas:7021",
+    "descriptionVariants": [
+      {
+        "text": "This burial chamber is now EMPTY",
+        "when": [
+          {
+            "flag": "maleMummyDone",
+            "eq": 4
+          }
+        ],
+        "origin": "red.bas:7020"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "key": "chamber-female",
+    "name": "Burial chamber - female MUMMY",
+    "ink": 7,
+    "description": "In this burial chamber there is a female MUMMY--she is lying on a marble slab, and she is COMPLETELY NAKED!",
+    "exits": {
+      "north": 1
+    },
+    "images": [
+      {
+        "src": "chamber-female--femaleMummyDone4.svg",
+        "when": [
+          {
+            "flag": "femaleMummyDone",
+            "eq": 4
+          }
+        ]
+      },
+      {
+        "src": "chamber-female.svg"
+      }
+    ],
+    "origin": "red.bas:7031",
+    "descriptionVariants": [
+      {
+        "text": "This burial chamber is now COMPLETELY EMPTY",
+        "when": [
+          {
+            "flag": "femaleMummyDone",
+            "eq": 4
+          }
+        ],
+        "origin": "red.bas:7030"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "key": "corridor-east",
+    "name": "Long corridor, east end",
+    "ink": 3,
+    "description": "This is the east end of a long corridor with flickering lights from unseen torches.",
+    "exits": {
+      "north": 5,
+      "south": 6,
+      "east": 1,
+      "west": 7
+    },
+    "images": [
+      {
+        "src": "corridor-east.svg"
+      }
+    ],
+    "origin": "red.bas:7040"
+  },
+  {
+    "id": 5,
+    "key": "alcove",
+    "name": "Dusky alcove (bat and spider)",
+    "ink": 2,
+    "description": "You are in a dusky alcove. A bat is hovering about",
+    "exits": {
+      "south": 4
+    },
+    "images": [
+      {
+        "src": "alcove--spiderGone1.svg",
+        "when": [
+          {
+            "flag": "spiderGone",
+            "eq": 1
+          }
+        ]
+      },
+      {
+        "src": "alcove--spiderGone0.svg",
+        "when": [
+          {
+            "flag": "spiderGone",
+            "eq": 0
+          }
+        ]
+      },
+      {
+        "src": "alcove.svg"
+      }
+    ],
+    "origin": "red.bas:7050",
+    "descriptionFragments": [
+      {
+        "text": "and there is a spider busily spinning a web in a corner.",
+        "when": [
+          {
+            "flag": "spiderGone",
+            "eq": 0
+          }
+        ],
+        "origin": "red.bas:7051"
+      },
+      {
+        "text": "and there is a part finished web in one corner.",
+        "when": [
+          {
+            "flag": "spiderGone",
+            "eq": 1
+          }
+        ],
+        "origin": "red.bas:7052"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "key": "pentacle-room",
+    "name": "Five-sided room (Soothsayer)",
+    "ink": 1,
+    "description": "You enter a five-sided room. There is a mysterious fire burning inside a pentacle of stones. The signs of the Zodiac adorn the walls. There is a distinct air of magic about this place.",
+    "exits": {
+      "north": 4
+    },
+    "images": [
+      {
+        "src": "pentacle-room--metSoothsayer1.svg",
+        "when": [
+          {
+            "flag": "metSoothsayer",
+            "eq": 1
+          }
+        ]
+      },
+      {
+        "src": "pentacle-room.svg"
+      }
+    ],
+    "origin": "red.bas:7060",
+    "descriptionFragments": [
+      {
+        "text": "There is a soothsayer sitting at the far end of the room.",
+        "when": [
+          {
+            "flag": "metSoothsayer",
+            "eq": 1
+          }
+        ],
+        "origin": "red.bas:7062"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "key": "corridor-narrow",
+    "name": "Narrow corridor, towards east end",
+    "ink": 3,
+    "description": "You are part-way along a dark narrow corridor, towards the east end. It is quiet here!",
+    "exits": {
+      "north": 8,
+      "south": 10,
+      "east": 4,
+      "west": 11
+    },
+    "images": [
+      {
+        "src": "corridor-narrow.svg"
+      }
+    ],
+    "origin": "red.bas:7070"
+  },
+  {
+    "id": 8,
+    "key": "temple",
+    "name": "Temple (sacred cow)",
+    "ink": 1,
+    "description": "You have entered a TEMPLE.",
+    "exits": {
+      "north": 9,
+      "south": 7
+    },
+    "images": [
+      {
+        "src": "temple--cowFed1.svg",
+        "when": [
+          {
+            "flag": "cowFed",
+            "eq": 1
+          }
+        ]
+      },
+      {
+        "src": "temple--cowFed0.svg",
+        "when": [
+          {
+            "flag": "cowFed",
+            "eq": 0
+          }
+        ]
+      },
+      {
+        "src": "temple.svg"
+      }
+    ],
+    "origin": "red.bas:7080",
+    "descriptionFragments": [
+      {
+        "text": "A sacred cow is sitting on a Persian carpet looking at you with brown lanquid eyes.",
+        "when": [
+          {
+            "flag": "cowFed",
+            "eq": 0
+          }
+        ],
+        "origin": "red.bas:7081"
+      },
+      {
+        "text": "The sacred cow gazes at you as she happily chews the cud.",
+        "when": [
+          {
+            "flag": "cowFed",
+            "eq": 1
+          }
+        ],
+        "origin": "red.bas:7082"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "key": "byre",
+    "name": "The byre (haystack)",
+    "ink": 6,
+    "description": "You have entered the byre. This is obviously where the sacred cow sleeps. There is a scent of sweet hay in here",
+    "exits": {
+      "south": 8
+    },
+    "images": [
+      {
+        "src": "byre--haystackCollapsed1.svg",
+        "when": [
+          {
+            "flag": "haystackCollapsed",
+            "eq": 1
+          }
+        ]
+      },
+      {
+        "src": "byre--haystackCollapsed0.svg",
+        "when": [
+          {
+            "flag": "haystackCollapsed",
+            "eq": 0
+          }
+        ]
+      },
+      {
+        "src": "byre.svg"
+      }
+    ],
+    "origin": "red.bas:7090",
+    "descriptionFragments": [
+      {
+        "text": "coming from a small haystack",
+        "when": [
+          {
+            "flag": "haystackCollapsed",
+            "eq": 0
+          }
+        ],
+        "origin": "red.bas:7091"
+      },
+      {
+        "text": "coming from a pile of hay.",
+        "when": [
+          {
+            "flag": "haystackCollapsed",
+            "eq": 1
+          }
+        ],
+        "origin": "red.bas:7092"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "key": "scarlet-room",
+    "name": "The SCARLET ROOM (plinth and box)",
+    "ink": 2,
+    "description": "This is the SCARLET ROOM It is completely painted in RED On a plinth in the middle of the room stands a carved box",
+    "exits": {
+      "north": 7
+    },
+    "images": [
+      {
+        "src": "scarlet-room.svg"
+      }
+    ],
+    "origin": "red.bas:7100"
+  },
+  {
+    "id": 11,
+    "key": "corridor-west-inner",
+    "name": "Dark corridor, near west end",
+    "ink": 3,
+    "description": "You are part-way along a dark corridor, near the west end. The silence here is deafening",
+    "exits": {
+      "north": 12,
+      "south": 14,
+      "east": 7,
+      "west": 15
+    },
+    "images": [
+      {
+        "src": "corridor-west-inner.svg"
+      }
+    ],
+    "origin": "red.bas:7110"
+  },
+  {
+    "id": 12,
+    "key": "chamber-plain",
+    "name": "Plain burial chamber (MUMMY CASE)",
+    "ink": 1,
+    "description": "You are in a small, extremely plain burial chamber. Lying on the floor is an apparently forgotten MUMMY CASE.",
+    "exits": {
+      "south": 11
+    },
+    "images": [
+      {
+        "src": "chamber-plain.svg"
+      }
+    ],
+    "origin": "red.bas:7120"
+  },
+  {
+    "id": 13,
+    "key": "patio",
+    "name": "Patio and ornamental pool",
+    "ink": 2,
+    "description": "You are on the patio outside the Concubine's Apartments. Here there is an ornamental pool which is gleaming with a strange green glow. To the north lies an exotic garden.",
+    "exits": {
+      "north": 24,
+      "west": 19
+    },
+    "images": [
+      {
+        "src": "patio.svg"
+      }
+    ],
+    "origin": "red.bas:7130"
+  },
+  {
+    "id": 14,
+    "key": "snake-pit-edge",
+    "name": "Above the snake-pit",
+    "ink": 4,
+    "description": "You are standing above the snake-pit. Below, snakes of all shapes and sizes writhe and intertwine. A winding, slimy ramp leads up from the pit to your feet. Several snakes are slithering up it.",
+    "exits": {
+      "north": 11,
+      "down": 31
+    },
+    "images": [
+      {
+        "src": "snake-pit-edge.svg"
+      }
+    ],
+    "origin": "red.bas:7140"
+  },
+  {
+    "id": 15,
+    "key": "corridor-west-end",
+    "name": "Long corridor, west end (stairs down)",
+    "ink": 3,
+    "description": "This is the west end of a long dark corridor. A flight of stairs leads down from here.",
+    "exits": {
+      "south": 17,
+      "east": 11,
+      "west": 20,
+      "down": 16
+    },
+    "images": [
+      {
+        "src": "corridor-west-end.svg"
+      }
+    ],
+    "origin": "red.bas:7150"
+  },
+  {
+    "id": 16,
+    "key": "room-of-down",
+    "name": "The room full of DOWN",
+    "ink": 7,
+    "description": "You have come down, down, down, into a room full of DOWN!",
+    "exits": {
+      "up": 15
+    },
+    "images": [
+      {
+        "src": "room-of-down.svg"
+      }
+    ],
+    "origin": "red.bas:7160"
+  },
+  {
+    "id": 17,
+    "key": "black-room",
+    "name": "The BLACK room",
+    "ink": 1,
+    "description": "You are now in the BLACK room where the walls are hung with black velvet, and magical symbols have been etched out in gold on the ceiling. The whole room is illuminated with an EERIE, EERIE GLOW.",
+    "exits": {
+      "north": 15
+    },
+    "images": [
+      {
+        "src": "black-room.svg"
+      }
+    ],
+    "origin": "red.bas:7170"
+  },
+  {
+    "id": 18,
+    "key": "treasure-room",
+    "name": "The Treasure Room",
+    "ink": 2,
+    "description": "This is the Treasure Room. In glass cases there is on show the most wonderful jewellery. One case is open and seems to be empty--it does look as though it was the work of vandals. Also, there is a skeleton lying on the floor.",
+    "exits": {
+      "north": 19,
+      "south": 20
+    },
+    "images": [
+      {
+        "src": "treasure-room.svg"
+      }
+    ],
+    "origin": "red.bas:7180"
+  },
+  {
+    "id": 19,
+    "key": "concubine-apartments",
+    "name": "The Concubine's Apartments",
+    "ink": 5,
+    "description": "You are in the Concubine's Apartments. The decorations consist of rich hangings in peacock blue and acid yellow. A faint smell of perfume is in the air. There is a patio to the east.",
+    "exits": {
+      "south": 18,
+      "east": 13
+    },
+    "images": [
+      {
+        "src": "concubine-apartments--concubinePresent1.svg",
+        "when": [
+          {
+            "flag": "concubinePresent",
+            "eq": 1
+          }
+        ]
+      },
+      {
+        "src": "concubine-apartments.svg"
+      }
+    ],
+    "origin": "red.bas:7190",
+    "descriptionFragments": [
+      {
+        "text": "A beautiful Egyptian Concubine is sitting at her dressing table.",
+        "when": [
+          {
+            "flag": "concubinePresent",
+            "eq": 1
+          }
+        ],
+        "origin": "red.bas:7191"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "key": "entrance-hall",
+    "name": "Entrance hall (Anubis, silver doors)",
+    "ink": 1,
+    "description": "A tall anubis stands in the entrance hall in front of a pair of closed, silver doors.",
+    "exits": {
+      "north": 18,
+      "south": 21,
+      "east": 15
+    },
+    "images": [
+      {
+        "src": "entrance-hall.svg"
+      }
+    ],
+    "origin": "red.bas:7200"
+  },
+  {
+    "id": 21,
+    "key": "sphinx-cave",
+    "name": "Sandstone cave (the SPHINX)",
+    "ink": 3,
+    "description": "This is much more like a cave than a room. The most prominent feature here is a SPHINX, carved from sandstone",
+    "exits": {
+      "north": 20,
+      "south": 22
+    },
+    "images": [
+      {
+        "src": "sphinx-cave--flyDead0.svg",
+        "when": [
+          {
+            "flag": "flyDead",
+            "eq": 0
+          }
+        ]
+      },
+      {
+        "src": "sphinx-cave.svg"
+      }
+    ],
+    "origin": "red.bas:7210",
+    "descriptionFragments": [
+      {
+        "text": "with what looks like a FLY on his nose!",
+        "when": [
+          {
+            "flag": "flyDead",
+            "eq": 0
+          }
+        ],
+        "origin": "red.bas:7211"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "key": "funeral-parlour",
+    "name": "The Funeral Parlour",
+    "ink": 1,
+    "description": "This is the very depressing Funeral Parlour. The faint strains of solemn music can be heard in here.",
+    "exits": {
+      "north": 21,
+      "east": 23
+    },
+    "images": [
+      {
+        "src": "funeral-parlour.svg"
+      }
+    ],
+    "origin": "red.bas:7220"
+  },
+  {
+    "id": 23,
+    "key": "ante-chamber",
+    "name": "The Ante-Chamber",
+    "ink": 2,
+    "description": "This appears to be an Ante- Chamber attached to the Funeral Parlour. It has the uncared-for appearance of not having been used for a very long time.",
+    "exits": {
+      "west": 22
+    },
+    "images": [
+      {
+        "src": "ante-chamber.svg"
+      }
+    ],
+    "origin": "red.bas:7230"
+  },
+  {
+    "id": 24,
+    "key": "garden-a",
+    "name": "Ornamental garden (maze)",
+    "ink": 3,
+    "description": "You are in the exotic ornamental garden.",
+    "exits": {
+      "north": 24,
+      "south": 13,
+      "east": 26,
+      "west": 24
+    },
+    "images": [
+      {
+        "src": "garden-a.svg"
+      }
+    ],
+    "origin": "red.bas:7280"
+  },
+  {
+    "id": 25,
+    "key": "garden-b",
+    "name": "Ornamental garden (maze)",
+    "ink": 4,
+    "description": "You are in the exotic ornamental garden.",
+    "exits": {
+      "north": 25,
+      "south": 25,
+      "east": 28,
+      "west": 24
+    },
+    "images": [
+      {
+        "src": "garden-b.svg"
+      }
+    ],
+    "origin": "red.bas:7280"
+  },
+  {
+    "id": 26,
+    "key": "garden-c",
+    "name": "Ornamental garden (maze)",
+    "ink": 5,
+    "description": "You are in the exotic ornamental garden.",
+    "exits": {
+      "north": 25,
+      "south": 13,
+      "east": 27,
+      "west": 24
+    },
+    "images": [
+      {
+        "src": "garden-c.svg"
+      }
+    ],
+    "origin": "red.bas:7280"
+  },
+  {
+    "id": 27,
+    "key": "garden-d",
+    "name": "Ornamental garden (maze)",
+    "ink": 6,
+    "description": "You are in the exotic ornamental garden.",
+    "exits": {
+      "north": 25,
+      "south": 27,
+      "east": 27,
+      "west": 26
+    },
+    "images": [
+      {
+        "src": "garden-d.svg"
+      }
+    ],
+    "origin": "red.bas:7280"
+  },
+  {
+    "id": 28,
+    "key": "garden-mulberry",
+    "name": "Ornamental garden (mulberry / silkworms)",
+    "ink": 7,
+    "description": "You are in the exotic ornamental garden.",
+    "exits": {
+      "north": 28,
+      "south": 27,
+      "east": 28,
+      "west": 28
+    },
+    "images": [
+      {
+        "src": "garden-mulberry.svg"
+      }
+    ],
+    "origin": "red.bas:7280"
+  },
+  {
+    "id": 29,
+    "key": "thoth-chamber",
+    "name": "THOTH's high chamber",
+    "ink": 7,
+    "description": "You are in a high chamber, decorated with beautiful paintings of Egyptian figures At the far end of the room, on a large golden Throne sits THOTH THE EGYPTIAN SUN GOD.",
+    "exits": {},
+    "images": [
+      {
+        "src": "thoth-chamber.svg"
+      }
+    ],
+    "origin": "red.bas:7290"
+  },
+  {
+    "id": 30,
+    "key": "inside-case",
+    "name": "Inside the MUMMY CASE",
+    "ink": 7,
+    "description": "You are now inside the MUMMY CASE with the MUMMY! It is quite dim in here but you can just see a CATCH with a gold slot in it. You can also feel the MUMMY'S breath on your cheek!",
+    "exits": {},
+    "images": [
+      {
+        "src": "inside-case.svg"
+      }
+    ],
+    "origin": "red.bas:7300"
+  },
+  {
+    "id": 31,
+    "key": "snake-pit",
+    "name": "The snake pit (fatal)",
+    "ink": 7,
+    "description": "You're in the SNAKE PIT with these poisonous snakes.....",
+    "exits": {},
+    "images": [
+      {
+        "src": "snake-pit.svg"
+      }
+    ],
+    "origin": "red.bas:7310",
+    "fatal": {
+      "text": "I'm afraid this is asp time BYEEee!",
+      "origin": "red.bas:7311"
+    }
+  }
+]

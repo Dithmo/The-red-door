@@ -1,0 +1,2663 @@
+[
+  {
+    "id": "take-male-mummy",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        45,
+        46
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      "He's much too heavy for you!"
+    ],
+    "origin": "red.bas:8020"
+  },
+  {
+    "id": "take-male-mummy-gone",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        45,
+        46
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      }
+    ],
+    "say": [
+      "He's not here now!"
+    ],
+    "origin": "red.bas:8021"
+  },
+  {
+    "id": "take-slab-male",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        48,
+        51
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      }
+    ],
+    "say": [
+      "It's quite, quite too heavy!!"
+    ],
+    "origin": "red.bas:8022"
+  },
+  {
+    "id": "take-female-mummy",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        45,
+        47
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      "She's much too heavy for you!"
+    ],
+    "origin": "red.bas:8030"
+  },
+  {
+    "id": "take-female-mummy-gone",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        45,
+        47
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      }
+    ],
+    "say": [
+      "She's not here now!"
+    ],
+    "origin": "red.bas:8031"
+  },
+  {
+    "id": "take-slab-female",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        48,
+        51
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      }
+    ],
+    "say": [
+      "It's quite, quite too heavy!!"
+    ],
+    "origin": "red.bas:8032"
+  },
+  {
+    "id": "take-bat-or-spider",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        52,
+        53
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      "It is too quick for you."
+    ],
+    "origin": "red.bas:8050"
+  },
+  {
+    "id": "take-web",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        54
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      "You can't reach it!"
+    ],
+    "origin": "red.bas:8051"
+  },
+  {
+    "id": "take-pentacle",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        56
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "The Soothsayer frowns at you so you decide to drop that idea!"
+    ],
+    "origin": "red.bas:8060"
+  },
+  {
+    "id": "take-soothsayer",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        57
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "He's not too keen on that idea!"
+    ],
+    "origin": "red.bas:8061"
+  },
+  {
+    "id": "take-cow",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        62
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "She is not for getting!"
+    ],
+    "origin": "red.bas:8080"
+  },
+  {
+    "id": "take-carpet",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        63
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "The cow won't let you!"
+    ],
+    "origin": "red.bas:8081"
+  },
+  {
+    "id": "take-haystack",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        65
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "It's quite small as haystacks go but you still can't lift it!"
+    ],
+    "origin": "red.bas:8090"
+  },
+  {
+    "id": "take-haystack-collapsed",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        65
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      }
+    ],
+    "say": [
+      "That pile could hardly be called a HAYSTACK!"
+    ],
+    "origin": "red.bas:8091"
+  },
+  {
+    "id": "take-pile",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        66
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "You couldn't carry ALL that!"
+    ],
+    "origin": "red.bas:8092"
+  },
+  {
+    "id": "take-pile-not-yet",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        66
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      }
+    ],
+    "say": [
+      "That haystack is NOT a pile!"
+    ],
+    "origin": "red.bas:8093"
+  },
+  {
+    "id": "take-plinth",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        68
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "It's firmly fixed to the floor."
+    ],
+    "origin": "red.bas:8100"
+  },
+  {
+    "id": "take-box",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        69
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "It's firmly fixed to the plinth."
+    ],
+    "origin": "red.bas:8101"
+  },
+  {
+    "id": "take-mummy-case",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        70
+      ]
+    },
+    "when": [
+      {
+        "room": 12
+      }
+    ],
+    "say": [
+      "It's too heavy for you."
+    ],
+    "origin": "red.bas:8120"
+  },
+  {
+    "id": "take-pool-or-patio",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        72,
+        73
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      "You must do better than that!"
+    ],
+    "origin": "red.bas:8130"
+  },
+  {
+    "id": "take-down",
+    "verb": "take",
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "say": [
+      "It's too FLUFFY to collect."
+    ],
+    "origin": "red.bas:8160",
+    "target": {
+      "direction": "down"
+    }
+  },
+  {
+    "id": "take-glass-cases",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        70,
+        71
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "That doesn't SUIT you!"
+    ],
+    "origin": "red.bas:8180"
+  },
+  {
+    "id": "take-jewellery",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        84
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "It is all in secured cases."
+    ],
+    "origin": "red.bas:8181"
+  },
+  {
+    "id": "take-skeleton",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        85
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "Old BONEY will not comply!"
+    ],
+    "origin": "red.bas:8182"
+  },
+  {
+    "id": "take-hangings",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        86
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "Peacock blue and acid yellow!"
+    ],
+    "origin": "red.bas:8190"
+  },
+  {
+    "id": "take-concubine-absent",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        87
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "But she is not here!"
+    ],
+    "origin": "red.bas:8191"
+  },
+  {
+    "id": "take-concubine",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        87
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "But she does'nt like that idea!"
+    ],
+    "origin": "red.bas:8192"
+  },
+  {
+    "id": "take-dressing-table",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        89
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "That would be stealing!"
+    ],
+    "origin": "red.bas:8193"
+  },
+  {
+    "id": "take-anubis",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        90
+      ]
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "Surely not!"
+    ],
+    "origin": "red.bas:8200"
+  },
+  {
+    "id": "take-sphinx",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        93
+      ]
+    },
+    "when": [
+      {
+        "room": 21
+      }
+    ],
+    "say": [
+      "Surely not!"
+    ],
+    "origin": "red.bas:8210"
+  },
+  {
+    "id": "take-garden-plants",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        97,
+        101,
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      {
+        "message": 14
+      }
+    ],
+    "origin": "red.bas:8270"
+  },
+  {
+    "id": "take-mulberry-wrong-room",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      {
+        "message": 18
+      }
+    ],
+    "origin": "red.bas:8271"
+  },
+  {
+    "id": "take-garden-things",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        96,
+        97,
+        98,
+        101,
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      }
+    ],
+    "say": [
+      {
+        "message": 14
+      }
+    ],
+    "origin": "red.bas:8280"
+  },
+  {
+    "id": "take-mummy-in-case",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        45
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "say": [
+      "He's too heavy for you!"
+    ],
+    "origin": "red.bas:8300"
+  },
+  {
+    "id": "take-case-from-inside",
+    "verb": "take",
+    "target": {
+      "scenery": [
+        70
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "say": [
+      "But you are IN it!"
+    ],
+    "origin": "red.bas:8301"
+  },
+  {
+    "id": "examine-corridor",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        43
+      ]
+    },
+    "say": [
+      "It doesn't look very special."
+    ],
+    "origin": "red.bas:8410"
+  },
+  {
+    "id": "examine-alcoves-both",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        44
+      ]
+    },
+    "when": [
+      {
+        "room": 1
+      },
+      {
+        "flag": "visitedNorthAlcove",
+        "eq": 1
+      },
+      {
+        "flag": "visitedSouthAlcove",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "You've already visited both!"
+    ],
+    "origin": "red.bas:8412"
+  },
+  {
+    "id": "examine-alcoves-been-north",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        44
+      ]
+    },
+    "when": [
+      {
+        "room": 1
+      },
+      {
+        "flag": "visitedNorthAlcove",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "As you've been north already why not go south now?"
+    ],
+    "origin": "red.bas:8413"
+  },
+  {
+    "id": "examine-alcoves-been-south",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        44
+      ]
+    },
+    "when": [
+      {
+        "room": 1
+      },
+      {
+        "flag": "visitedSouthAlcove",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "As you've been south already why not go north now?"
+    ],
+    "origin": "red.bas:8414"
+  },
+  {
+    "id": "examine-alcoves",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        44
+      ]
+    },
+    "when": [
+      {
+        "room": 1
+      }
+    ],
+    "say": [
+      "North or south to find out!"
+    ],
+    "origin": "red.bas:8415"
+  },
+  {
+    "id": "examine-male-mummy",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        45,
+        46
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      {
+        "message": 26
+      }
+    ],
+    "origin": "red.bas:8421"
+  },
+  {
+    "id": "examine-male-mummy-gone",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        45,
+        46
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      }
+    ],
+    "say": [
+      {
+        "message": 18
+      }
+    ],
+    "origin": "red.bas:8422"
+  },
+  {
+    "id": "examine-slab-male",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        48
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "maleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      {
+        "message": 27
+      }
+    ],
+    "origin": "red.bas:8423"
+  },
+  {
+    "id": "examine-slab-male-empty",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        48,
+        51
+      ]
+    },
+    "when": [
+      {
+        "room": 2
+      }
+    ],
+    "say": [
+      {
+        "message": 28
+      }
+    ],
+    "origin": "red.bas:8424"
+  },
+  {
+    "id": "examine-female-mummy",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        45,
+        47
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      {
+        "message": 26
+      }
+    ],
+    "origin": "red.bas:8431"
+  },
+  {
+    "id": "examine-female-mummy-gone",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        45,
+        47
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      }
+    ],
+    "say": [
+      {
+        "message": 18
+      }
+    ],
+    "origin": "red.bas:8432"
+  },
+  {
+    "id": "examine-slab-female",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        48
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "femaleMummyDone",
+        "lt": 4
+      }
+    ],
+    "say": [
+      {
+        "message": 27
+      }
+    ],
+    "origin": "red.bas:8433"
+  },
+  {
+    "id": "examine-slab-female-empty",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        48,
+        51
+      ]
+    },
+    "when": [
+      {
+        "room": 3
+      }
+    ],
+    "say": [
+      {
+        "message": 28
+      }
+    ],
+    "origin": "red.bas:8434"
+  },
+  {
+    "id": "examine-bat",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        52
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      "It's BATTY BAT from GREEN DOOR, an adventure on SIX-in-ONE."
+    ],
+    "origin": "red.bas:8450"
+  },
+  {
+    "id": "examine-web",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        54
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      "It's not yet completed and NO flies have been caught in it."
+    ],
+    "origin": "red.bas:8451"
+  },
+  {
+    "id": "examine-spider",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        53
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      },
+      {
+        "flag": "spiderGone",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Looks rather anxious as the web is not finished. Has short, fat, hairy legs and answers to Ernie!"
+    ],
+    "origin": "red.bas:8452"
+  },
+  {
+    "id": "examine-spider-gone",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        53
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      {
+        "message": 18
+      }
+    ],
+    "origin": "red.bas:8453"
+  },
+  {
+    "id": "examine-corner",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        55
+      ]
+    },
+    "when": [
+      {
+        "room": 5
+      }
+    ],
+    "say": [
+      "There's a spider's web there."
+    ],
+    "origin": "red.bas:8454"
+  },
+  {
+    "id": "examine-soothsayer-hint",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        57
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      },
+      {
+        "flag": "soothsayerHelped",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "He is a very strange figure, but he could be of some assistance given some sure news.........."
+    ],
+    "origin": "red.bas:8460"
+  },
+  {
+    "id": "examine-pentacle",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        56
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "The heat from the fire gives the stones a strange magic glow."
+    ],
+    "origin": "red.bas:8461"
+  },
+  {
+    "id": "examine-fire",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        59
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "The light from the fire only helps to convey the magic aura."
+    ],
+    "origin": "red.bas:8462"
+  },
+  {
+    "id": "examine-signs",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        60
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "Aries, Pisces, Capricorn etc!"
+    ],
+    "origin": "red.bas:8463"
+  },
+  {
+    "id": "examine-zodiac-walls",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        61
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      "The zodiac signs are all over... Well, it's a change from KILROY!"
+    ],
+    "origin": "red.bas:8464"
+  },
+  {
+    "id": "examine-soothsayer-happy",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        57
+      ]
+    },
+    "when": [
+      {
+        "room": 6
+      }
+    ],
+    "say": [
+      {
+        "message": 29
+      }
+    ],
+    "origin": "red.bas:8466"
+  },
+  {
+    "id": "examine-cow-hungry",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        62
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "flag": "cowFed",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Looks as though it could do with a big feed!"
+    ],
+    "origin": "red.bas:8480"
+  },
+  {
+    "id": "examine-cow-fed",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        62
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      {
+        "message": 29
+      }
+    ],
+    "origin": "red.bas:8481"
+  },
+  {
+    "id": "examine-carpet",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        63
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "Persian design with a cow on it. The carpet not the design!"
+    ],
+    "origin": "red.bas:8482"
+  },
+  {
+    "id": "examine-cow-eyes-sad",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        104
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      },
+      {
+        "flag": "cowFed",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "They look rather sad!"
+    ],
+    "origin": "red.bas:8484"
+  },
+  {
+    "id": "examine-cow-eyes-bright",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        104
+      ]
+    },
+    "when": [
+      {
+        "room": 8
+      }
+    ],
+    "say": [
+      "They look quite bright!"
+    ],
+    "origin": "red.bas:8485"
+  },
+  {
+    "id": "examine-haystack",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        65
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "haystackCollapsed",
+        "set": 1
+      },
+      {
+        "moveTo": "needle",
+        "room": 9
+      }
+    ],
+    "say": [
+      "You disturb the haystack and a needle falls out as the haystack collapses into an untidy pile."
+    ],
+    "origin": "red.bas:8490"
+  },
+  {
+    "id": "examine-haystack-gone",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        65
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      }
+    ],
+    "say": [
+      "It's just an untidy pile now!"
+    ],
+    "origin": "red.bas:8491"
+  },
+  {
+    "id": "examine-pile",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        66
+      ]
+    },
+    "when": [
+      {
+        "room": 9
+      },
+      {
+        "flag": "haystackCollapsed",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "It's an untidy pile of hay."
+    ],
+    "origin": "red.bas:8492"
+  },
+  {
+    "id": "examine-box-locked",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        69
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      },
+      {
+        "flag": "boxUnlocked",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "It's beautifully carved and it is securely locked!"
+    ],
+    "origin": "red.bas:8500"
+  },
+  {
+    "id": "examine-box-open",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        69
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "Although it is empty it is still quite beautiful."
+    ],
+    "origin": "red.bas:8501"
+  },
+  {
+    "id": "examine-plinth-with-box",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        68
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      },
+      {
+        "flag": "boxUnlocked",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Elegant, tall, grooved and slim with an ornate BOX on it."
+    ],
+    "origin": "red.bas:8502"
+  },
+  {
+    "id": "examine-plinth",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        68
+      ]
+    },
+    "when": [
+      {
+        "room": 10
+      }
+    ],
+    "say": [
+      "There's an empty BOX on it."
+    ],
+    "origin": "red.bas:8503"
+  },
+  {
+    "id": "examine-pool",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        73
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      "On reflection, it's probably to your advantage to know that the pool contains embalming flluid! Or even FLUID if you prefer!"
+    ],
+    "origin": "red.bas:8530"
+  },
+  {
+    "id": "examine-patio-hint",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        72
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      },
+      {
+        "flag": "poolUndrawn",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "It's not very special, but on reflection, the pool might be!!"
+    ],
+    "origin": "red.bas:8531"
+  },
+  {
+    "id": "examine-garden-from-patio",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      "Can't see very much from here."
+    ],
+    "origin": "red.bas:8532"
+  },
+  {
+    "id": "examine-glow-patio",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        75
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      "Green and eerie!"
+    ],
+    "origin": "red.bas:8533"
+  },
+  {
+    "id": "examine-patio",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        72
+      ]
+    },
+    "when": [
+      {
+        "room": 13
+      }
+    ],
+    "say": [
+      "It's not very special."
+    ],
+    "origin": "red.bas:8534"
+  },
+  {
+    "id": "examine-pit",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        76
+      ]
+    },
+    "when": [
+      {
+        "room": 14
+      }
+    ],
+    "say": [
+      "It's the pits! (Thanks John Mac)"
+    ],
+    "origin": "red.bas:8540"
+  },
+  {
+    "id": "examine-ramp",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        77
+      ]
+    },
+    "when": [
+      {
+        "room": 14
+      }
+    ],
+    "say": [
+      "Slimy snakes are all over it."
+    ],
+    "origin": "red.bas:8541"
+  },
+  {
+    "id": "examine-stairs-down",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        78
+      ]
+    },
+    "when": [
+      {
+        "room": 15
+      }
+    ],
+    "say": [
+      "Note this.....\"They lead DOWN!\""
+    ],
+    "origin": "red.bas:8551"
+  },
+  {
+    "id": "examine-stairs-up",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        78
+      ]
+    },
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "say": [
+      "They lead UP and no more DOWN!"
+    ],
+    "origin": "red.bas:8560"
+  },
+  {
+    "id": "examine-down-first",
+    "verb": "examine",
+    "when": [
+      {
+        "room": 16
+      },
+      {
+        "flag": "fluffFound",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "fluffFound",
+        "set": 1
+      },
+      {
+        "moveTo": "fluff",
+        "room": 16
+      }
+    ],
+    "say": [
+      "You find some navel FLUFF!"
+    ],
+    "origin": "red.bas:8562",
+    "target": {
+      "direction": "down"
+    }
+  },
+  {
+    "id": "examine-down-again",
+    "verb": "examine",
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "say": [
+      "Down! It's just DOWN! Try UP now"
+    ],
+    "origin": "red.bas:8563",
+    "target": {
+      "direction": "down"
+    }
+  },
+  {
+    "id": "examine-up-in-down-room",
+    "verb": "examine",
+    "when": [
+      {
+        "room": 16
+      }
+    ],
+    "say": [
+      "What a strange request! You must have been put UP to it!"
+    ],
+    "origin": "red.bas:8564",
+    "target": {
+      "direction": "up"
+    }
+  },
+  {
+    "id": "examine-black-walls",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        61
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "say": [
+      "Covered in black velvet."
+    ],
+    "origin": "red.bas:8570"
+  },
+  {
+    "id": "examine-velvet",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        80
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "say": [
+      "Pay attention! It's BLACK!"
+    ],
+    "origin": "red.bas:8571"
+  },
+  {
+    "id": "examine-symbols",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        81,
+        109
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "then": [
+      {
+        "flag": "symbolsRead",
+        "set": 1
+      }
+    ],
+    "say": [
+      "Magical but not necessarily the ABRACADABRA type!"
+    ],
+    "origin": "red.bas:8572"
+  },
+  {
+    "id": "examine-gold-scenery",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        82
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "say": [
+      "24 on the rabbit scale!"
+    ],
+    "origin": "red.bas:8573"
+  },
+  {
+    "id": "examine-ceiling",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        83
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "say": [
+      "Unusual etchings here."
+    ],
+    "origin": "red.bas:8574"
+  },
+  {
+    "id": "examine-glow-black-room",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        75
+      ]
+    },
+    "when": [
+      {
+        "room": 17
+      }
+    ],
+    "say": [
+      "Green and eerie!"
+    ],
+    "origin": "red.bas:8575"
+  },
+  {
+    "id": "examine-empty-case",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        70
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      },
+      {
+        "flag": "glassCaseSearched",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "glassCaseSearched",
+        "set": 1
+      },
+      {
+        "moveTo": "necklace",
+        "room": 18
+      }
+    ],
+    "origin": "red.bas:8580",
+    "say": [
+      {
+        "message": 10
+      },
+      {
+        "message": 11
+      }
+    ]
+  },
+  {
+    "id": "examine-empty-case-again",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        70
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "Empty, plain empty!"
+    ],
+    "origin": "red.bas:8581"
+  },
+  {
+    "id": "examine-glass-cases",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        71
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "They display some beautifully impressive jewellery."
+    ],
+    "origin": "red.bas:8582"
+  },
+  {
+    "id": "examine-jewellery",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        84
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "You are quite dazzled by it's reflective beauty, but it's not destined for you!"
+    ],
+    "origin": "red.bas:8583"
+  },
+  {
+    "id": "examine-skeleton-sings",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        85
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      },
+      {
+        "flag": "skeletonSang",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "skeletonSang",
+        "set": 1
+      }
+    ],
+    "say": [
+      "It jumps up to sing: DEM BONES, DEM BONES, DEM DRY BONES! then lies down again EXHAUSTED!"
+    ],
+    "origin": "red.bas:8584"
+  },
+  {
+    "id": "examine-skeleton",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        85
+      ]
+    },
+    "when": [
+      {
+        "room": 18
+      }
+    ],
+    "say": [
+      "He's lying there EXHAUSTED!"
+    ],
+    "origin": "red.bas:8585"
+  },
+  {
+    "id": "examine-concubine",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        87
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      },
+      {
+        "flag": "concubinePresent",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "\"I like being examined!\" she says"
+    ],
+    "origin": "red.bas:8590"
+  },
+  {
+    "id": "examine-apartments",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        88,
+        58
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "No expense was spared to furnish and decorate in here."
+    ],
+    "origin": "red.bas:8591"
+  },
+  {
+    "id": "examine-dressing-table",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        89
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "On it are the weaponss of a lady's beautifying armoury!"
+    ],
+    "origin": "red.bas:8592"
+  },
+  {
+    "id": "examine-hangings",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        86
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "They are in striking colours."
+    ],
+    "origin": "red.bas:8593"
+  },
+  {
+    "id": "examine-concubine-absent",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        87
+      ]
+    },
+    "when": [
+      {
+        "room": 19
+      }
+    ],
+    "say": [
+      "She's not here at the moment!"
+    ],
+    "origin": "red.bas:8595"
+  },
+  {
+    "id": "examine-anubis",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        90
+      ]
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "It stares at you and pricks up its ears."
+    ],
+    "origin": "red.bas:8600"
+  },
+  {
+    "id": "examine-silver-doors",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        92
+      ]
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "Apparently made of silver, but perhaps more important is the fact that they are unlocked."
+    ],
+    "origin": "red.bas:8601"
+  },
+  {
+    "id": "examine-sphinx-unsmiling",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        93
+      ]
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "flag": "flyDead",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "It's not smiling! Perhaps it doesn't like that fly there!"
+    ],
+    "origin": "red.bas:8610"
+  },
+  {
+    "id": "examine-sphinx",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        93
+      ]
+    },
+    "when": [
+      {
+        "room": 21
+      }
+    ],
+    "say": [
+      "Still a trace of a smile there!"
+    ],
+    "origin": "red.bas:8611"
+  },
+  {
+    "id": "examine-nose-with-fly",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        108
+      ]
+    },
+    "when": [
+      {
+        "room": 21
+      },
+      {
+        "flag": "flyDead",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "There's a fly on it!"
+    ],
+    "origin": "red.bas:8613"
+  },
+  {
+    "id": "examine-nose",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        108
+      ]
+    },
+    "when": [
+      {
+        "room": 21
+      }
+    ],
+    "say": [
+      "Don't be nosey anymore!"
+    ],
+    "origin": "red.bas:8614"
+  },
+  {
+    "id": "examine-garden-24",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 24
+      }
+    ],
+    "say": [
+      "You see plants and flowers."
+    ],
+    "origin": "red.bas:8670"
+  },
+  {
+    "id": "examine-plants-24",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 24
+      }
+    ],
+    "say": [
+      "Just common or garden varieties!"
+    ],
+    "origin": "red.bas:8671"
+  },
+  {
+    "id": "examine-flowers-24",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        101
+      ]
+    },
+    "when": [
+      {
+        "room": 24
+      }
+    ],
+    "say": [
+      "Colourful but quite ordinary!"
+    ],
+    "origin": "red.bas:8672"
+  },
+  {
+    "id": "examine-leaves-24",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        97
+      ]
+    },
+    "when": [
+      {
+        "room": 24
+      }
+    ],
+    "say": [
+      "Green in the main!"
+    ],
+    "origin": "red.bas:8673"
+  },
+  {
+    "id": "examine-mulberry-24",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 24
+      }
+    ],
+    "say": [
+      "None of that variety here."
+    ],
+    "origin": "red.bas:8674"
+  },
+  {
+    "id": "examine-garden-25",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 25
+      }
+    ],
+    "say": [
+      "You see plants and flowers."
+    ],
+    "origin": "red.bas:8670"
+  },
+  {
+    "id": "examine-plants-25",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 25
+      }
+    ],
+    "say": [
+      "Just common or garden varieties!"
+    ],
+    "origin": "red.bas:8671"
+  },
+  {
+    "id": "examine-flowers-25",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        101
+      ]
+    },
+    "when": [
+      {
+        "room": 25
+      }
+    ],
+    "say": [
+      "Colourful but quite ordinary!"
+    ],
+    "origin": "red.bas:8672"
+  },
+  {
+    "id": "examine-leaves-25",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        97
+      ]
+    },
+    "when": [
+      {
+        "room": 25
+      }
+    ],
+    "say": [
+      "Green in the main!"
+    ],
+    "origin": "red.bas:8673"
+  },
+  {
+    "id": "examine-mulberry-25",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 25
+      }
+    ],
+    "say": [
+      "None of that variety here."
+    ],
+    "origin": "red.bas:8674"
+  },
+  {
+    "id": "examine-garden-26",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 26
+      }
+    ],
+    "say": [
+      "You see plants and flowers."
+    ],
+    "origin": "red.bas:8670"
+  },
+  {
+    "id": "examine-plants-26",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 26
+      }
+    ],
+    "say": [
+      "Just common or garden varieties!"
+    ],
+    "origin": "red.bas:8671"
+  },
+  {
+    "id": "examine-flowers-26",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        101
+      ]
+    },
+    "when": [
+      {
+        "room": 26
+      }
+    ],
+    "say": [
+      "Colourful but quite ordinary!"
+    ],
+    "origin": "red.bas:8672"
+  },
+  {
+    "id": "examine-leaves-26",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        97
+      ]
+    },
+    "when": [
+      {
+        "room": 26
+      }
+    ],
+    "say": [
+      "Green in the main!"
+    ],
+    "origin": "red.bas:8673"
+  },
+  {
+    "id": "examine-mulberry-26",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 26
+      }
+    ],
+    "say": [
+      "None of that variety here."
+    ],
+    "origin": "red.bas:8674"
+  },
+  {
+    "id": "examine-garden-27",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      "You see plants and flowers."
+    ],
+    "origin": "red.bas:8670"
+  },
+  {
+    "id": "examine-plants-27",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      "Just common or garden varieties!"
+    ],
+    "origin": "red.bas:8671"
+  },
+  {
+    "id": "examine-flowers-27",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        101
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      "Colourful but quite ordinary!"
+    ],
+    "origin": "red.bas:8672"
+  },
+  {
+    "id": "examine-leaves-27",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        97
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      "Green in the main!"
+    ],
+    "origin": "red.bas:8673"
+  },
+  {
+    "id": "examine-mulberry-27",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 27
+      }
+    ],
+    "say": [
+      "None of that variety here."
+    ],
+    "origin": "red.bas:8674"
+  },
+  {
+    "id": "examine-garden-mulberry",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        74
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      }
+    ],
+    "then": [
+      {
+        "flag": "mulberryFound",
+        "set": 1
+      }
+    ],
+    "say": [
+      "There are plants, flowers and bushes here. You notice that one of the bushes is a MULBERRY bush"
+    ],
+    "origin": "red.bas:8680"
+  },
+  {
+    "id": "examine-silkworms-too-early",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        98
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      },
+      {
+        "flag": "silkwormsFound",
+        "eq": 0
+      },
+      {
+        "flag": "mulberryFound",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You're a bit previous!"
+    ],
+    "origin": "red.bas:8681"
+  },
+  {
+    "id": "examine-mulberry-too-early",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      },
+      {
+        "flag": "mulberryFound",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You're a bit previous!"
+    ],
+    "origin": "red.bas:8681"
+  },
+  {
+    "id": "examine-leaves-mulberry",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        97,
+        113
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      }
+    ],
+    "then": [
+      {
+        "flag": "mulberryFound",
+        "set": 1
+      }
+    ],
+    "say": [
+      "In this part of the garden some are of the MULBERRY variety!"
+    ],
+    "origin": "red.bas:8682"
+  },
+  {
+    "id": "examine-silkworms",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        96,
+        113
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      },
+      {
+        "flag": "silkwormsFound",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "silkwormsFound",
+        "set": 1
+      },
+      {
+        "moveTo": "thread",
+        "room": 28
+      }
+    ],
+    "say": [
+      "You see some silkworms eating leaves and making very fine THREAD.................(Think!)"
+    ],
+    "origin": "red.bas:8683"
+  },
+  {
+    "id": "examine-silkworms-party",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        113,
+        96,
+        97,
+        98
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      }
+    ],
+    "say": [
+      "You see some silkworms eating leaves and having a party!!"
+    ],
+    "origin": "red.bas:8686"
+  },
+  {
+    "id": "examine-garden-plants-28",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        101,
+        102
+      ]
+    },
+    "when": [
+      {
+        "room": 28
+      }
+    ],
+    "say": [
+      "You see plants and flowers."
+    ],
+    "origin": "red.bas:8687"
+  },
+  {
+    "id": "examine-mummy-in-case",
+    "verb": "examine",
+    "target": {
+      "scenery": [
+        45
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "sayRandom": [
+      [
+        "The MUMMY is singing CHEEK TO CHEEK!...........cheeky!"
+      ],
+      [
+        "The MUMMY asks \"Do I look like Boris Karloff!!!\" Don't answer THAT!"
+      ],
+      [
+        "The MUMMY nods his bandages in a chummy way!"
+      ]
+    ],
+    "origin": "red.bas:8702"
+  }
+]
