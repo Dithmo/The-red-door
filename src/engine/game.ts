@@ -15,7 +15,7 @@ import { messages, objectByKey, roomById } from "../data/index";
 import type { Command, Direction, Rule, Say } from "../data/types";
 import { CARRIED, CARRY_LIMIT } from "../data/types";
 import { evaluateAll, isCarried, isPresent } from "./conditions";
-import { describeRoom, resolveImage } from "./describe";
+import { describeRoom, exitsSentence, resolveImage } from "./describe";
 import { applyEffects } from "./effects";
 import { findRule } from "./rules";
 import type { World } from "./world";
@@ -30,7 +30,13 @@ import {
   randomInt,
 } from "./world";
 
-export type LineKind = "room" | "objects" | "response" | "system" | "death";
+export type LineKind =
+  | "room"
+  | "exits"
+  | "objects"
+  | "response"
+  | "system"
+  | "death";
 
 export interface OutputLine {
   text: string;
@@ -96,7 +102,10 @@ export class Game {
     const world = this.world;
     const room = currentRoom(world);
     const ctx = contextOf(world);
-    const lines: OutputLine[] = [say(describeRoom(room, ctx), "room")];
+    const lines: OutputLine[] = [
+      say(describeRoom(room, ctx), "room"),
+      say(exitsSentence(room), "exits"),
+    ];
 
     const here = objectsHere(world);
     if (here.length > 0) {

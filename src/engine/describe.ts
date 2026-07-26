@@ -64,3 +64,26 @@ export function availableExits(room: Room): string[] {
     .filter(([, target]) => Boolean(target))
     .map(([dir]) => dir);
 }
+
+/**
+ * A sentence naming the ways out.
+ *
+ * The original never printed one. Its room descriptions mention exits only when
+ * the prose happens to ("a long dark corridor stretching to the west"), and
+ * several rooms mention none at all, which leaves the player guessing between
+ * six directions. Saying it plainly costs nothing and removes a whole class of
+ * wasted turns.
+ *
+ * It lists what the exit table holds, so it stays honest about rooms where a
+ * rule then refuses to let you through -- room 1's west is listed, and the game
+ * explains why when you try it. Exits a rule *creates* are not listed, because
+ * the table does not know about them: the silver doors out of the entrance hall
+ * are the Anubis's business, not a direction.
+ */
+export function exitsSentence(room: Room): string {
+  const exits = availableExits(room);
+  if (exits.length === 0) return "There is no way on that you can see.";
+  if (exits.length === 1) return `You can go ${exits[0]}.`;
+  const last = exits[exits.length - 1];
+  return `You can go ${exits.slice(0, -1).join(", ")} or ${last}.`;
+}

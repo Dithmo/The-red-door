@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { objects } from "../src/data/index";
+import { objects, roomById } from "../src/data/index";
+import { exitsSentence } from "../src/engine/describe";
 import type { Command, CommandTarget, Direction } from "../src/data/types";
 import { CARRIED, CARRY_LIMIT, NOWHERE } from "../src/data/types";
 import { evaluate } from "../src/engine/conditions";
@@ -142,6 +143,58 @@ describe("conditions", () => {
   it("treats an unset flag as zero, like the original's cleared array", () => {
     const ctx = contextOf(createWorld());
     expect(evaluate(ctx, { flag: "neverSet", eq: 0 })).toBe(true);
+  });
+});
+
+/* ---------------------------------------------------------------- exits -- */
+
+describe("the exits line", () => {
+  it("names the ways out of the starting room", () => {
+    expect(text(game.describe())).toContain("You can go north, south or west.");
+  });
+
+  it("uses a plain sentence for a single exit", () => {
+    game.world.room = 2;
+    expect(text(game.describe())).toContain("You can go south.");
+  });
+
+  it("says so when there is no way on", () => {
+    game.world.room = 30; // inside the mummy case
+    expect(text(game.describe())).toContain("There is no way on that you can see.");
+  });
+
+  it("lists an exit even when a rule then refuses it", () => {
+    // Room 1's west is in the exit table but blocked until both alcoves are
+    // visited. Listing it is honest: the game explains itself when you try.
+    expect(text(game.describe())).toContain("west");
+    expect(text(game.execute(go("west")))).toContain("Both N and S before W!");
+  });
+
+  it("does not list a way through that only a rule creates", () => {
+    // The silver doors out of the entrance hall are the Anubis's business, not
+    // a direction, and the exit table does not hold them.
+    game.world.room = 20;
+    expect(text(game.describe())).toContain("You can go north, south or east.");
+    expect(text(game.describe())).not.toContain("west");
+  });
+
+  it("keeps the garden maze unspoiled", () => {
+    // All five garden rooms must read identically, or the exits line hands the
+    // player a map the original never gave them.
+    const sentences = new Set(
+      [24, 25, 26, 27, 28].map((id) => {
+        game.world.room = id;
+        return exitsSentence(roomById.get(id)!);
+      }),
+    );
+    expect(sentences.size).toBe(1);
+    expect([...sentences][0]).toBe("You can go north, south, east or west.");
+  });
+
+  it("appears after the description and before the objects", () => {
+    game.world.room = 23; // the Ante-Chamber, where the PIPE lies
+    const kinds = game.describe().lines.map((l) => l.kind);
+    expect(kinds).toEqual(["room", "exits", "objects", "objects"]);
   });
 });
 

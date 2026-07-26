@@ -170,6 +170,11 @@ body {
   font-size: 17px;
 }
 
+.line.exits {
+  color: var(--dim);
+  font-size: 15px;
+}
+
 .line.objects {
   color: var(--dim);
   margin-left: 14px;

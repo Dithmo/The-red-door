@@ -58,7 +58,9 @@ for (const step of steps) {
     const room = roomById.get(session.world.room);
     const moved = session.world.room !== before;
     const reply = result.lines
-      .filter((l) => l.kind !== "room" && l.kind !== "objects")
+      .filter(
+        (l) => l.kind !== "room" && l.kind !== "exits" && l.kind !== "objects",
+      )
       .map((l) => l.text)
       .join(" ")
       .trim();
