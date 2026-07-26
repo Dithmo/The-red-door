@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "data": "python3 tools/build_gamedata.py && python3 tools/make_placeholders.py"
+    "data": "python3 tools/build_gamedata.py && python3 tools/make_placeholders.py",
+    "standalone": "vite build --config vite.standalone.config.ts && node tools/build_standalone.mjs"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

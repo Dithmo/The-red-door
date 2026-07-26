@@ -38,6 +38,7 @@ a picture for every location and a parser that actually understands English.
 | `assets/images/` | one placeholder per image slot, tinted with that room's original ink |
 | `tools/build_gamedata.py` | turns `data/reddoor.json` into `src/data/*.json` |
 | `tools/make_placeholders.py` | generates placeholder artwork for every image slot |
+| `tools/build_standalone.mjs` | packs the built game into one self-contained HTML file |
 | `tests/data.test.ts` | consistency checks on the ported data |
 | `tests/engine.test.ts` | engine behaviour and a rule-table audit |
 | `tests/parser.test.ts` | input → command table, including every original command |
@@ -63,10 +64,16 @@ rebuilds it. Real artwork replaces the placeholder of the same filename;
 
 ```
 npm install
-npm run dev       # play it at localhost:5173
-npm test          # 155 tests
-npm run build     # static site in dist/
+npm run dev         # play it at localhost:5173
+npm test            # 155 tests
+npm run build       # static site in dist/
+npm run standalone  # one self-contained file you can open from disk
 ```
+
+`npm run standalone` writes `dist-standalone/standalone.html`: the whole game in
+a single file with the script, styles and all 42 pictures inlined, so it needs no
+server and makes no network requests. Open it straight from disk, or send it to
+someone.
 
 `npm run dev` serves two pages:
 

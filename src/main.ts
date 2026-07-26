@@ -20,6 +20,24 @@ import type { OutputLine } from "./engine/game";
 import { Session, type SessionTurn } from "./session";
 import { CARRY_LIMIT } from "./data/types";
 
+declare global {
+  interface Window {
+    /**
+     * Filename -> data URI, injected by tools/build_standalone.mjs.
+     *
+     * The single-file build has no server to fetch ./images/ from, so the
+     * pictures travel inside the page. Absent in the normal build, where they
+     * are served as files.
+     */
+    __RED_DOOR_IMAGES__?: Record<string, string>;
+  }
+}
+
+/** Where to load a picture from: inlined if this is the single-file build. */
+function imageUrl(src: string): string {
+  return window.__RED_DOOR_IMAGES__?.[src] ?? `./images/${src}`;
+}
+
 const el = <T extends HTMLElement>(id: string): T => {
   const node = document.getElementById(id);
   if (!node) throw new Error(`missing element #${id}`);
@@ -126,7 +144,7 @@ function applyTurn(echo: string | undefined, result: SessionTurn): void {
       pictureEl.classList.remove("changing");
     };
     next.onerror = () => pictureEl.classList.remove("changing");
-    next.src = `./images/${result.image}`;
+    next.src = imageUrl(result.image);
   }
 
   appendTurn(echo, result);
