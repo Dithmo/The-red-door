@@ -559,8 +559,7 @@
     },
     "when": [
       {
-        "flag": "snakeInBasket",
-        "eq": 1
+        "present": "basket-with-snake"
       }
     ],
     "say": [

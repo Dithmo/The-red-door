@@ -1181,7 +1181,12 @@
       },
       "But you can't understand them!"
     ],
-    "origin": "red.bas:3300"
+    "origin": "red.bas:3300",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "read-symbols",

@@ -85,6 +85,22 @@
     "origin": "red.bas:1316"
   },
   {
+    "id": "examine-hay-in-byre",
+    "verb": "examine",
+    "target": {
+      "object": "hay"
+    },
+    "when": [
+      {
+        "room": 9
+      }
+    ],
+    "say": [
+      "Good quality animal feedstuff."
+    ],
+    "origin": "red.bas:1310"
+  },
+  {
     "id": "examine-hay",
     "verb": "examine",
     "target": {
@@ -93,7 +109,12 @@
     "say": [
       "Good quality animal feedstuff."
     ],
-    "origin": "red.bas:1350"
+    "origin": "red.bas:1350",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-snake",
@@ -104,7 +125,12 @@
     "say": [
       "Looks rather unfriendly!"
     ],
-    "origin": "red.bas:1351"
+    "origin": "red.bas:1351",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-basket",
@@ -115,7 +141,12 @@
     "say": [
       "Like that used by Snakecharmers."
     ],
-    "origin": "red.bas:1352"
+    "origin": "red.bas:1352",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-needle",
@@ -126,7 +157,12 @@
     "say": [
       "It is smaller than the one on the Embankment! SEW what!"
     ],
-    "origin": "red.bas:1353"
+    "origin": "red.bas:1353",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-cloth",
@@ -137,7 +173,12 @@
     "say": [
       "It is NEARLY fit for a GOD!"
     ],
-    "origin": "red.bas:1354"
+    "origin": "red.bas:1354",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-token-bronze",
@@ -148,7 +189,12 @@
     "say": [
       "It looks just like a TOKEN! I don't see any CATCH in that!"
     ],
-    "origin": "red.bas:1355"
+    "origin": "red.bas:1355",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-jug-full",
@@ -159,7 +205,12 @@
     "say": [
       "You filled it!"
     ],
-    "origin": "red.bas:1356"
+    "origin": "red.bas:1356",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-bandages",
@@ -170,7 +221,12 @@
     "say": [
       "Don't think there is a pop group called BAND AGES!"
     ],
-    "origin": "red.bas:1357"
+    "origin": "red.bas:1357",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-food",
@@ -181,7 +237,12 @@
     "say": [
       "Doesn't look very appetising."
     ],
-    "origin": "red.bas:1358"
+    "origin": "red.bas:1358",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-charm",
@@ -192,7 +253,12 @@
     "say": [
       "It's charming!"
     ],
-    "origin": "red.bas:1359"
+    "origin": "red.bas:1359",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-adornments",
@@ -208,7 +274,12 @@
     "say": [
       "It makes a lovely adornment."
     ],
-    "origin": "red.bas:1360"
+    "origin": "red.bas:1360",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-rod",
@@ -219,7 +290,12 @@
     "say": [
       "Looks as though it may have magic powers! There's the RUB!"
     ],
-    "origin": "red.bas:1361"
+    "origin": "red.bas:1361",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-fly",
@@ -230,7 +306,12 @@
     "say": [
       "It would grace any parlour."
     ],
-    "origin": "red.bas:1362"
+    "origin": "red.bas:1362",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-runes",
@@ -244,7 +325,12 @@
       },
       "But you can't understand them!"
     ],
-    "origin": "red.bas:1363"
+    "origin": "red.bas:1363",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-fluff-first-time",
@@ -253,6 +339,9 @@
       "object": "fluff"
     },
     "when": [
+      {
+        "targetPresent": true
+      },
       {
         "flag": "fluffExamined",
         "eq": 0
@@ -282,7 +371,12 @@
     "say": [
       "Just fluffy FLUFF!"
     ],
-    "origin": "red.bas:1365"
+    "origin": "red.bas:1365",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-pipe-hint",
@@ -291,6 +385,9 @@
       "object": "pipe"
     },
     "when": [
+      {
+        "targetPresent": true
+      },
       {
         "flag": "snakeOnRamp",
         "eq": 0
@@ -310,7 +407,12 @@
     "say": [
       "It's shrouded in mystery!"
     ],
-    "origin": "red.bas:1367"
+    "origin": "red.bas:1367",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-raiment",
@@ -321,7 +423,12 @@
     "say": [
       "Fit for a GOD."
     ],
-    "origin": "red.bas:1368"
+    "origin": "red.bas:1368",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-joke",
@@ -332,7 +439,12 @@
     "say": [
       "It's not for your ears!"
     ],
-    "origin": "red.bas:1369"
+    "origin": "red.bas:1369",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-ruby",
@@ -343,7 +455,12 @@
     "say": [
       "What navel did that fall out of?"
     ],
-    "origin": "red.bas:1370"
+    "origin": "red.bas:1370",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-basket-with-snake",
@@ -354,7 +471,12 @@
     "say": [
       "There's a SNAKE in it!"
     ],
-    "origin": "red.bas:1371"
+    "origin": "red.bas:1371",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-cloth-shaped",
@@ -365,7 +487,12 @@
     "say": [
       "Those could be made into something quite interesting!"
     ],
-    "origin": "red.bas:1372"
+    "origin": "red.bas:1372",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-jug-silver",
@@ -376,7 +503,12 @@
     "say": [
       "It's very elegant and would not be used for anything as common-place as water."
     ],
-    "origin": "red.bas:1373"
+    "origin": "red.bas:1373",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-token-gold",
@@ -387,7 +519,12 @@
     "say": [
       "I think the CATCH is now over"
     ],
-    "origin": "red.bas:1374"
+    "origin": "red.bas:1374",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "examine-anything-else",
@@ -398,7 +535,12 @@
     "say": [
       "Just what you would expect!"
     ],
-    "origin": "red.bas:1398"
+    "origin": "red.bas:1398",
+    "when": [
+      {
+        "targetPresent": true
+      }
+    ]
   },
   {
     "id": "drop-refused-by-mummy",
@@ -553,21 +695,5 @@
       "As you reach out it flits about but returns to the nose position"
     ],
     "origin": "red.bas:1120"
-  },
-  {
-    "id": "take-snake-already-caught",
-    "verb": "take",
-    "target": {
-      "object": "snake"
-    },
-    "when": [
-      {
-        "present": "basket-with-snake"
-      }
-    ],
-    "say": [
-      "Let's leave it in the basket!"
-    ],
-    "origin": "red.bas:1114"
   }
 ]

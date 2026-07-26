@@ -146,6 +146,57 @@ describe("conditions", () => {
   });
 });
 
+/* -------------------------------------------------------- examining things -- */
+
+describe("examining", () => {
+  it("refuses to describe an object that is not here", () => {
+    // BASIC 1302 gates the whole description block (1350-1398) on the object
+    // being present, falling through to message 18 otherwise. Without that gate
+    // the player could read every object's description from the first room,
+    // which reveals the puzzle chain and implies they are holding things they
+    // have never found.
+    expect(text(game.execute(obj("examine", "token-bronze")))).toContain(
+      "You can't see any token here",
+    );
+    expect(text(game.execute(obj("examine", "necklace")))).toContain(
+      "You can't see any necklace here",
+    );
+  });
+
+  it("describes what is held", () => {
+    expect(text(game.execute(obj("examine", "rod")))).toContain("magic powers");
+  });
+
+  it("describes what is lying here", () => {
+    game.world.room = 23; // the Ante-Chamber, where the PIPE lies
+    expect(text(game.execute(obj("examine", "pipe")))).toContain("BLOW");
+  });
+
+  it("still answers for things that are not objects yet", () => {
+    // The HAY does not exist until it is taken, but EXAMINE HAY in the byre
+    // reaches the description block anyway (line 1310), and the fly and snake
+    // have their own answers before they are reachable (1312, 1316).
+    game.world.room = 9;
+    expect(text(game.execute(obj("examine", "hay")))).toContain("feedstuff");
+
+    game.world.room = 21;
+    expect(text(game.execute(obj("examine", "fly")))).toContain("FLY-BY-NIGHT");
+
+    game.world.room = 14;
+    expect(text(game.execute(obj("examine", "snake")))).toContain("dangerous");
+  });
+
+  it("gates READ RUNES the same way, since it routes through EXAMINE", () => {
+    expect(text(game.execute(obj("read", "runes")))).toContain(
+      "You can't see any runes here",
+    );
+    game.world.objects["runes"] = CARRIED;
+    expect(text(game.execute(obj("read", "runes")))).toContain(
+      "can't understand them",
+    );
+  });
+});
+
 /* ---------------------------------------------------------------- exits -- */
 
 describe("the exits line", () => {
