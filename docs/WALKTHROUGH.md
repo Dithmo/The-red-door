@@ -345,14 +345,45 @@ telling them apart is the ink colour, which this remake keeps as the accent.
 
 In from the patio: `n` `e` `n` `e`. Out again: `s` `w` `s`.
 
-## Things worth trying that are not on the route
+## EXAMINE is not decoration
 
-- `examine` almost anything — most of the game's character is in the responses,
-  and several are jokes at the player's expense.
-- `listen` in the Soothsayer's room before and after giving him the runes.
-- `examine skeleton` in the Treasure Room. Twice.
-- `say abracadabra` in the BLACK room after reading the symbols. It is a red
-  herring, and the game says so.
-- `tell joke` to the cow, the Soothsayer, the Concubine and the mummy — each has
-  its own answer.
-- `milk cow`.
+Five things in this game do not exist until you look at something:
+
+| Examine | in | and you get |
+|---|---|---|
+| the haystack | the byre | Cleopatra's NEEDLE |
+| DOWN | the room full of DOWN | navel FLUFF |
+| the FLUFF | anywhere | the RUBY |
+| the empty glass case | the Treasure Room | the NECKLACE |
+| the mulberry bush | garden room 28 | the silkworms' THREAD |
+
+Several more responses are the *only* clue you get for a puzzle:
+
+- **the Soothsayer** — "he could be of some assistance given some **sure n**ews"
+  is the whole hint for the RUNES.
+- **the catch**, inside the mummy case — "there's the **RUB**!" is how you learn
+  to turn the token gold.
+- **the pool** — says outright that it is embalming fluid, which is what the male
+  mummy wants and what kills you if you drink it.
+- **the SPHINX** — "perhaps it doesn't like that fly there" points at the JOKE.
+- **the PIPE** — "a good BLOW in the right place may help".
+
+So examine everything, in every room. It is the closest thing the game has to a
+hint system, and roughly half the puzzle chain is hidden in it.
+
+## Jokes, which do nothing at all
+
+These change no state and unlock nothing. They are here because the authors were
+enjoying themselves, and are worth a look once you have finished:
+
+- EXAMINE SKELETON in the Treasure Room, then again — it sings, then it is too
+  tired to sing.
+- EXAMINE BAT in the alcove: it is a character from another Tartan Software
+  adventure on the same compilation tape.
+- EXAMINE SPIDER: he is called Ernie, and SAY ERNIE gets a reply.
+- MILK COW. EXAMINE PIT. EXAMINE UP, in the room full of DOWN.
+- SAY ABRACADABRA in the BLACK room. Examining the symbols there says they are
+  "not necessarily the ABRACADABRA type", so saying it anyway is taking the bait
+  — and the answer is three brush-offs in a row, which is the joke.
+- TELL JOKE to the cow, the Soothsayer and the Concubine: each has its own reply,
+  and none of them is amused.
