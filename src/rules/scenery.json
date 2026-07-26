@@ -2635,24 +2635,6 @@
     "origin": "red.bas:8687"
   },
   {
-    "id": "examine-catch-slot",
-    "verb": "examine",
-    "target": {
-      "scenery": [
-        103
-      ]
-    },
-    "when": [
-      {
-        "room": 30
-      }
-    ],
-    "say": [
-      "Looks a bit special!"
-    ],
-    "origin": "red.bas:8703"
-  },
-  {
     "id": "examine-mummy-in-case",
     "verb": "examine",
     "target": {

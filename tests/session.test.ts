@@ -38,6 +38,7 @@ describe("playing in typed English", () => {
     expect(session.world.room).toBe(30);
 
     expect(say("examine catch")).toContain("there's the RUB!");
+    expect(say("examine catch")).toContain("Something gold would have to go in it");
     expect(say("wave rod")).toContain("flash of GOLD");
     expect(say("take the gold token")).toContain("OK");
     expect(say("put token in slot")).toContain("WELL DONE!");
@@ -54,6 +55,61 @@ describe("playing in typed English", () => {
     expect(session.world.turn).toBe(0);
 
     expect(say("gold")).toContain("Surely not!");
+  });
+
+  it("accepts any sensible way of putting the token in the slot", () => {
+    // INSERT was the only verb the original took, and every near miss got a
+    // stock brush-off ("It's not as easy as that!", "That's too general
+    // GENERAL!"), which turns the puzzle into guess-the-verb.
+    const phrasings = [
+      "insert token",
+      "put token in slot",
+      "use token",
+      "use token on catch",
+      "open catch with token",
+      "open catch",
+      "unlock catch",
+      "push token",
+      "give token",
+      "use catch",
+      "touch slot",
+      "move token",
+    ];
+
+    for (const phrasing of phrasings) {
+      const play = new Session(createWorld(42));
+      play.begin();
+      play.world.room = 12;
+      play.send("open case");
+      play.send("wave rod");
+      play.send("take token");
+      play.send(phrasing);
+      expect(play.world.room, `"${phrasing}" did not open the case`).toBe(11);
+    }
+  });
+
+  it("says the bronze token is not good enough, however it is phrased", () => {
+    for (const phrasing of ["insert token", "use token", "open catch"]) {
+      const play = new Session(createWorld(42));
+      play.begin();
+      play.world.room = 12;
+      play.send("open case");
+      play.send("take token"); // still bronze -- the rod has not been waved
+      const text = play
+        .send(phrasing)
+        .lines.map((l) => l.text)
+        .join(" ");
+      expect(text, phrasing).toContain("Bronze is NOT good enough!");
+      expect(play.world.room).toBe(30);
+    }
+  });
+
+  it("keeps the original's RUB hint while explaining the slot", () => {
+    session.world.room = 30;
+    const text = say("examine catch");
+    // The pun is the hint for turning the token gold; it must survive.
+    expect(text).toContain("there's the RUB!");
+    expect(text).toContain("Something gold would have to go in it");
   });
 
   it("does not let a question consume a turn or an undo step", () => {

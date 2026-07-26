@@ -148,8 +148,15 @@ export type Say = string | { message: number };
 
 export interface Rule {
   id: string;
-  /** Canonical verb name, or "*" to match any verb. */
-  verb: string;
+  /**
+   * Canonical verb name, several of them, or "*" for any.
+   *
+   * A list is how one action accepts the several ways a player might phrase it.
+   * The original does this by redirection -- BLOW jumps to the PLAY handler,
+   * CATCH to TAKE -- and the same idea is what stops a puzzle turning into
+   * guess-the-verb.
+   */
+  verb: string | string[];
   target?: RuleTarget;
   /** ANDed. Omitted means "always". */
   when?: Condition[];

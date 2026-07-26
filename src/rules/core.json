@@ -146,26 +146,162 @@
     "origin": "red.bas:2100"
   },
   {
-    "id": "feel-catch",
-    "verb": "feel",
+    "id": "token-into-slot",
+    "verb": [
+      "insert",
+      "use",
+      "open",
+      "unlock",
+      "push",
+      "touch",
+      "give",
+      "feel",
+      "move"
+    ],
     "target": {
-      "scenery": 100
+      "object": "token-gold"
     },
     "when": [
       {
         "room": 30
+      },
+      {
+        "carrying": "token-gold"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "token-gold"
+      },
+      {
+        "teleport": 11
       }
     ],
     "say": [
-      "You feel the outline of a slot!"
+      "WELL DONE! The case opens and you fall out ............................... ......to find you are WHERE?"
     ],
-    "origin": "red.bas:5000"
+    "origin": "red.bas:5106"
   },
   {
-    "id": "examine-catch",
-    "verb": "examine",
+    "id": "bronze-token-into-slot",
+    "verb": [
+      "insert",
+      "use",
+      "open",
+      "unlock",
+      "push",
+      "touch",
+      "give",
+      "feel",
+      "move"
+    ],
     "target": {
-      "scenery": 100
+      "object": "token-bronze"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-bronze"
+      }
+    ],
+    "say": [
+      "Bronze is NOT good enough!"
+    ],
+    "origin": "red.bas:5104"
+  },
+  {
+    "id": "catch-with-gold-token",
+    "verb": [
+      "insert",
+      "use",
+      "open",
+      "unlock",
+      "push",
+      "touch",
+      "give",
+      "feel",
+      "move"
+    ],
+    "target": {
+      "scenery": [
+        100,
+        103
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-gold"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "token-gold"
+      },
+      {
+        "teleport": 11
+      }
+    ],
+    "say": [
+      "WELL DONE! The case opens and you fall out ............................... ......to find you are WHERE?"
+    ],
+    "origin": "red.bas:5106"
+  },
+  {
+    "id": "catch-with-bronze-token",
+    "verb": [
+      "insert",
+      "use",
+      "open",
+      "unlock",
+      "push",
+      "touch",
+      "give",
+      "feel",
+      "move"
+    ],
+    "target": {
+      "scenery": [
+        100,
+        103
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-bronze"
+      }
+    ],
+    "say": [
+      "Bronze is NOT good enough!"
+    ],
+    "origin": "red.bas:5104"
+  },
+  {
+    "id": "catch-empty-handed",
+    "verb": [
+      "insert",
+      "use",
+      "open",
+      "unlock",
+      "push",
+      "touch",
+      "give",
+      "feel",
+      "move",
+      "examine"
+    ],
+    "target": {
+      "scenery": [
+        100,
+        103
+      ]
     },
     "when": [
       {
@@ -173,7 +309,8 @@
       }
     ],
     "say": [
-      "There's a gold slot in it! Ah, there's the RUB!"
+      "There's a gold slot in it! Ah, there's the RUB!",
+      "The slot is exactly the size and shape of a small coin or token. Something gold would have to go in it."
     ],
     "origin": "red.bas:8701"
   },
@@ -408,52 +545,6 @@
       }
     ],
     "origin": "red.bas:5102"
-  },
-  {
-    "id": "insert-bronze-token",
-    "verb": "insert",
-    "target": {
-      "object": "token-bronze"
-    },
-    "when": [
-      {
-        "room": 30
-      },
-      {
-        "carrying": "token-bronze"
-      }
-    ],
-    "say": [
-      "Bronze is NOT good enough!"
-    ],
-    "origin": "red.bas:5104"
-  },
-  {
-    "id": "insert-gold-token",
-    "verb": "insert",
-    "target": {
-      "object": "token-gold"
-    },
-    "when": [
-      {
-        "room": 30
-      },
-      {
-        "carrying": "token-gold"
-      }
-    ],
-    "then": [
-      {
-        "destroy": "token-gold"
-      },
-      {
-        "teleport": 11
-      }
-    ],
-    "say": [
-      "WELL DONE! The case opens and you fall out ............................... ......to find you are WHERE?"
-    ],
-    "origin": "red.bas:5106"
   },
   {
     "id": "insert-coin-anywhere",

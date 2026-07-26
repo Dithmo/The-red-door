@@ -22,6 +22,12 @@ function asArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value];
 }
 
+/** Does this rule answer to the verb the player used? */
+export function verbMatches(ruleVerb: string | string[], verb: string): boolean {
+  if (ruleVerb === "*") return true;
+  return asArray(ruleVerb).includes(verb);
+}
+
 /** Does the command's noun satisfy what the rule is looking for? */
 export function targetMatches(
   target: RuleTarget | undefined,
@@ -58,7 +64,7 @@ export function ruleApplies(
   command: Command,
   ctx: ConditionContext,
 ): boolean {
-  if (rule.verb !== "*" && rule.verb !== command.verb) return false;
+  if (!verbMatches(rule.verb, command.verb)) return false;
   if (!targetMatches(rule.target, command.target)) return false;
   // `targetCarried` / `targetPresent` need to know what the command named.
   return evaluateAll({ ...ctx, target: command.target }, rule.when);
@@ -84,9 +90,7 @@ export function candidatesFor(
   target: CommandTarget,
 ): Rule[] {
   return ruleset.filter(
-    (rule) =>
-      (rule.verb === "*" || rule.verb === verb) &&
-      targetMatches(rule.target, target),
+    (rule) => verbMatches(rule.verb, verb) && targetMatches(rule.target, target),
   );
 }
 

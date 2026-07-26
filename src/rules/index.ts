@@ -24,7 +24,7 @@ import { flagNames, lexicon, messages, objectByKey, roomById } from "../data/ind
 import type { Condition, Effect, Rule, RuleTarget } from "../data/types";
 import { effectTargets } from "../engine/effects";
 import { ARRIVAL_VERB } from "../engine/game";
-import { candidatesFor } from "../engine/rules";
+import { candidatesFor, verbMatches } from "../engine/rules";
 
 /**
  * `core` first: it holds the guards the original checks before anything else
@@ -109,8 +109,10 @@ export function validateRules(ruleset: readonly Rule[] = rules): string[] {
     if (!ORIGIN.test(rule.origin)) {
       problems.push(`${at}: origin "${rule.origin}" is not of the form red.bas:NNNN`);
     }
-    if (rule.verb !== "*" && rule.verb !== ARRIVAL_VERB && !knownVerbs.has(rule.verb)) {
-      problems.push(`${at}: unknown verb "${rule.verb}"`);
+    for (const verb of Array.isArray(rule.verb) ? rule.verb : [rule.verb]) {
+      if (verb !== "*" && verb !== ARRIVAL_VERB && !knownVerbs.has(verb)) {
+        problems.push(`${at}: unknown verb "${verb}"`);
+      }
     }
     if (!rule.then && !rule.say && !rule.sayRandom) {
       problems.push(`${at}: does nothing -- no effects and nothing to say`);
@@ -183,7 +185,10 @@ export function findShadowedRules(ruleset: readonly Rule[]): string[] {
 
     for (let j = 0; j < i; j += 1) {
       const earlier = ruleset[j]!;
-      if (earlier.verb !== later.verb && earlier.verb !== "*") continue;
+      // The earlier rule only shadows the later one if it answers to every verb
+      // the later one does.
+      const laterVerbs = Array.isArray(later.verb) ? later.verb : [later.verb];
+      if (!laterVerbs.every((v) => verbMatches(earlier.verb, v))) continue;
       // Coverage, not mere overlap: the earlier rule only makes the later one
       // dead if it catches *everything* the later one would. Partial overlap just
       // means some commands go to the earlier rule -- which the original does too
