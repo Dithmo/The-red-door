@@ -194,6 +194,7 @@ VERB_GRAMMAR = {
 
 # The original's verb code -> our canonical verb name.
 VERB_CODE_NAMES = {
+    0: "go",   # movement: the original dispatches a bare direction as verb 0
     1: "take", 2: "drop", 3: "examine", 4: "look", 5: "inventory", 6: "quit",
     7: "save", 8: "load", 9: "help", 10: "search", 11: "open", 12: "cut",
     13: "give", 14: "sew", 15: "thread", 16: "touch", 17: "drink", 18: "fill",
@@ -204,6 +205,19 @@ VERB_CODE_NAMES = {
     43: "tickle", 44: "feed", 45: "lift", 46: "wait", 47: "break", 48: "listen",
     49: "say", 50: "rub", 51: "wave",
 }
+
+# --------------------------------------------------------------------------
+# CURATED: typo fixes applied to the remake's text only.
+#
+# The extraction under data/ stays faithful; these are corrections for the
+# playable version. Byte 0x60 is POUND SIGN on the Spectrum, so message 20
+# genuinely displayed "He pulls you in£with him!" in 1985 -- a mis-key for a
+# space. Kept as a table of exact replacements so every change is auditable.
+# --------------------------------------------------------------------------
+
+TEXT_FIXES = [
+    ("He pulls you in£with him!", "He pulls you in with him!"),
+]
 
 NOISE_WORDS = ["the", "a", "an", "my", "some", "of", "please", "at", "then"]
 PREPOSITIONS = ["in", "into", "on", "onto", "with", "to", "from", "at",
@@ -429,7 +443,12 @@ def main():
     }
 
     # ---------------- messages ----------------
-    messages = {k: tidy(v.replace("\n", " ")) for k, v in raw["messages"].items()}
+    def fix(text):
+        for wrong, right in TEXT_FIXES:
+            text = text.replace(wrong, right)
+        return text
+
+    messages = {k: fix(tidy(v.replace("\n", " "))) for k, v in raw["messages"].items()}
 
     out_dir = os.path.join(ROOT, "src", "data")
     os.makedirs(out_dir, exist_ok=True)

@@ -1,0 +1,709 @@
+[
+  {
+    "id": "tomb-west-blocked-north",
+    "verb": "go",
+    "target": {
+      "direction": "west"
+    },
+    "when": [
+      {
+        "room": 1
+      },
+      {
+        "flag": "visitedNorthAlcove",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Both N and S before W!"
+    ],
+    "origin": "red.bas:1004"
+  },
+  {
+    "id": "tomb-west-blocked-south",
+    "verb": "go",
+    "target": {
+      "direction": "west"
+    },
+    "when": [
+      {
+        "room": 1
+      },
+      {
+        "flag": "visitedSouthAlcove",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "Both N and S before W!"
+    ],
+    "origin": "red.bas:1004"
+  },
+  {
+    "id": "anubis-blocks-west",
+    "verb": "go",
+    "target": {
+      "direction": "west"
+    },
+    "when": [
+      {
+        "room": 20
+      }
+    ],
+    "say": [
+      "The ANUBIS blocks your way."
+    ],
+    "origin": "red.bas:1006"
+  },
+  {
+    "id": "visit-north-alcove",
+    "verb": "@enter",
+    "when": [
+      {
+        "room": 2
+      },
+      {
+        "flag": "visitedNorthAlcove",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "visitedNorthAlcove",
+        "set": 1
+      }
+    ],
+    "say": [
+      "He says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my lost garment and possessions.\""
+    ],
+    "origin": "red.bas:7022"
+  },
+  {
+    "id": "visit-south-alcove",
+    "verb": "@enter",
+    "when": [
+      {
+        "room": 3
+      },
+      {
+        "flag": "visitedSouthAlcove",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "visitedSouthAlcove",
+        "set": 1
+      }
+    ],
+    "say": [
+      "She says, \"Vandals desecrated my tomb and left me like this. Could you please help me by replacing my adornments.\""
+    ],
+    "origin": "red.bas:7032"
+  },
+  {
+    "id": "examine-case-shut",
+    "verb": "examine",
+    "target": {
+      "scenery": 70
+    },
+    "when": [
+      {
+        "room": 12
+      },
+      {
+        "flag": "caseOpened",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "It now appears to be firmly shut"
+    ],
+    "origin": "red.bas:8521"
+  },
+  {
+    "id": "examine-case-closed",
+    "verb": "examine",
+    "target": {
+      "scenery": 70
+    },
+    "when": [
+      {
+        "room": 12
+      }
+    ],
+    "say": [
+      "Looks interesting. How about opening it?"
+    ],
+    "origin": "red.bas:8520"
+  },
+  {
+    "id": "open-case-shut-again",
+    "verb": "open",
+    "target": {
+      "scenery": 70
+    },
+    "when": [
+      {
+        "room": 12
+      },
+      {
+        "flag": "caseOpened",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "It now appears to be firmly shut"
+    ],
+    "origin": "red.bas:2102"
+  },
+  {
+    "id": "open-case",
+    "verb": "open",
+    "target": {
+      "scenery": 70
+    },
+    "when": [
+      {
+        "room": 12
+      },
+      {
+        "flag": "caseOpened",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "caseOpened",
+        "set": 1
+      },
+      {
+        "teleport": 30
+      }
+    ],
+    "say": [
+      {
+        "message": 20
+      },
+      {
+        "message": 21
+      }
+    ],
+    "origin": "red.bas:2100"
+  },
+  {
+    "id": "feel-catch",
+    "verb": "feel",
+    "target": {
+      "scenery": 100
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "say": [
+      "You feel the outline of a slot!"
+    ],
+    "origin": "red.bas:5000"
+  },
+  {
+    "id": "examine-catch",
+    "verb": "examine",
+    "target": {
+      "scenery": 100
+    },
+    "when": [
+      {
+        "room": 30
+      }
+    ],
+    "say": [
+      "There's a gold slot in it! Ah, there's the RUB!"
+    ],
+    "origin": "red.bas:8701"
+  },
+  {
+    "id": "rub-token-not-held",
+    "verb": "rub",
+    "target": {
+      "object": [
+        "token-bronze",
+        "token-gold"
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "not": {
+          "carrying": "token-bronze"
+        }
+      },
+      {
+        "not": {
+          "carrying": "token-gold"
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:6002"
+  },
+  {
+    "id": "rub-gold-token",
+    "verb": "rub",
+    "target": {
+      "object": "token-gold"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-gold"
+      }
+    ],
+    "say": [
+      "Surely not!"
+    ],
+    "origin": "red.bas:6008"
+  },
+  {
+    "id": "rub-token-without-rod",
+    "verb": "rub",
+    "target": {
+      "object": "token-bronze"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-bronze"
+      },
+      {
+        "not": {
+          "carrying": "rod"
+        }
+      },
+      {
+        "flag": "tokenIsGold",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You're just making a ROD for your own back!"
+    ],
+    "origin": "red.bas:6004"
+  },
+  {
+    "id": "rub-token-with-rod",
+    "verb": "rub",
+    "target": {
+      "object": "token-bronze"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-bronze"
+      },
+      {
+        "carrying": "rod"
+      }
+    ],
+    "then": [
+      {
+        "transform": "token-bronze",
+        "into": "token-gold"
+      },
+      {
+        "flag": "tokenIsGold",
+        "set": 1
+      }
+    ],
+    "say": [
+      "There is a flash of GOLD as the bronze TOKEN vibrates!"
+    ],
+    "origin": "red.bas:6105"
+  },
+  {
+    "id": "wave-rod-no-rod",
+    "verb": "wave",
+    "target": {
+      "object": "rod"
+    },
+    "say": [
+      "Pass............you have no ROD!"
+    ],
+    "origin": "red.bas:6102",
+    "when": [
+      {
+        "not": {
+          "carrying": "rod"
+        }
+      }
+    ]
+  },
+  {
+    "id": "wave-rod-already-gold",
+    "verb": "wave",
+    "target": {
+      "object": "rod"
+    },
+    "when": [
+      {
+        "carrying": "rod"
+      },
+      {
+        "flag": "tokenIsGold",
+        "eq": 1
+      }
+    ],
+    "say": [
+      {
+        "message": 17
+      }
+    ],
+    "origin": "red.bas:6104"
+  },
+  {
+    "id": "wave-rod-transmutes",
+    "verb": "wave",
+    "target": {
+      "object": "rod"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "rod"
+      },
+      {
+        "flag": "tokenIsGold",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "transform": "token-bronze",
+        "into": "token-gold"
+      },
+      {
+        "flag": "tokenIsGold",
+        "set": 1
+      }
+    ],
+    "say": [
+      "There is a flash of GOLD as the bronze TOKEN vibrates!"
+    ],
+    "origin": "red.bas:6105"
+  },
+  {
+    "id": "wave-rod-elsewhere",
+    "verb": "wave",
+    "target": {
+      "object": "rod"
+    },
+    "when": [
+      {
+        "carrying": "rod"
+      }
+    ],
+    "say": [
+      {
+        "message": 17
+      }
+    ],
+    "origin": "red.bas:6104"
+  },
+  {
+    "id": "insert-token-not-held",
+    "verb": "insert",
+    "target": {
+      "object": [
+        "token-bronze",
+        "token-gold"
+      ]
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "not": {
+          "carrying": "token-bronze"
+        }
+      },
+      {
+        "not": {
+          "carrying": "token-gold"
+        }
+      }
+    ],
+    "say": [
+      {
+        "message": 16
+      }
+    ],
+    "origin": "red.bas:5102"
+  },
+  {
+    "id": "insert-bronze-token",
+    "verb": "insert",
+    "target": {
+      "object": "token-bronze"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-bronze"
+      }
+    ],
+    "say": [
+      "Bronze is NOT good enough!"
+    ],
+    "origin": "red.bas:5104"
+  },
+  {
+    "id": "insert-gold-token",
+    "verb": "insert",
+    "target": {
+      "object": "token-gold"
+    },
+    "when": [
+      {
+        "room": 30
+      },
+      {
+        "carrying": "token-gold"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "token-gold"
+      },
+      {
+        "teleport": 11
+      }
+    ],
+    "say": [
+      "WELL DONE! The case opens and you fall out ............................... ......to find you are WHERE?"
+    ],
+    "origin": "red.bas:5106"
+  },
+  {
+    "id": "insert-coin-anywhere",
+    "verb": "insert",
+    "target": {
+      "object": "coin"
+    },
+    "when": [
+      {
+        "carrying": "coin"
+      }
+    ],
+    "then": [
+      {
+        "destroy": "coin"
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      },
+      {
+        "message": 17
+      }
+    ],
+    "confirm": "That would push the COIN somewhere you cannot reach it again, and you will want it later. Repeat the command if you really mean it.",
+    "origin": "red.bas:5120"
+  },
+  {
+    "id": "play-pipe-not-held",
+    "verb": "play",
+    "target": {
+      "object": "pipe"
+    },
+    "say": [
+      "You have no PIPE!"
+    ],
+    "origin": "red.bas:3502",
+    "when": [
+      {
+        "not": {
+          "carrying": "pipe"
+        }
+      }
+    ]
+  },
+  {
+    "id": "play-pipe-at-pit",
+    "verb": "play",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "carrying": "pipe"
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "then": [
+      {
+        "flag": "snakeOnRamp",
+        "set": 1
+      },
+      {
+        "moveTo": "snake",
+        "room": 14
+      }
+    ],
+    "say": [
+      "One of the snakes slithers up the ramp to be at your feet!"
+    ],
+    "origin": "red.bas:3504"
+  },
+  {
+    "id": "play-pipe-elsewhere",
+    "verb": "play",
+    "target": {
+      "object": "pipe"
+    },
+    "when": [
+      {
+        "carrying": "pipe"
+      }
+    ],
+    "say": [
+      {
+        "message": 12
+      }
+    ],
+    "origin": "red.bas:3506"
+  },
+  {
+    "id": "take-snake-in-basket-already",
+    "verb": "take",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "flag": "snakeInBasket",
+        "eq": 1
+      }
+    ],
+    "say": [
+      "Let's leave it in the basket!"
+    ],
+    "origin": "red.bas:1114"
+  },
+  {
+    "id": "take-snake-out-of-reach",
+    "verb": "take",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "flag": "snakeOnRamp",
+        "eq": 0
+      }
+    ],
+    "say": [
+      "You can't quite reach them."
+    ],
+    "origin": "red.bas:1112"
+  },
+  {
+    "id": "take-snake-bare-handed",
+    "verb": "take",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "not": {
+          "carrying": "basket"
+        }
+      }
+    ],
+    "then": [
+      {
+        "end": "lose"
+      }
+    ],
+    "say": [
+      {
+        "message": 19
+      }
+    ],
+    "origin": "red.bas:1180"
+  },
+  {
+    "id": "catch-snake-in-basket",
+    "verb": "take",
+    "target": {
+      "object": "snake"
+    },
+    "when": [
+      {
+        "room": 14
+      },
+      {
+        "objectAt": "snake",
+        "room": 14
+      },
+      {
+        "carrying": "basket"
+      }
+    ],
+    "then": [
+      {
+        "flag": "snakeInBasket",
+        "set": 1
+      },
+      {
+        "transform": "basket",
+        "into": "basket-with-snake"
+      },
+      {
+        "destroy": "snake"
+      },
+      {
+        "moveTo": "charm",
+        "room": 14
+      }
+    ],
+    "say": [
+      "As you catch the snake in the basket, you notice it had a CHARM which drops at your feet."
+    ],
+    "origin": "red.bas:1182"
+  }
+]

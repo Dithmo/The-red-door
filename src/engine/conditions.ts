@@ -40,6 +40,7 @@ export function isPresent(ctx: ConditionContext, key: string): boolean {
 }
 
 export function evaluate(ctx: ConditionContext, condition: Condition): boolean {
+  if ("not" in condition) return !evaluate(ctx, condition.not);
   if ("room" in condition && !("objectAt" in condition)) {
     return ctx.room === condition.room;
   }

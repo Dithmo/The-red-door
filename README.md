@@ -28,12 +28,21 @@ a picture for every location and a parser that actually understands English.
 | Path | What it is |
 |---|---|
 | `src/data/` | generated game data (`rooms`, `objects`, `lexicon`, `messages`, `flags`) |
-| `src/engine/` | condition evaluation and room description / image resolution |
+| `src/engine/` | world state, conditions, effects, rule matching, turn loop, save/undo |
+| `src/rules/` | the rule table — **hand-authored**, transcribed from the BASIC |
 | `src/main.ts` | data-review harness — browse every room, toggle its flags, see each picture |
 | `assets/images/` | one placeholder per image slot, tinted with that room's original ink |
 | `tools/build_gamedata.py` | turns `data/reddoor.json` into `src/data/*.json` |
 | `tools/make_placeholders.py` | generates placeholder artwork for every image slot |
 | `tests/data.test.ts` | consistency checks on the ported data |
+| `tests/engine.test.ts` | engine behaviour and a rule-table audit |
+
+`src/rules/rules.json` is the one hand-authored data file: the original encodes
+its puzzle logic in control flow rather than a table, so it has to be transcribed.
+Every rule carries an `origin` naming the BASIC line it came from, and the test
+suite checks those references and flags rules that can never fire. Transcription
+is in progress — currently the movement guards, the mummy-case sequence and the
+snake-pit.
 
 Nothing under `src/data/` is hand-edited — it is all generated. `npm run data`
 rebuilds it. Real artwork replaces the placeholder of the same filename;

@@ -1,6 +1,21 @@
 {
   "verbs": [
     {
+      "name": "go",
+      "originalCode": 0,
+      "patterns": [
+        "V N",
+        "V to N"
+      ],
+      "words": [
+        "go",
+        "head",
+        "move to",
+        "travel",
+        "walk"
+      ]
+    },
+    {
       "name": "take",
       "originalCode": 1,
       "patterns": [

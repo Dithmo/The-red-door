@@ -190,8 +190,11 @@ def render_text(buf):
             i += 2
         elif b in (0x16, 0x17):
             i += 3
-        elif b == 0x7F:                      # continuation / (c) glyph
+        elif b == 0x7F:                      # message-table line separator
             out.append("\n")
+            i += 1
+        elif b == 0x60:                      # 0x60 is POUND SIGN on the Spectrum
+            out.append("£")
             i += 1
         elif 32 <= b < 127:
             out.append(chr(b))

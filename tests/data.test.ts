@@ -21,7 +21,7 @@ describe("generated game data", () => {
     expect(rooms).toHaveLength(31);
     // 35 objects, minus the three unused no28/no29/no30 placeholders
     expect(objects).toHaveLength(32);
-    expect(lexicon.verbs).toHaveLength(51);
+    expect(lexicon.verbs).toHaveLength(52);
     expect(Object.keys(messages)).toHaveLength(29);
   });
 
@@ -188,7 +188,8 @@ describe("lexicon", () => {
   it("maps every verb to a distinct original code", () => {
     const codes = lexicon.verbs.map((v) => v.originalCode);
     expect(new Set(codes).size).toBe(codes.length);
-    expect(Math.min(...codes)).toBe(1);
+    // verb 0 is movement -- the original dispatches a bare direction as verb 0
+    expect(Math.min(...codes)).toBe(0);
     expect(Math.max(...codes)).toBe(51);
   });
 

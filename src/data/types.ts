@@ -26,7 +26,13 @@ export type Condition =
   | { flag: string; gte: number }
   | { carrying: string }
   | { present: string }
-  | { objectAt: string; room: number };
+  | { objectAt: string; room: number }
+  /**
+   * Negation. The original is full of `<>` tests -- `PEEK (o+no)<>m` ("you
+   * haven't got it") is the single most common guard in the listing -- so
+   * transcribing them directly beats contorting rule order to fake it.
+   */
+  | { not: Condition };
 
 /** Text shown only while a condition holds. */
 export interface ConditionalText {
@@ -76,6 +82,89 @@ export interface GameObject {
   description: string;
   /** Room id, or CARRIED, or NOWHERE. */
   startsAt: number;
+}
+
+/* -------------------------------------------------------------------------- *
+ * Rules
+ *
+ * The original is 337 clauses of the form
+ *   IF room/noun/flag THEN set-flags, move-objects, print-text
+ * so a rule is exactly that: a verb, what it was aimed at, the state it needs,
+ * the state it changes, and what it prints. Rules are ordered and the FIRST
+ * match wins -- this reproduces BASIC's line fall-through, which the original
+ * genuinely relies on (see docs/GAME-DATA.md §1).
+ * -------------------------------------------------------------------------- */
+
+/** What the player's noun has to refer to for a rule to apply. */
+export type RuleTarget =
+  /** One of these object keys. */
+  | { object: string | string[] }
+  /** One of these scenery noun codes from the original's table. */
+  | { scenery: number | number[] }
+  | { direction: Direction }
+  /** The verb was used bare, with no noun. */
+  | { none: true }
+  /** Any noun, or none. */
+  | { any: true };
+
+/** A change to world state. These cover every POKE in the original. */
+export type Effect =
+  | { take: string }
+  | { drop: string }
+  /** Remove from play entirely -- the original pokes the location to 0. */
+  | { destroy: string }
+  | { moveTo: string; room: number | "here" }
+  /**
+   * Replace one object with another *in place*, wherever it happens to be:
+   * `POKE (o+new),(PEEK (o+old)): POKE (o+old),0`. The original does this for all
+   * five transformation pairs (bronze/gold token, plain/threaded needle,
+   * whole/shaped cloth, empty/full jug, empty/snake basket), and "in place"
+   * matters -- WAVE ROD converts the token whether you are holding it or not.
+   */
+  | { transform: string; into: string }
+  | { flag: string; set: number }
+  | { flag: string; add: number }
+  | { teleport: number }
+  | { end: "win" | "lose" };
+
+/** A line of output: literal text, or one of the original's numbered messages. */
+export type Say = string | { message: number };
+
+export interface Rule {
+  id: string;
+  /** Canonical verb name, or "*" to match any verb. */
+  verb: string;
+  target?: RuleTarget;
+  /** ANDed. Omitted means "always". */
+  when?: Condition[];
+  then?: Effect[];
+  say?: Say[];
+  /**
+   * A kindness the original lacks: ask before an irreversible mistake. The first
+   * attempt prints this and does nothing; repeating the command goes through.
+   * Used for EAT FOOD, which silently makes the game unwinnable.
+   */
+  confirm?: string;
+  /** Back-reference to the BASIC line this was transcribed from. */
+  origin: string;
+}
+
+/* -------------------------------------------------------------------------- *
+ * Commands
+ * -------------------------------------------------------------------------- */
+
+/** What the player's noun resolved to. Produced by the parser (phase 3). */
+export type CommandTarget =
+  | { kind: "object"; key: string }
+  | { kind: "scenery"; code: number; word: string }
+  | { kind: "direction"; direction: Direction }
+  | { kind: "none" };
+
+export interface Command {
+  verb: string;
+  target: CommandTarget;
+  /** What the player actually typed, for error messages and the transcript. */
+  raw: string;
 }
 
 export interface VerbSpec {

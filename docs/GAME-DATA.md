@@ -990,6 +990,11 @@ then a right-to-left scroller reveals: **" Can you now find your way home?"**
 **Game over.** *"Press a key to start again."*, then message 1
 *"Do you want to try again? (Y/N)"*
 
+**A typo in the original.** Message 20 contains byte `0x60`, which is `£` in the
+Spectrum character set, so the game really did print *"He pulls you in£with
+him!"* — a mis-key for a space. The extraction preserves it; the remake corrects
+it via an explicit table (`TEXT_FIXES` in `tools/build_gamedata.py`).
+
 **Publisher.** Tartan Software, 61 Bailie Norrie Crescent, Montrose, Angus,
 Scotland DD10 9DT — this adventure was taken from their *6-in-1* compilation.
 The loader also carries a generic seven-page "Adventure Guide" (see
