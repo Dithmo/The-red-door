@@ -126,10 +126,18 @@ describe("objects", () => {
       expect(objA, `missing object ${a}`).toBeDefined();
       expect(objB, `missing object ${b}`).toBeDefined();
       expect(objA!.noun).toBe(objB!.noun);
-      const overlap = objA!.adjectives.filter((adj) =>
-        objB!.adjectives.includes(adj),
-      );
-      expect(overlap, `${a} and ${b} share adjectives`).toEqual([]);
+      // Overlap is fine -- both CLOTHs are described as gold -- as long as each
+      // has at least one adjective the other lacks, so the player can always say
+      // which they mean. `validate()` enforces this across the whole set.
+      for (const [x, y] of [
+        [objA!, objB!],
+        [objB!, objA!],
+      ] as const) {
+        const unique = x.adjectives.filter((adj) => !y.adjectives.includes(adj));
+        expect(unique, `${x.key} cannot be told apart from ${y.key}`).not.toEqual(
+          [],
+        );
+      }
     }
   });
 });

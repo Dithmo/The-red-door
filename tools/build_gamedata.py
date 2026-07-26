@@ -117,6 +117,35 @@ OBJECT_ADJECTIVES = {
     8:  ["snake", "snake-shaped"],
 }
 
+# Words in an object's description that are not usable as adjectives.
+ADJECTIVE_STOPWORDS = {
+    "and", "the", "for", "with", "from", "that", "this", "you", "your", "which",
+    "has", "have", "was", "are", "its", "it", "of", "a", "an", "some", "pair",
+    "piece", "pieces", "quantity", "handful", "scroll", "rather", "very",
+}
+
+
+def derived_adjectives(desc, noun):
+    """
+    Every lowercase word in an object's description is usable as an adjective.
+
+    The original never needed these -- it matched one five-letter noun and no
+    more -- but "musical pipe", "wicker basket" and "ornate necklace" are what
+    people actually type, and the descriptions already contain the words. All-caps
+    words are skipped: those are the head noun or the original's emphasis.
+    """
+    out = []
+    for word in re.findall(r"[A-Za-z-]+", desc):
+        if word.isupper():
+            continue
+        low = word.lower().strip("-")
+        if len(low) < 3 or low in ADJECTIVE_STOPWORDS or low == noun:
+            continue
+        if low not in out:
+            out.append(low)
+    return out
+
+
 # CURATED: object slugs where the bare noun is ambiguous.
 OBJECT_KEYS = {
     1: "basket", 31: "basket-with-snake",
@@ -177,8 +206,12 @@ VERB_GRAMMAR = {
     "push":    {"patterns": ["V N"], "synonyms": ["press"]},
     "kiss":    {"patterns": ["V N"], "synonyms": ["hug", "embrace"]},
     "feel":    {"patterns": ["V N"], "synonyms": ["grope"]},
+    # PUT and PLACE are separable: "put token in slot" leaves the particle away
+    # from the verb, so they are listed as bare words and the "V N in N" pattern
+    # picks up the preposition. "put down X" still reaches DROP, because
+    # contiguous phrases are matched before single words.
     "insert":  {"patterns": ["V N in N", "V N into N", "V N"],
-                "synonyms": ["put in", "place in", "slot"]},
+                "synonyms": ["put", "place", "slot", "put in", "place in"]},
     "use":     {"patterns": ["V N", "V N on N"], "synonyms": []},
     "tickle":  {"patterns": ["V N"], "synonyms": []},
     "feed":    {"patterns": ["V N", "V N to N", "V N with N"], "synonyms": []},
@@ -401,11 +434,16 @@ def main():
                   file=sys.stderr)
             continue
         key = OBJECT_KEYS.get(num, noun)
+        adjectives = list(OBJECT_ADJECTIVES.get(num, []))
+        for word in derived_adjectives(desc, noun):
+            if word not in adjectives:
+                adjectives.append(word)
+
         objects.append({
             "id": num,
             "key": key,
             "noun": noun,
-            "adjectives": OBJECT_ADJECTIVES.get(num, []),
+            "adjectives": adjectives,
             "description": desc,
             "startsAt": raw["initial_object_locations"].get(num_s, 0),
         })

@@ -17,7 +17,8 @@
     "adjectives": [
       "plain",
       "bare",
-      "cleopatras"
+      "cleopatras",
+      "cleopatra"
     ],
     "description": "Cleopatra's NEEDLE",
     "startsAt": 0
@@ -28,7 +29,8 @@
     "noun": "cloth",
     "adjectives": [
       "whole",
-      "uncut"
+      "uncut",
+      "gold"
     ],
     "description": "CLOTH of gold",
     "startsAt": 0
@@ -50,7 +52,8 @@
     "noun": "jug",
     "adjectives": [
       "full",
-      "embalming"
+      "embalming",
+      "fluid"
     ],
     "description": "A JUG of embalming fluid",
     "startsAt": 0
@@ -67,7 +70,9 @@
     "id": 7,
     "key": "food",
     "noun": "food",
-    "adjectives": [],
+    "adjectives": [
+      "funeral"
+    ],
     "description": "Some funeral FOOD",
     "startsAt": 22
   },
@@ -88,7 +93,8 @@
     "noun": "bracelet",
     "adjectives": [
       "red",
-      "red-gold"
+      "red-gold",
+      "gold"
     ],
     "description": "A BRACELET of red gold",
     "startsAt": 0
@@ -107,7 +113,9 @@
     "id": 11,
     "key": "perfume",
     "noun": "perfume",
-    "adjectives": [],
+    "adjectives": [
+      "exotic"
+    ],
     "description": "Some exotic PERFUME",
     "startsAt": 0
   },
@@ -115,7 +123,9 @@
     "id": 12,
     "key": "kohl",
     "noun": "kohl",
-    "adjectives": [],
+    "adjectives": [
+      "adorning"
+    ],
     "description": "Some adorning KOHL",
     "startsAt": 0
   },
@@ -146,7 +156,9 @@
     "id": 15,
     "key": "fly",
     "noun": "fly",
-    "adjectives": [],
+    "adjectives": [
+      "dead"
+    ],
     "description": "A dead, dead FLY",
     "startsAt": 0
   },
@@ -154,7 +166,9 @@
     "id": 16,
     "key": "runes",
     "noun": "runes",
-    "adjectives": [],
+    "adjectives": [
+      "old"
+    ],
     "description": "An old scroll of RUNES",
     "startsAt": 17
   },
@@ -204,7 +218,9 @@
     "id": 21,
     "key": "pipe",
     "noun": "pipe",
-    "adjectives": [],
+    "adjectives": [
+      "musical"
+    ],
     "description": "A musical PIPE",
     "startsAt": 23
   },
@@ -223,7 +239,9 @@
     "id": 23,
     "key": "raiment",
     "noun": "raiment",
-    "adjectives": [],
+    "adjectives": [
+      "gorgeous"
+    ],
     "description": "A gorgeous RAIMENT",
     "startsAt": 0
   },
@@ -231,7 +249,9 @@
     "id": 24,
     "key": "joke",
     "noun": "joke",
-    "adjectives": [],
+    "adjectives": [
+      "funny"
+    ],
     "description": "A rather funny JOKE",
     "startsAt": 0
   },
@@ -239,7 +259,9 @@
     "id": 25,
     "key": "thread",
     "noun": "thread",
-    "adjectives": [],
+    "adjectives": [
+      "fine"
+    ],
     "description": "Some very fine THREAD",
     "startsAt": 0
   },
@@ -292,7 +314,8 @@
     "noun": "cloth",
     "adjectives": [
       "shaped",
-      "cut"
+      "cut",
+      "gold"
     ],
     "description": "Shaped pieces of gold CLOTH",
     "startsAt": 0

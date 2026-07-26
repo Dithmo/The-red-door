@@ -30,12 +30,16 @@ a picture for every location and a parser that actually understands English.
 | `src/data/` | generated game data (`rooms`, `objects`, `lexicon`, `messages`, `flags`) |
 | `src/engine/` | world state, conditions, effects, rule matching, turn loop, save/undo |
 | `src/rules/` | the rule table — **hand-authored**, transcribed from the BASIC |
+| `src/parser/` | tokenising, vocabulary lookup, grammar patterns, reference resolution |
+| `src/session.ts` | typed English in, lines of output out — the seam the UI sits on |
 | `src/main.ts` | data-review harness — browse every room, toggle its flags, see each picture |
 | `assets/images/` | one placeholder per image slot, tinted with that room's original ink |
 | `tools/build_gamedata.py` | turns `data/reddoor.json` into `src/data/*.json` |
 | `tools/make_placeholders.py` | generates placeholder artwork for every image slot |
 | `tests/data.test.ts` | consistency checks on the ported data |
 | `tests/engine.test.ts` | engine behaviour and a rule-table audit |
+| `tests/parser.test.ts` | input → command table, including every original command |
+| `tests/session.test.ts` | playing through in typed English |
 
 `src/rules/rules.json` is the one hand-authored data file: the original encodes
 its puzzle logic in control flow rather than a table, so it has to be transcribed.
@@ -75,6 +79,30 @@ Commands are two words, matched on their first five letters, and dispatched with
 `GO TO 1000 + verb*100`. Room descriptions are `GO SUB 7000 + 10*room`.
 
 See `docs/GAME-DATA.md` §1 for the full memory map.
+
+## The parser
+
+The 1985 parser took two words, truncated each to five letters, and answered every
+failure with *"Apologies from authors!"*. This one:
+
+* accepts synonyms, and any prefix of three or more characters — so `EXA`, `EXAMI`
+  and `EXAMINE` all work, and the original's terse forms are a subset
+* matches the tape's truncated vocabulary in **both** directions, so `ANUBIS` finds
+  the entry stored as `ANUBI`
+* understands prepositions: `UNLOCK BOX WITH KEY`, `PUT TOKEN IN SLOT`,
+  `GIVE RUNES TO SOOTHSAYER` — and still accepts the bare forms
+* understands adjectives, which the original could not afford. Five object pairs
+  differ only by one (bronze/gold TOKEN, plain/threaded NEEDLE, whole/shaped
+  CLOTH, empty/full JUG, empty/snake BASKET), and descriptive words are derived
+  from each object's own description, so `MUSICAL PIPE` and `WICKER BASKET` work
+  without being listed anywhere
+* asks *"Which do you mean, the bronze token or gold token?"* and reads the answer
+  against the options it offered
+* tracks `IT` across turns, and handles `TAKE ALL` / `DROP ALL BUT ROD`
+* tolerates typos — *"I don't know the word "exemine". Did you mean "examine"?"* —
+  but never guesses at words of three letters or fewer
+* distinguishes an unknown word from an absent object from a missing noun from a
+  verb that cannot take one, instead of one catch-all apology
 
 ## Shape of the game
 
